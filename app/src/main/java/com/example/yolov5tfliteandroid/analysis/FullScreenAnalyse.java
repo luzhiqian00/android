@@ -126,12 +126,12 @@ public class FullScreenAnalyse implements ImageAnalysis.Analyzer {
             // 模型输入的bitmap
             Matrix previewToModelTransform =
                     imageProcess.getTransformationMatrix(
-                            cropImageBitmap.getWidth(), cropImageBitmap.getHeight(),
+                            cropImageBitmap.getWidth()/2, cropImageBitmap.getHeight()/2,
                             yolov5TFLiteDetector.getInputSize().getWidth(),
                             yolov5TFLiteDetector.getInputSize().getHeight(),
                             0, false);
             Bitmap modelInputBitmap = Bitmap.createBitmap(cropImageBitmap, 0, 0,
-                    cropImageBitmap.getWidth(), cropImageBitmap.getHeight(),
+                    cropImageBitmap.getWidth()/2, cropImageBitmap.getHeight()/2,
                     previewToModelTransform, false);
 
             Matrix modelToPreviewTransform = new Matrix();
