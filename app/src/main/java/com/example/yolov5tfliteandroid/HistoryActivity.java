@@ -7,13 +7,30 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
     private Toolbar toolbar;
+    private MyAdapter adapter;
+    private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        recyclerView = findViewById(R.id.rv_history);
+        //设置LayoutManager，以LinearLayoutManager为例子进行线性布局
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //设置分割线
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        //创建适配器
+        adapter = new MyAdapter(getArrayList());
+        //设置适配器
+        recyclerView.setAdapter(adapter);
         toolbar = findViewById(R.id.tb_history);
         setSupportActionBar(toolbar);
     }
@@ -31,5 +48,12 @@ public class HistoryActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+    private List<String> getArrayList() {
+        List<String> dataList = new ArrayList<>();
+        for (int n = 0; n < 20; n++) {
+            dataList.add("item position = " + n);
+        }
+        return dataList;
     }
 }
