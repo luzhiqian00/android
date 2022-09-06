@@ -13,7 +13,8 @@ class ImageDataBase(val context: Context,name:String,version:Int):
             "id integer primary key autoincrement,"+
             "labelName String,"+
             "labelScore Float,"+
-            "confidence Float)"
+            "confidence Float,"+
+            "location RectF)"
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(createImage)

@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.camera.view.PreviewView;
 
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +21,6 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 
 import com.example.yolov5tfliteandroid.analysis.FullImageAnalyse;
 import com.example.yolov5tfliteandroid.analysis.FullScreenAnalyse;
-import com.example.yolov5tfliteandroid.analysis.ImageDataBase;
 import com.example.yolov5tfliteandroid.detector.Yolov5TFLiteDetector;
 import com.example.yolov5tfliteandroid.utils.CameraProcess;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -84,11 +81,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ImageDataBase dbHelper=new ImageDataBase(this,"ImageStore.db",1);
-        SQLiteDatabase db=dbHelper.getWritableDatabase();
-        ContentValues values= dbHelper.put_together("111",1,111);
-        db.insert("ImageStore",null,values);
 
         // 打开app的时候隐藏顶部状态栏
 //        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);

@@ -164,7 +164,10 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 cropCanvas.drawRect(location, boxPaint);
                 cropCanvas.drawText(label + ":" + String.format("%.2f", confidence), location.left, location.top, textPain);
 
-
+                ImageDataBase dbHelper=new ImageDataBase(context,"ImageStore.db",1);
+                SQLiteDatabase db=dbHelper.getWritableDatabase();
+                ContentValues values= dbHelper.put_together(label,1,confidence);
+                db.insert("ImageStore",null,values);
 
             }
             long end = System.currentTimeMillis();
