@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_history.xml" value="0.24947916666666667" />
+        <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_history.xml" value="0.1" />
+        <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_main.xml" value="0.109375" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/history_item.xml" value="0.10833333333333334" />
+        <entry key="..\:/Github Project/11/app/src/main/res/menu/menu_history.xml" value="0.24947916666666667" />
         <entry key="..\:/Github Project/11/yolov5-tflite-android/app/src/main/res/layout/activity_history.xml" value="0.24947916666666667" />
         <entry key="..\:/Github Project/11/yolov5-tflite-android/app/src/main/res/menu/menu_history.xml" value="0.24947916666666667" />
       </map>
