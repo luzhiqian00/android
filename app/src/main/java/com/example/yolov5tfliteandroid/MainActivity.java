@@ -28,7 +28,6 @@ import com.google.common.util.concurrent.ListenableFuture;
 public class MainActivity extends AppCompatActivity {
 
     private boolean IS_FULL_SCREEN = false;
-
     private PreviewView cameraPreviewMatch;
     private PreviewView cameraPreviewWrap;
     private ImageView boxLabelCanvas;
