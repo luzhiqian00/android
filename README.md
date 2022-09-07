@@ -23,5 +23,3 @@
 - 确保根目录下 `build.gradle` 相关依赖库能正常下载
 - 在android studio菜单栏`Build`下`Rebuild Project`
 - 打开`com.example.yolov5tfliteandroid.MainActivity`, 编译运行安装
-
-奥委会上帝杀佛is阿哈佛is啊
