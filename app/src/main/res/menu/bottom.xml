@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/detect"
+        android:id="@+id/detect"
+        android:icon="@drawable/ic_detect"/>
+
+    <item android:title="@string/history"
+        android:id="@+id/history"
+        android:icon="@drawable/ic_history"/>
+
+    <item android:title="@string/setting"
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_setting"/>
+
+</menu>
