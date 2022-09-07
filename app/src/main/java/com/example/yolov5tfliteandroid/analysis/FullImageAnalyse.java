@@ -11,7 +11,6 @@ import android.util.Log;
 import android.util.Size;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
@@ -24,6 +23,7 @@ import com.example.yolov5tfliteandroid.utils.Recognition;
 
 import java.util.ArrayList;
 
+import androidx.room.Room;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableEmitter;
@@ -159,6 +159,8 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 modelToPreviewTransform.mapRect(location);
                 cropCanvas.drawRect(location, boxPaint);
                 cropCanvas.drawText(label + ":" + String.format("%.2f", confidence), location.left, location.top, textPain);
+
+
             }
             long end = System.currentTimeMillis();
             long costTime = (end - start);

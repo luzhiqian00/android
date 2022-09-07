@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.camera.lifecycle.ProcessCameraProvider;
 
+import com.example.yolov5tfliteandroid.analysis.AppDataBase;
 import com.example.yolov5tfliteandroid.analysis.FullImageAnalyse;
 import com.example.yolov5tfliteandroid.analysis.FullScreenAnalyse;
 import com.example.yolov5tfliteandroid.detector.Yolov5TFLiteDetector;
@@ -27,13 +28,13 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean IS_FULL_SCREEN = false;
+    private boolean IS_FULL_SCREEN = false;   //是否是全屏
 
     private PreviewView cameraPreviewMatch;
     private PreviewView cameraPreviewWrap;
     private ImageView boxLabelCanvas;
     private Spinner modelSpinner;
-    private Switch immersive;
+    private Switch immersive;//开关
     private TextView inferenceTimeTextView;
     private TextView frameSizeTextView;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
