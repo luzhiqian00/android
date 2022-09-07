@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -61,10 +63,13 @@ class RecyclerBuilder extends RecyclerView.Adapter<RecyclerBuilder.MyViewHolder>
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView itemTitle;
         private final ImageView itemSelect;
+        private final CardView cardView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             itemTitle = itemView.findViewById(R.id.itemTitle);
             itemSelect = itemView.findViewById(R.id.itemSelect);
+            cardView=itemView.findViewById(R.id.cardview);
+            cardView.setCardBackgroundColor(ContextCompat.getColor(this.cardView.getContext(), R.color.white));
         }
     }
 
