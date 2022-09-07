@@ -67,6 +67,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
      */
     private void initData() {
         recyclerBuilder = new RecyclerBuilder(HistoryActivity.this);
+        
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(HistoryActivity.this);
         recyclerView.setAdapter(recyclerBuilder); //设置适配器
         recyclerView.setLayoutManager(linearLayoutManager); //设置布局
