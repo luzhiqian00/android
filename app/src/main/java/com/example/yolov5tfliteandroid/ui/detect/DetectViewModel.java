@@ -1,16 +1,16 @@
-package com.example.yolov5tfliteandroid.ui.notifications;
+package com.example.yolov5tfliteandroid.ui.detect;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class DetectViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public DetectViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is detect fragment");
     }
 
     public LiveData<String> getText() {

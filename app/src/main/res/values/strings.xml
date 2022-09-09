@@ -8,7 +8,7 @@
         <item>yolov5s-int8</item>
     </string-array>
     <string name="title_activity_bottom">Bottom</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_detect">Detect</string>
+    <string name="title_history">History</string>
+    <string name="title_setting">Setting</string>
 </resources>
