@@ -4,23 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/TFlite_android/true/yolov5-tflite-android/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1255" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1125" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_detect.xml" value="0.1255" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_history.xml" value="0.1255" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1125" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1255" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1125" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_setting.xml" value="0.1255" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/activity_bottom.xml" value="0.19927536231884058" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/activity_main.xml" value="0.19927536231884058" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/fragment_dashboard.xml" value="0.19927536231884058" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/fragment_history.xml" value="0.22447916666666667" />
+        <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/activity_main.xml" value="0.11676798378926039" />
+        <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/fragment_detect.xml" value="0.17300724637681159" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/fragment_home.xml" value="0.178125" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/fragment_notifications.xml" value="0.19927536231884058" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1405" />
-        <entry key="..\:/yolov5-tflite-android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1405" />
       </map>
     </option>
   </component>
