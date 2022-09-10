@@ -26,6 +26,7 @@ import androidx.camera.view.PreviewView;
 
 import com.example.yolov5tfliteandroid.MainActivity;
 import com.example.yolov5tfliteandroid.detector.Yolov5TFLiteDetector;
+import com.example.yolov5tfliteandroid.repository.FileIO;
 import com.example.yolov5tfliteandroid.utils.ImageProcess;
 import com.example.yolov5tfliteandroid.utils.Recognition;
 
@@ -38,13 +39,13 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
-import androidx.room.Room;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableEmitter;
 import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlinx.coroutines.GlobalScope;
 
 public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 
@@ -178,8 +179,9 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 SharedPreferences.Editor edit=sharedPreferences.edit();
                 number=sharedPreferences.getInt("number",0);//0代表着没有，从1开始输入
 
+                FileIO.saveImage(number,imageBitmap);
 
-                File file=new File(context.getFilesDir()+"image"+number.toString()+".png");
+//                File file=new File(context.getFilesDir()+"image"+number.toString()+".png");
                 number++;
                 edit.putInt("number",number);
                 edit.apply();
@@ -193,10 +195,10 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 numberTxt.close();                      */
 
 
-                FileOutputStream fileOutputStream=new FileOutputStream(file);
-                imageBitmap.compress(Bitmap.CompressFormat.PNG,100, fileOutputStream);
-                fileOutputStream.flush();
-                fileOutputStream.close();
+//                FileOutputStream fileOutputStream=new FileOutputStream(file);
+//                imageBitmap.compress(Bitmap.CompressFormat.PNG,100, fileOutputStream);
+//                fileOutputStream.flush();
+//                fileOutputStream.close();
             }
 
             for (Recognition res : recognitions) {
@@ -207,9 +209,10 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 cropCanvas.drawRect(location, boxPaint);
                 cropCanvas.drawText(label + ":" + String.format("%.2f", confidence), location.left, location.top, textPain);
 
-                ImageDataBaseDao userDao= AppDataBase.getDatabase(context).imageDataBaseDao();
-                ImageDataBase a= new ImageDataBase("image"+number.toString()+".png",label, confidence,location.left,location.top,location.right,location.bottom);
-                userDao.insertImageData(a);
+                FileIO.saveRes(number,res);
+//                ImageDataBaseDao userDao= AppDataBase.getDatabase(context).imageDataBaseDao();
+//                ImageDataBase a= new ImageDataBase("image"+number.toString()+".png",label, confidence,location.left,location.top,location.right,location.bottom);
+//                userDao.insertImageData(a);
 
 
 /*  准备用SharedPreferences的，但是太慢了

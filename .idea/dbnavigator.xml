@@ -17,8 +17,8 @@
       <scope value="GLOBAL" />
       <destination value="FILE" />
       <format value="EXCEL" />
-      <charset value="GBK" />
-      <charset value="GBK" />
+      <charset value="UTF-8" />
+      <charset value="UTF-8" />
     </export-instructions>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -29,13 +29,13 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="fc1a06a0-4a87-45a0-b95a-8f3be8daaeb6">
-      <console name="Connection" type="STANDARD" schema="main" session="Main" />
+      <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
     <connection id="46bc51ba-5a45-436d-82a6-c56aa227afb1">
-      <console name="Connection 1" type="STANDARD" schema="main" session="Main" />
+      <console name="Connection 1" type="STANDARD" schema="" session="Main" />
     </connection>
     <connection id="c4005d71-6c07-411b-927b-d43b9d40de3f">
-      <console name="Connection 2" type="STANDARD" schema="main" session="Main" />
+      <console name="Connection 2" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -381,7 +381,6 @@
         <object-type name="FUNCTION" sorting-type="NAME" />
         <object-type name="PROCEDURE" sorting-type="NAME" />
         <object-type name="ARGUMENT" sorting-type="POSITION" />
-        <object-type name="TYPE ATTRIBUTE" sorting-type="POSITION" />
       </sorting>
       <default-editors>
         <object-type name="VIEW" editor-type="SELECTION" />
@@ -428,11 +427,11 @@
         <nulls-first value="true" />
         <max-sorting-columns value="4" />
       </sorting>
-      <audit-columns>
-        <column-names value="" />
+      <tracking-columns>
+        <columnNames value="" />
         <visible value="true" />
         <editable value="false" />
-      </audit-columns>
+      </tracking-columns>
     </dataset-grid-settings>
     <dataset-editor-settings>
       <text-editor-popup>
