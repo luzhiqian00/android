@@ -9,7 +9,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class ImageDataBase(var label:String,var confidence:String,
-                         var left:String,var top:String,var right:String,var bottom:String){
+
+data class ImageDataBase(var imageName:String, var label:String,var confidence:Float,
+                         var left:Float,var top:Float,var right:Float,var bottom:Float
+    )
+{
     @PrimaryKey(autoGenerate = true)var id=0L       //L代表是Long类型
 }

@@ -189,8 +189,6 @@ public class ImageProcess {
         TensorBuffer probabilityBuffer =
                 TensorBuffer.createFixedSize(new int[]{1, 1001}, DataType.FLOAT32);
 
-
-
         return tImage;
     }
 }

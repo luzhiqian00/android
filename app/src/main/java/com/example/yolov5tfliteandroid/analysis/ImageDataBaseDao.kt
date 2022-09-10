@@ -16,4 +16,5 @@ interface ImageDataBaseDao {
     @Query("select * from ImageDataBase")
     fun loadAllImageData():List<ImageDataBase>
 
+
 }
