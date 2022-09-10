@@ -90,7 +90,7 @@ public class DetectFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_detect, null);
 
         // 打开app的时候隐藏顶部状态栏
-//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+//        getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
 
@@ -200,7 +200,7 @@ public class DetectFragment extends Fragment {
                 }
             }
         });
-        return  null;
+        return layout;
     }
 
     @Override
