@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TFlite_android/9.12/android/app/src/main/res/layout/activity_bottom.xml" value="0.1" />
+        <entry key="..\:/TFlite_android/9.12/android/app/src/main/res/layout/fragment_detect.xml" value="0.25885416666666666" />
+        <entry key="..\:/TFlite_android/9.12/android/app/src/main/res/layout/fragment_history.xml" value="0.25885416666666666" />
         <entry key="..\:/TFlite_android/true/yolov5-tflite-android/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1125" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1125" />
