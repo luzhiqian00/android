@@ -120,9 +120,6 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
             imageBitmap.setPixels(rgbBytes, 0, imagewWidth, 0, 0, imagewWidth, imageHeight);
 
 
-
-
-
             // 图片适应屏幕fill_start格式的bitmap
             double scale = Math.max(
                     previewHeight / (double) (rotation % 180 == 0 ? imagewWidth : imageHeight),
@@ -174,16 +171,16 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
             textPain.setStyle(Paint.Style.FILL);
 
 
-            if(!recognitions.isEmpty()){
-                SharedPreferences sharedPreferences=context.getSharedPreferences("Number",Context.MODE_PRIVATE);
-                SharedPreferences.Editor edit=sharedPreferences.edit();
-                number=sharedPreferences.getInt("number",0);//0代表着没有，从1开始输入
+            if (!recognitions.isEmpty()) {
+                SharedPreferences sharedPreferences = context.getSharedPreferences("Number", Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = sharedPreferences.edit();
+                number = sharedPreferences.getInt("number", 0);//0代表着没有，从1开始输入
 
-                FileIO.saveImage(number,imageBitmap);
+                FileIO.saveImage(number, imageBitmap);
 
 //                File file=new File(context.getFilesDir()+"image"+number.toString()+".png");
                 number++;
-                edit.putInt("number",number);
+                edit.putInt("number", number);
                 edit.apply();
 
 /*              准备从assets中读写的，但是因为assets只能读，不能写，因此，改用SharedPreferences
@@ -201,15 +198,16 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 //                fileOutputStream.close();
             }
 
-            for (Recognition res : recognitions) {
+ /*           for (Recognition res : recognitions) {
                 RectF location = res.getLocation();
                 String label = res.getLabelName();
                 float confidence = res.getConfidence();
                 modelToPreviewTransform.mapRect(location);
                 cropCanvas.drawRect(location, boxPaint);
                 cropCanvas.drawText(label + ":" + String.format("%.2f", confidence), location.left, location.top, textPain);
+*/
 
-                FileIO.saveRes(number,res);
+            FileIO.saveRes(number, recognitions, modelToPreviewTransform, boxPaint, cropCanvas, textPain);
 //                ImageDataBaseDao userDao= AppDataBase.getDatabase(context).imageDataBaseDao();
 //                ImageDataBase a= new ImageDataBase("image"+number.toString()+".png",label, confidence,location.left,location.top,location.right,location.bottom);
 //                userDao.insertImageData(a);
@@ -229,8 +227,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 edit.putFloat(imageName+"confidence",confidence);
                 edit.commit();
 */
-
-            }
+        //}
 
             long end = System.currentTimeMillis();
             long costTime = (end - start);
