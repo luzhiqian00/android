@@ -27,12 +27,13 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean IS_FULL_SCREEN = false;
+    private boolean IS_FULL_SCREEN = false;   //是否是全屏
+
     private PreviewView cameraPreviewMatch;
     private PreviewView cameraPreviewWrap;
     private ImageView boxLabelCanvas;
     private Spinner modelSpinner;
-    private Switch immersive;
+    private Switch immersive;//开关
     private TextView inferenceTimeTextView;
     private TextView frameSizeTextView;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
@@ -192,7 +193,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 }

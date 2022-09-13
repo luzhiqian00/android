@@ -3,15 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Github Project/11/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.237" />
-        <entry key="..\:/Github Project/11/app/src/main/res/drawable/ic_launcher_background.xml" value="0.237" />
-        <entry key="..\:/Github Project/11/app/src/main/res/drawable/round.xml" value="0.237" />
-        <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_history.xml" value="0.1" />
+        <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_bottom.xml" value="0.24947916666666667" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_main.xml" value="0.109375" />
-        <entry key="..\:/Github Project/11/app/src/main/res/layout/history_item.xml" value="0.10833333333333334" />
-        <entry key="..\:/Github Project/11/app/src/main/res/menu/menu_history.xml" value="0.24947916666666667" />
-        <entry key="..\:/Github Project/11/yolov5-tflite-android/app/src/main/res/layout/activity_history.xml" value="0.24947916666666667" />
-        <entry key="..\:/Github Project/11/yolov5-tflite-android/app/src/main/res/menu/menu_history.xml" value="0.24947916666666667" />
+        <entry key="..\:/Github Project/11/app/src/main/res/layout/fragment_detect.xml" value="0.109375" />
+        <entry key="..\:/Github Project/11/app/src/main/res/layout/fragment_history.xml" value="0.24947916666666667" />
+        <entry key="..\:/Github Project/11/app/src/main/res/layout/history_item.xml" value="0.109375" />
+        <entry key="..\:/Github Project/11/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24947916666666667" />
+        <entry key="..\:/Github Project/22/android-uirewrite/app/src/main/res/drawable/ic_history.xml" value="0.1705" />
+        <entry key="..\:/Github Project/22/android-uirewrite/app/src/main/res/drawable/round.xml" value="0.2135" />
+        <entry key="..\:/Github Project/22/android-uirewrite/app/src/main/res/layout/activity_bottom.xml" value="0.109375" />
+        <entry key="..\:/Github Project/22/android-uirewrite/app/src/main/res/layout/fragment_history.xml" value="0.24947916666666667" />
+        <entry key="..\:/Github Project/22/android-uirewrite/app/src/main/res/layout/history_item.xml" value="0.24947916666666667" />
+        <entry key="..\:/Github Project/22/android-uirewrite/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24947916666666667" />
+        <entry key="..\:/TFlite_android/9.12/android/app/src/main/res/layout/activity_bottom.xml" value="0.1" />
+        <entry key="..\:/TFlite_android/9.12/android/app/src/main/res/layout/fragment_detect.xml" value="0.25885416666666666" />
+        <entry key="..\:/TFlite_android/9.12/android/app/src/main/res/layout/fragment_history.xml" value="0.25885416666666666" />
+        <entry key="..\:/TFlite_android/true/yolov5-tflite-android/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1125" />
+        <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1125" />
+        <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1125" />
+        <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/activity_bottom.xml" value="0.19927536231884058" />
+        <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/activity_main.xml" value="0.11676798378926039" />
+        <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/fragment_detect.xml" value="0.17300724637681159" />
+        <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/fragment_home.xml" value="0.178125" />
       </map>
     </option>
   </component>
