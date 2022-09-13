@@ -42,6 +42,7 @@ public class CameraProcess {
      * @param context
      * @return
      */
+
     public boolean allPermissionsGranted(Context context) {
         for (String permission : REQUIRED_PERMISSIONS) {
             if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -115,7 +116,6 @@ public class CameraProcess {
                         Log.i("camera", s.getHeight()+"/"+s.getWidth());
                     }
                     break;
-
                 }
             }
         } catch (Exception e) {
