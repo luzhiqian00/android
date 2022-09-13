@@ -18,14 +18,10 @@ public class SettingFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SettingViewModel settingViewModel =
-                new ViewModelProvider(this).get(SettingViewModel.class);
 
         binding = FragmentSettingBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         final TextView textView = binding.textSetting;
-        settingViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
