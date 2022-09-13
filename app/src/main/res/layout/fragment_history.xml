@@ -54,7 +54,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:visibility="gone"
         android:id="@+id/footBar"
-        android:padding="10dp"
+        android:paddingBottom="50dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
