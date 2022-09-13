@@ -4,13 +4,16 @@ import android.app.Application
 import android.content.Context
 
 class YAApplication: Application() {
-    companion object{
+    companion object {
         lateinit var context: Context
+ /*       fun checkInit():Boolean{
+            return this::context.isInitialized
+        }*/
     }
 
-    override fun onCreate() {
+ override fun onCreate() {
         super.onCreate()
         context = applicationContext
-
     }
+
 }
