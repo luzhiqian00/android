@@ -8,11 +8,13 @@
     android:padding="20dp"
     tools:context=".ui.history.ItemActivity">
     <ImageView
+        android:id='@+id/image_item'
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:src="@drawable/photo"
         />
     <TextView
+        android:id='@+id/text_item'
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="content"

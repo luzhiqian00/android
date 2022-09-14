@@ -100,7 +100,7 @@ public class HistoryFragment extends Fragment implements View.OnClickListener, R
         recyclerView.setAdapter(recyclerBuilder); //设置适配器
         recyclerView.setLayoutManager(linearLayoutManager); //设置布局
 //        添加数据
-        for (int i = 1; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             ItemProperty itemProperty = new ItemProperty();
             itemProperty.setTitle("第" + i + "项");
             itemProperties.add(itemProperty);
@@ -151,9 +151,10 @@ public class HistoryFragment extends Fragment implements View.OnClickListener, R
         }
 //        没有位于编辑状态
         else {
-            //Toast.makeText(getActivity(), "点击了：" + position, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "点击了：" + position, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), ItemActivity.class);
-            startActivity(intent);
+            intent.putExtra( "position", position );
+            startActivity(intent );// 启动Intent
         }
     }
 
