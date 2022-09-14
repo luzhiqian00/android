@@ -1,5 +1,6 @@
 package com.example.yolov5tfliteandroid.ui.history;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.yolov5tfliteandroid.MainActivity;
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.databinding.FragmentHistoryBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -149,7 +151,9 @@ public class HistoryFragment extends Fragment implements View.OnClickListener, R
         }
 //        没有位于编辑状态
         else {
-            Toast.makeText(getActivity(), "点击了：" + position, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "点击了：" + position, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), ItemActivity.class);
+            startActivity(intent);
         }
     }
 
