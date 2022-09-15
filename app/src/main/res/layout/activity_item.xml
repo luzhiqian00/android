@@ -7,10 +7,13 @@
     android:background="@color/white"
     android:padding="20dp"
     tools:context=".ui.history.ItemActivity">
+
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:id="@+id/historyImage"
+        android:layout_width="1080px"
+        android:layout_height="1440px"
         android:src="@drawable/photo"
+        android:rotation="90"
         />
     <TextView
         android:layout_width="match_parent"
