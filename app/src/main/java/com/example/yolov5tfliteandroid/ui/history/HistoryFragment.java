@@ -69,14 +69,8 @@ public class HistoryFragment extends Fragment implements View.OnClickListener, R
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        /*HistoryViewModel historyViewModel =
-                new ViewModelProvider(this).get(HistoryViewModel.class);
 
-        binding = FragmentHistoryBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();*/
         View view=View.inflate(getActivity(),R.layout.fragment_history,null);
-        //final TextView textView = binding.textHistory;
-        //historyViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         editor_et = view.findViewById(R.id.editor);
         selectSum_tv = view.findViewById(R.id.selectSum);
         deleteAll_btn = view.findViewById(R.id.deleteAll);
@@ -86,7 +80,6 @@ public class HistoryFragment extends Fragment implements View.OnClickListener, R
         initData(); //初始化数据
         initEvent(); //初始化事件
         return view;
-        //return root;
     }
 
 
