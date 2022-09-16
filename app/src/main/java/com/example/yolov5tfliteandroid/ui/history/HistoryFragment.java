@@ -49,6 +49,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
+
 public class HistoryFragment extends Fragment implements View.OnClickListener, RecyclerBuilder.OnRecyclerViewItemClick{
     private TextView editor_et; //右上角编辑按钮
     private TextView selectSum_tv; //显示当前选中的数量
@@ -66,11 +68,13 @@ public class HistoryFragment extends Fragment implements View.OnClickListener, R
 
     private int selectedSum; //已经选中的item的数量
     private FragmentHistoryBinding binding;
-
+    public HistoryFragment() {
+    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_history, container, false);
 
-        View view=View.inflate(getActivity(),R.layout.fragment_history,null);
+        //View view=View.inflate(getActivity(),R.layout.fragment_history,container);
         editor_et = view.findViewById(R.id.editor);
         selectSum_tv = view.findViewById(R.id.selectSum);
         deleteAll_btn = view.findViewById(R.id.deleteAll);

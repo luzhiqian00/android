@@ -10,24 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.databinding.FragmentSettingBinding;
 
 public class SettingFragment extends Fragment {
 
-    private FragmentSettingBinding binding;
-
+    public SettingFragment() {
+    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentSettingBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        final TextView textView = binding.textSetting;
-        return root;
+        View view=inflater.inflate(R.layout.fragment_setting,container,false);
+        return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 }

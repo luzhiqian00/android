@@ -15,11 +15,13 @@ import com.example.yolov5tfliteandroid.databinding.FragmentSettingBinding;
 public class DetectFragment extends Fragment {
     private FragmentSettingBinding binding;
     private Button bt_detect;
+    public DetectFragment() {
+    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
-        View view = inflater.inflate(R.layout.fragment_detect, null);
+        View view = inflater.inflate(R.layout.fragment_detect, container,false);
         bt_detect=view.findViewById(R.id.bt_detect);
         bt_detect.setOnClickListener(new View.OnClickListener() {
             @Override
