@@ -7,18 +7,18 @@
     android:background="@color/white"
     android:padding="20dp"
     tools:context=".ui.history.ItemActivity">
-
-    <com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.EMImageView
-        android:id="@+id/historyImage"
-        android:layout_width="1080px"
-        android:layout_height="1440px"/>
-        android:rotation="90"
-        android:src="@drawable/photo" />
-
     <ImageView
         android:id='@+id/image_item'
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:src="@drawable/photo"
+        />
+    <TextView
+        android:id='@+id/text_item'
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="content"
+        android:textSize="20sp"
+        android:color="@color/black"
         />
 </LinearLayout>
