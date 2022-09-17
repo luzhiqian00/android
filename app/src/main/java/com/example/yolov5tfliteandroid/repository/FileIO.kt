@@ -18,7 +18,7 @@ object FileIO {
     @JvmStatic
     fun saveImage(number: Int,imageBitmap:Bitmap){
         GlobalScope.launch(Dispatchers.IO) {
-            val file = File(YAApplication.context.filesDir.toString() + "/image" + number.toString() + ".png")
+            val file = File(YAApplication.context.filesDir.toString() + "image" + number.toString() + ".png")
             val fileOutputStream= FileOutputStream(file)
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
             fileOutputStream.flush()

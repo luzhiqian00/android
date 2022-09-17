@@ -14,6 +14,5 @@ data class ImageDataBase(var imageName:String, var label:String,var confidence:F
                          var left:Float,var top:Float,var right:Float,var bottom:Float
 )
 {
-    @PrimaryKey(autoGenerate = true)
-    var id=0L       //L代表是Long类型
+    @PrimaryKey(autoGenerate = true)var id=0L       //L代表是Long类型
 }

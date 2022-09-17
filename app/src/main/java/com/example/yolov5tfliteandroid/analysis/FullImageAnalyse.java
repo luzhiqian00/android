@@ -155,8 +155,10 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 
                     Bitmap emptyCropSizeBitmap = Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888);//空图
                     Canvas cropCanvas = new Canvas(emptyCropSizeBitmap);
-
-
+//            Paint white = new Paint();
+//            white.setColor(Color.WHITE);
+//            white.setStyle(Paint.Style.FILL);
+//            cropCanvas.drawRect(new RectF(0,0,previewWidth, previewHeight), white);
                     // 边框画笔
                     Paint boxPaint = new Paint();
                     boxPaint.setStrokeWidth(5);
@@ -168,23 +170,68 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                     textPain.setColor(Color.RED);
                     textPain.setStyle(Paint.Style.FILL);
 
+
                     if (!recognitions.isEmpty()) {
                         SharedPreferences sharedPreferences = context.getSharedPreferences("Number", Context.MODE_PRIVATE);
                         SharedPreferences.Editor edit = sharedPreferences.edit();
                         number = sharedPreferences.getInt("number", 0);//0代表着没有，从1开始输入
 
                         FileIO.saveImage(number, imageBitmap);
+
                         number++;
                         edit.putInt("number", number);
                         edit.apply();
+                      FileIO.saveRes(number, recognitions, modelToPreviewTransform, boxPaint, cropCanvas, textPain);
 
-                        FileIO.saveRes(number, recognitions, modelToPreviewTransform, boxPaint, cropCanvas, textPain);
+/*              准备从assets中读写的，但是因为assets只能读，不能写，因此，改用SharedPreferences
+                InputStream numberTxt= context.getAssets().open("number.txt");
+                int lenght = numberTxt.available();
+                byte[]  buffer = new byte[lenght];
+                numberTxt.read(buffer);
+                String result = new String(buffer, "utf8");
+                numberTxt.close();                      */
+
+
+//                FileOutputStream fileOutputStream=new FileOutputStream(file);
+//                imageBitmap.compress(Bitmap.CompressFormat.PNG,100, fileOutputStream);
+//                fileOutputStream.flush();
+//                fileOutputStream.close();
                     }
+
+ /*           for (Recognition res : recognitions) {
+                RectF location = res.getLocation();
+                String label = res.getLabelName();
+                float confidence = res.getConfidence();
+                modelToPreviewTransform.mapRect(location);
+                cropCanvas.drawRect(location, boxPaint);
+                cropCanvas.drawText(label + ":" + String.format("%.2f", confidence), location.left, location.top, textPain);
+*/
+//                ImageDataBaseDao userDao= AppDataBase.getDatabase(context).imageDataBaseDao();
+//                ImageDataBase a= new ImageDataBase("image"+number.toString()+".png",label, confidence,location.left,location.top,location.right,location.bottom);
+//                userDao.insertImageData(a);
+
+
+/*  准备用SharedPreferences的，但是太慢了
+                SharedPreferences sharedPreferences=context.getSharedPreferences("Number",Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit=sharedPreferences.edit();
+                Integer number=sharedPreferences.getInt("number",0);//0代表着没有，从1开始输入
+                ByteArrayOutputStream bos= new ByteArrayOutputStream();
+                cropImageBitmap.compress(Bitmap.CompressFormat.PNG,80,bos);
+                String Base64=new String(android.util.Base64.encodeToString(bos.toByteArray(), android.util.Base64.DEFAULT));
+                imageName="bitmap"+number.toString();
+                edit.putInt("number",number);
+                edit.putString(imageName,Base64);
+                edit.putString(imageName+"label",label);
+                edit.putFloat(imageName+"confidence",confidence);
+                edit.commit();
+*/
+                    //}
 
                     long end = System.currentTimeMillis();
                     long costTime = (end - start);
                     image.close();
                     emitter.onNext(new Result(costTime, emptyCropSizeBitmap));
+//            emitter.onNext(new Result(costTime, imageBitmap));
 
                 }).subscribeOn(Schedulers.io()) // 这里定义被观察者,也就是上面代码的线程, 如果没定义就是主线程同步, 非异步
                 // 这里就是回到主线程, 观察者接受到emitter发送的数据进行处理
