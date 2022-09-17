@@ -8,13 +8,13 @@
     android:padding="20dp"
     tools:context=".ui.history.ItemActivity">
 
-    <ImageView
+    <com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.EMImageView
         android:id="@+id/historyImage"
         android:layout_width="1080px"
-        android:layout_height="1440px"
-        android:src="@drawable/photo"
+        android:layout_height="1440px"/>
         android:rotation="90"
-        />
+        android:src="@drawable/photo" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

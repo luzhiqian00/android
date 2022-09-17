@@ -15,11 +15,14 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.impl.ImageInputConfig;
+import kotlinx.coroutines.GlobalScope;
 
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.YAApplication;
+import com.example.yolov5tfliteandroid.analysis.AppDataBase;
 import com.example.yolov5tfliteandroid.analysis.ImageDataBase;
 import com.example.yolov5tfliteandroid.analysis.ImageDataBaseDao;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.EMImageView;
 import com.example.yolov5tfliteandroid.utils.ImageProcess;
 import com.example.yolov5tfliteandroid.utils.Recognition;
 
@@ -34,62 +37,13 @@ public class ItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
-        ImageView imageView=findViewById(R.id.historyImage);
-        File file=new File(YAApplication.context.getFilesDir().toString() + "/image1"  + ".png");
+        EMImageView imageView=findViewById(R.id.historyImage);
+        File file=new File(YAApplication.context.getFilesDir().toString() + "/image8"  + ".png");
 
-        Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
+        Bitmap bitmap = BitmapFactory.decodeFile(file.getPath()).copy(Bitmap.Config.ARGB_8888, true);
+//        Bitmap emptyCropSizeBitmap=Bitmap.createBitmap(1080,1440,Bitmap.Config.ARGB_8888);
         Canvas canvas =new Canvas(bitmap);
-        Paint paintRect = new Paint();
-        paintRect.setColor(Color.rgb(79, 129, 189));
-        paintRect.setStrokeWidth(2);
-        paintRect.setStyle(Paint.Style.STROKE);
-
-        canvas.drawRect(20,20,100,100,paintRect);
-
+        imageView.draw(canvas);
         imageView.setImageBitmap(bitmap);
-
-
-       /* ImageDataBaseDao imageDataBaseDao=null;
-       List<ImageDataBase> imageList=imageDataBaseDao.loadImageDabaBaseImageNumber("image1");
-
-
-        int previewWidth=1080;
-        int previewHeight=1440;
-*/
-
-       /* Bitmap emptyCropSizeBitmap = Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888);//空图
-        Canvas cropCanvas = new Canvas(emptyCropSizeBitmap);
-
-        // 边框画笔
-        Paint boxPaint = new Paint();
-        boxPaint.setStrokeWidth(5);
-        boxPaint.setStyle(Paint.Style.STROKE);
-        boxPaint.setColor(Color.RED);
-        // 字体画笔
-        Paint textPain = new Paint();
-        textPain.setTextSize(50);
-        textPain.setColor(Color.RED);
-        textPain.setStyle(Paint.Style.FILL);
-*/
-        /*ImageDataBase res;
-        for (int i=0;i<imageList.size();i++)
-        {
-            res=imageList.get(i);
-            RectF location=null;
-            location.top=res.getTop();
-            location.left=res.getLeft();
-            location.right=res.getRight();
-            location.bottom=res.getBottom();
-            String label = res.getLabel();
-            Float confidence = res.getConfidence();
-//            modelToPreviewTransform.mapRect(location);
-            cropCanvas.drawRect(location, boxPaint);
-            cropCanvas.drawText(
-                    label + ":" + String.format("%.2f", confidence),
-                    location.left,
-                    location.top,
-                    textPain
-            );
-        }*/
     }
 }
