@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:name=".YAApplication"
         android:allowBackup="true"
         android:icon="@drawable/yolov5_tflite_android2"
         android:label="@string/app_name"
