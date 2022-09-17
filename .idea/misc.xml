@@ -3,11 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Github Project/11/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2015" />
+        <entry key="..\:/Github Project/11/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2015" />
+        <entry key="..\:/Github Project/11/app/src/main/res/drawable/ic_setting.xml" value="0.2015" />
+        <entry key="..\:/Github Project/11/app/src/main/res/drawable/login_button.xml" value="0.2015" />
+        <entry key="..\:/Github Project/11/app/src/main/res/drawable/login_text.xml" value="0.2015" />
+        <entry key="..\:/Github Project/11/app/src/main/res/drawable/round.xml" value="0.2015" />
+        <entry key="..\:/Github Project/11/app/src/main/res/drawable/selector_home.xml" value="0.1" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_bottom.xml" value="0.24947916666666667" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_item.xml" value="0.2484375" />
+        <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_login.xml" value="0.186328125" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_main.xml" value="0.109375" />
+        <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_sign_up.xml" value="0.2484375" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/fragment_detect.xml" value="0.109375" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/fragment_history.xml" value="0.24947916666666667" />
+        <entry key="..\:/Github Project/11/app/src/main/res/layout/fragment_setting.xml" value="0.1625" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/history_item.xml" value="0.109375" />
         <entry key="..\:/Github Project/11/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24947916666666667" />
         <entry key="..\:/Github Project/22/android-uirewrite/app/src/main/res/drawable/ic_history.xml" value="0.1705" />

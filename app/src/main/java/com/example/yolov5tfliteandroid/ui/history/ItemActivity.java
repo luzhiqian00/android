@@ -1,17 +1,5 @@
 package com.example.yolov5tfliteandroid.ui.history;
 
-import android.content.ContentResolver;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.media.Image;
-import android.net.Uri;
-import android.os.Bundle;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.impl.ImageInputConfig;
@@ -33,6 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemActivity extends AppCompatActivity {
+    private int id;
+    private ImageView imageView;
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,5 +36,10 @@ public class ItemActivity extends AppCompatActivity {
         Canvas canvas =new Canvas(bitmap);
         imageView.draw(canvas);
         imageView.setImageBitmap(bitmap);
+        Intent intent = getIntent();
+        id=intent.getIntExtra("position", 0);
+        imageView=findViewById(R.id.image_item);
+        textView=findViewById(R.id.text_item);
+        textView.setText("Item:"+id);
     }
 }

@@ -15,11 +15,10 @@
         android:rotation="90"
         android:src="@drawable/photo" />
 
-    <TextView
+    <ImageView
+        android:id='@+id/image_item'
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="content"
-        android:textSize="20sp"
-        android:color="@color/black"
+        android:layout_height="500dp"
+        android:src="@drawable/photo"
         />
 </LinearLayout>
