@@ -1,24 +1,21 @@
 package com.example.yolov5tfliteandroid.ui.history;
 
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.impl.ImageInputConfig;
-import kotlinx.coroutines.GlobalScope;
 
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.YAApplication;
-import com.example.yolov5tfliteandroid.analysis.AppDataBase;
-import com.example.yolov5tfliteandroid.analysis.ImageDataBase;
-import com.example.yolov5tfliteandroid.analysis.ImageDataBaseDao;
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.EMImageView;
-import com.example.yolov5tfliteandroid.utils.ImageProcess;
-import com.example.yolov5tfliteandroid.utils.Recognition;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ItemActivity extends AppCompatActivity {
     private int id;
@@ -29,6 +26,8 @@ public class ItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
         EMImageView imageView=findViewById(R.id.historyImage);
+        textView=findViewById(R.id.text_item);
+        textView.setText("Item:"+id);
         File file=new File(YAApplication.context.getFilesDir().toString() + "/image8"  + ".png");
 
         Bitmap bitmap = BitmapFactory.decodeFile(file.getPath()).copy(Bitmap.Config.ARGB_8888, true);
@@ -38,8 +37,6 @@ public class ItemActivity extends AppCompatActivity {
         imageView.setImageBitmap(bitmap);
         Intent intent = getIntent();
         id=intent.getIntExtra("position", 0);
-        imageView=findViewById(R.id.image_item);
-        textView=findViewById(R.id.text_item);
-        textView.setText("Item:"+id);
+
     }
 }
