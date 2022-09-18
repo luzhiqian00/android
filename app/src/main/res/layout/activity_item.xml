@@ -12,10 +12,11 @@
         android:background="@color/white"
         android:padding="20dp"
         >
-        <ImageView
+        <com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.EMImageView
             android:id='@+id/image_item'
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="1080px"
+            android:layout_height="1440px"/>
+            android:rotation="90"
             android:src="@drawable/photo"
             />
         <TextView
@@ -26,6 +27,6 @@
             android:textSize="20sp"
             android:color="@color/black"
             />
-        >
+
     </LinearLayout>
 </ScrollView>
