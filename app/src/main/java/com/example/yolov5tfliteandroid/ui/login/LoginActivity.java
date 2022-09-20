@@ -52,23 +52,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 final Map<String, String> map = new HashMap<>();
                 map.put("name", strUserName);
                 map.put("pwd", strPassWord);
-                new Thread(() -> {
-                    Looper.prepare();
-                    JSONObject ansJson = network.mapPOST(network.Server + "connect.php", map);
-                    try {
-                        if (ansJson.getInt("res") == 1) {//登录成功
-                            Toast.makeText(getApplicationContext(), "登录成功",
-                                    Toast.LENGTH_LONG).show();
-                            finish();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "登录失败：" + ansJson.getInt("res") + "，可能的原因：" + ansJson.getString("reason"),
-                                    Toast.LENGTH_LONG).show();
-                        }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Looper.prepare();
+                        JSONObject ansJson = network.ppmapPOST(network.Server + "connect.php", map, (ppansJson) -> {
+                            try {
+                                if (ppansJson.getInt("res") == 1) {//登录成功
+                                    Toast.makeText(getApplicationContext(), "登录成功",
+                                            Toast.LENGTH_LONG).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "登录失败：" +ppansJson.getInt("res") + "，可能的原因：" + ppansJson.getString("reason"),
+                                            Toast.LENGTH_LONG).show();
+                                }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Looper.loop();
+
+                        });
                     }
-                    Looper.loop();
                 }).start();
 /*                if (strUserName.equals("123456") && strPassWord.equals("123456")) {
                     Toast.makeText(LoginActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
