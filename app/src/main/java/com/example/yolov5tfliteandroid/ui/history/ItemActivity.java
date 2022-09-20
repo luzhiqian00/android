@@ -28,6 +28,7 @@ public class ItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item);
         Intent intent = getIntent();
         id=intent.getIntExtra("position", 0);
+        //
         EMImageView  imageView=findViewById(R.id.image_item);
         textView=findViewById(R.id.text_item);
         textView.setText("Item:"+id);
