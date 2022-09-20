@@ -11,6 +11,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+
 public class network
 {
     public static String Server = "http://43.143.165.48/";
@@ -49,6 +50,21 @@ public class network
                 jsonObject.put(entry.getKey(), entry.getValue());
             }
             String ans = POST(url, jsonObject.toString());
+            return new JSONObject(ans);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+      public static JSONObject ppmapPOST(final String url, Map<String, String> map,PPCallBack ppCallBack) {
+        final JSONObject jsonObject = new JSONObject();
+        try {
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                jsonObject.put(entry.getKey(), entry.getValue());
+            }
+            String ans = POST(url, jsonObject.toString());
+            ppCallBack.success(new JSONObject(ans));
             return new JSONObject(ans);
         } catch (Exception e) {
             e.printStackTrace();

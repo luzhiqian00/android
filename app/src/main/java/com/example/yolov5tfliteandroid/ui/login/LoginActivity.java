@@ -56,21 +56,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void run() {
                         Looper.prepare();
-                        JSONObject ansJson = network.mapPOST(network.Server + "connect.php", map);
-                        try {
-                            if (ansJson.getInt("res") == 1) {//登录成功
-                                Toast.makeText(getApplicationContext(), "登录成功",
-                                        Toast.LENGTH_LONG).show();
-                                finish();
-                            } else {
-                                Toast.makeText(getApplicationContext(), "登录失败：" + ansJson.getInt("res") + "，可能的原因：" + ansJson.getString("reason"),
-                                        Toast.LENGTH_LONG).show();
-                            }
+                        JSONObject ansJson = network.ppmapPOST(network.Server + "connect.php", map, (ppansJson) -> {
+                            try {
+                                if (ppansJson.getInt("res") == 1) {//登录成功
+                                    Toast.makeText(getApplicationContext(), "登录成功",
+                                            Toast.LENGTH_LONG).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "登录失败：" +ppansJson.getInt("res") + "，可能的原因：" + ppansJson.getString("reason"),
+                                            Toast.LENGTH_LONG).show();
+                                }
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        Looper.loop();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Looper.loop();
+
+                        });
                     }
                 }).start();
 /*                if (strUserName.equals("123456") && strPassWord.equals("123456")) {
