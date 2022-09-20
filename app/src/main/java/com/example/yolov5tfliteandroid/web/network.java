@@ -14,9 +14,9 @@ import okhttp3.Response;
 public class network
 {
     public static String Server = "http://43.143.165.48/";
-    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    public static MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static OkHttpClient client = new OkHttpClient();
-    public static String GET(String url) {
+    public  String GET(String url) {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -42,7 +42,7 @@ public class network
         return "";
     }
 
-    public static JSONObject mapPOST(final String url, Map<String, String> map) {
+    public static JSONObject mapPOST(String url, Map<String, String> map) {
         final JSONObject jsonObject = new JSONObject();
         try {
             for (Map.Entry<String, String> entry : map.entrySet()) {
