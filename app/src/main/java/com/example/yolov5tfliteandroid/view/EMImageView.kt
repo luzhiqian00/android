@@ -1,9 +1,7 @@
 package com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.util.AttributeSet
 import com.example.yolov5tfliteandroid.YAApplication
 import com.example.yolov5tfliteandroid.analysis.AppDataBase
@@ -17,6 +15,7 @@ class EMImageView (context:Context,attrs:AttributeSet):
 
      fun draw(canvas: Canvas?,id:Integer) {
         super.draw(canvas)
+
         val paintRect= Paint()
         paintRect.color=Color.rgb(108,10,13)
         paintRect.strokeWidth=1f
@@ -34,14 +33,12 @@ class EMImageView (context:Context,attrs:AttributeSet):
             for(data in imageList){
                 canvas?.apply {
                     drawRect(
-                        (640-data.bottom*0.6).toFloat(), (data.left).toFloat(),
-                        (640-data.top*0.6).toFloat(), (data.right).toFloat(),paintRect)
+                        (data.top).toFloat(), (480-data.right*0.75).toFloat(),
+                        (data.bottom).toFloat(), (480-data.left*0.75).toFloat(),paintRect)
                     drawText(data.label+":"+String.format("%.2f",data.confidence),
-                        (640-data.bottom*0.6).toFloat(),data.left,textPain)
+                        (data.top).toFloat(),480-data.right,textPain)
                 }
             }
         }
     }
-
-
 }
