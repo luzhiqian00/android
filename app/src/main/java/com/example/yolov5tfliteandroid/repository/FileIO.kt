@@ -53,7 +53,7 @@ object FileIO {
                     res.location.top,
                     res.location.right,
                     res.location.bottom
-                )
+                )//储存时是在W=640 和H=640的条件下的图像
                 userDao.insertImageData(a)
             }
         }
