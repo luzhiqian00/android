@@ -3,6 +3,7 @@ package com.example.yolov5tfliteandroid.ui.login;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,12 @@ import android.widget.Toast;
 
 import com.example.yolov5tfliteandroid.Bottom;
 import com.example.yolov5tfliteandroid.R;
+import com.example.yolov5tfliteandroid.web.network;
+
+import org.json.JSONException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText userName;
@@ -61,10 +68,41 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 } else if (!strPhoneNumber.contains("@")) {
                     Toast.makeText(SignUpActivity.this, "邮箱格式不正确！", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(SignUpActivity.this, "注册成功！", Toast.LENGTH_SHORT).show();
-                    // 跳转到登录界面
-                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                    startActivity(intent);
+                    final Map<String, String> map = new HashMap<>();
+                    map.put("name", strUserName);
+                    map.put("pwd", strPassWord);
+                    map.put("email",strPhoneNumber);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Looper.prepare();
+                            network.ppmapPOST(network.Server + "regist.php", map, (ppansJson) -> {
+                                try {
+                                    int res=ppansJson.getInt("res");
+                                    if (res == 2) {//登录成功
+                                        Toast.makeText(getApplicationContext(), "注册成功！",
+                                                Toast.LENGTH_LONG).show();
+                                        Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else if(res==1) {
+                                        Toast.makeText(getApplicationContext(), "邮箱已被注册！" ,
+                                                Toast.LENGTH_LONG).show();
+                                        //Intent intent=new Intent(LoginActivity.this,Bottom.class);
+                                        //startActivity(intent);
+                                    }else {
+                                        Toast.makeText(getApplicationContext(), "用户名已被注册！" ,
+                                                Toast.LENGTH_LONG).show();
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                Looper.loop();
+
+                            });
+                        }
+                    }).start();
                 }
                 break;
             case R.id.BackLoginButton:
