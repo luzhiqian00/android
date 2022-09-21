@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.example.yolov5tfliteandroid"
         minSdk 21
-        targetSdk 29
+        targetSdk 26
         versionCode 1
         versionName "1.0"
 
@@ -78,4 +78,10 @@ dependencies {
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
+
+    //implementation 'com.squareup.okhttp3:okhttp:4.4.0'
+    //implementation 'com.squareup.okhttp3:okhttp:3.14.9'
+    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+    // define any required OkHttp artifacts without version
+    //implementation("com.squareup.okhttp3:logging-interceptor")
 }
