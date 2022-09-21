@@ -43,6 +43,7 @@ public class network
         return "";
     }
 
+    /*mappost没有callback封装，导致异步请求冲突弃用*/
     public static JSONObject mapPOST(String url, Map<String, String> map) {
         final JSONObject jsonObject = new JSONObject();
         try {
@@ -57,7 +58,7 @@ public class network
         return null;
     }
 
-      public static JSONObject ppmapPOST(final String url, Map<String, String> map,PPCallBack ppCallBack) {
+      public static void ppmapPOST(final String url, Map<String, String> map,PPCallBack ppCallBack) {
         final JSONObject jsonObject = new JSONObject();
         try {
             for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -65,10 +66,8 @@ public class network
             }
             String ans = POST(url, jsonObject.toString());
             ppCallBack.success(new JSONObject(ans));
-            return new JSONObject(ans);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
     }
 }

@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.yolov5tfliteandroid.Bottom;
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.web.network;
 
@@ -56,15 +58,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void run() {
                         Looper.prepare();
-                        JSONObject ansJson = network.ppmapPOST(network.Server + "connect.php", map, (ppansJson) -> {
+                        network.ppmapPOST(network.Server + "connect.php", map, (ppansJson) -> {
                             try {
                                 if (ppansJson.getInt("res") == 1) {//登录成功
                                     Toast.makeText(getApplicationContext(), "登录成功",
                                             Toast.LENGTH_LONG).show();
+                                    Intent intent=new Intent(LoginActivity.this,Bottom.class);
+                                    startActivity(intent);
                                     finish();
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "登录失败：" +ppansJson.getInt("res") + "，可能的原因：" + ppansJson.getString("reason"),
+                                    Toast.makeText(getApplicationContext(), "登录失败：账号或密码错误 " ,
                                             Toast.LENGTH_LONG).show();
+                                    //Intent intent=new Intent(LoginActivity.this,Bottom.class);
+                                    //startActivity(intent);
                                 }
 
                             } catch (JSONException e) {
@@ -75,18 +81,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         });
                     }
                 }).start();
-/*                if (strUserName.equals("123456") && strPassWord.equals("123456")) {
-                    Toast.makeText(LoginActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, Bottom.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(LoginActivity.this, "请输入正确的用户名或密码！", Toast.LENGTH_SHORT).show();
-                }*/
-                break;
-            case R.id.SignUpButton:
-                // 跳转到注册界面
-                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-                startActivity(intent);
-        }
+            break;
+        case R.id.SignUpButton:
+            // 跳转到注册界面
+            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+            startActivity(intent);
     }
+}
 }
