@@ -1,10 +1,9 @@
 package com.example.yolov5tfliteandroid.web;
 
+import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.Map;
-
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -17,13 +16,15 @@ public class network
     public static String Server = "http://43.143.165.48/";
     public static MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static OkHttpClient client = new OkHttpClient();
-    public  String GET(String url) {
+    public static String GET(String url,PPCallBack ppCallBack) {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
-        } catch (IOException e) {
+            String ans=response.body().string();
+            ppCallBack.success(new JSONObject(ans));
+            return ans;
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
         return "";
@@ -43,7 +44,7 @@ public class network
         return "";
     }
 
-    /*mappost没有callback封装，导致异步请求冲突弃用*/
+    /*mappost没有callback封装，导致同步请求冲突弃用*/
     public static JSONObject mapPOST(String url, Map<String, String> map) {
         final JSONObject jsonObject = new JSONObject();
         try {

@@ -126,7 +126,39 @@
                     android:singleLine="true" />
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/Email2Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <EditText
+                    android:id="@+id/Email2Edit"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/login_text"
+                    android:hint="输入验证码"
+                    android:textSize="24dp"
+                    android:maxLength="4"
+                    android:singleLine="true" />
+                <Button
+                    android:id="@+id/yanzhengmaButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/login_button"
+                    android:text="发送验证码"
+                    android:textColor="@color/white"
+                    android:textSize="24dp" />
+
+            </LinearLayout>
             <!--嵌套线性布局-->
             <LinearLayout
                 android:id="@+id/ButtonLayout"

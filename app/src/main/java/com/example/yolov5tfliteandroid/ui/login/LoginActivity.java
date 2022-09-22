@@ -54,32 +54,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 final Map<String, String> map = new HashMap<>();
                 map.put("name", strUserName);
                 map.put("pwd", strPassWord);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Looper.prepare();
-                        network.ppmapPOST(network.Server + "connect.php", map, (ppansJson) -> {
-                            try {
-                                if (ppansJson.getInt("res") == 1) {//登录成功
-                                    Toast.makeText(getApplicationContext(), "登录成功",
-                                            Toast.LENGTH_LONG).show();
-                                    Intent intent=new Intent(LoginActivity.this,Bottom.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "登录失败：账号或密码错误 " ,
-                                            Toast.LENGTH_LONG).show();
-                                    //Intent intent=new Intent(LoginActivity.this,Bottom.class);
-                                    //startActivity(intent);
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                new Thread(() -> {
+                    Looper.prepare();
+                    network.ppmapPOST(network.Server + "php/connect.php", map, (ppansJson) -> {
+                        try {
+                            if (ppansJson.getInt("res") == 1) {//登录成功
+                                Toast.makeText(getApplicationContext(), "登录成功",
+                                        Toast.LENGTH_LONG).show();
+                                Intent intent=new Intent(LoginActivity.this,Bottom.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "登录失败：账号或密码错误 " ,
+                                        Toast.LENGTH_LONG).show();
+                                //Intent intent=new Intent(LoginActivity.this,Bottom.class);
+                                //startActivity(intent);
                             }
-                            Looper.loop();
 
-                        });
-                    }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Looper.loop();
+
+                    });
                 }).start();
             break;
         case R.id.SignUpButton:
