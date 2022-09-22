@@ -23,8 +23,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private EditText passWord;
     private EditText passWordAgain;
     private EditText email;
+    private EditText email2;
     private Button signUpButton;
     private Button backLoginButton;
+    private Button yangzhengButton;
+    private int yanzhengma=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +42,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         passWord = findViewById(R.id.PassWordEdit);
         passWordAgain = findViewById(R.id.PassWordAgainEdit);
         email = findViewById(R.id.EmailEdit);
+        email2=findViewById(R.id.Email2Edit);
         signUpButton = findViewById(R.id.SignUpButton);
         backLoginButton = findViewById(R.id.BackLoginButton);
+        yangzhengButton=findViewById(R.id.yanzhengmaButton);
     }
 
     private void InitEvent(){
         signUpButton.setOnClickListener(this);
         backLoginButton.setOnClickListener(this);
+        yangzhengButton.setOnClickListener(this);
     }
     public void onClick(View view) {
         switch (view.getId()){
@@ -67,43 +73,62 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(SignUpActivity.this, "两次密码输入不一致！", Toast.LENGTH_SHORT).show();
                 } else if (!strPhoneNumber.contains("@")) {
                     Toast.makeText(SignUpActivity.this, "邮箱格式不正确！", Toast.LENGTH_SHORT).show();
+                } else if(yanzhengma!=Integer.parseInt(email2.getText().toString())){
+                    Toast.makeText(SignUpActivity.this, "验证码不正确！", Toast.LENGTH_SHORT).show();
                 } else {
                     final Map<String, String> map = new HashMap<>();
                     map.put("name", strUserName);
                     map.put("pwd", strPassWord);
                     map.put("email",strPhoneNumber);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Looper.prepare();
-                            network.ppmapPOST(network.Server + "regist.php", map, (ppansJson) -> {
-                                try {
-                                    int res=ppansJson.getInt("res");
-                                    if (res == 2) {//登录成功
-                                        Toast.makeText(getApplicationContext(), "注册成功！",
-                                                Toast.LENGTH_LONG).show();
-                                        Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } else if(res==1) {
-                                        Toast.makeText(getApplicationContext(), "邮箱已被注册！" ,
-                                                Toast.LENGTH_LONG).show();
-                                        //Intent intent=new Intent(LoginActivity.this,Bottom.class);
-                                        //startActivity(intent);
-                                    }else {
-                                        Toast.makeText(getApplicationContext(), "用户名已被注册！" ,
-                                                Toast.LENGTH_LONG).show();
-                                    }
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                    new Thread(() -> {
+                        Looper.prepare();
+                        network.ppmapPOST(network.Server + "php/regist.php", map, (ppansJson) -> {
+                            try {
+                                int res=ppansJson.getInt("res");
+                                if (res == 2) {//登录成功
+                                    Toast.makeText(getApplicationContext(), "注册成功！",
+                                            Toast.LENGTH_LONG).show();
+                                    Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else if(res==1) {
+                                    Toast.makeText(getApplicationContext(), "邮箱已被注册！" ,
+                                            Toast.LENGTH_LONG).show();
+                                    //Intent intent=new Intent(LoginActivity.this,Bottom.class);
+                                    //startActivity(intent);
+                                }else {
+                                    Toast.makeText(getApplicationContext(), "用户名已被注册！" ,
+                                            Toast.LENGTH_LONG).show();
                                 }
-                                Looper.loop();
 
-                            });
-                        }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Looper.loop();
+
+                        });
                     }).start();
                 }
+                break;
+            case R.id.yanzhengmaButton:
+                new Thread(() -> {
+                    Looper.prepare();
+                    network.GET(network.Server + "php/email.php",  (yanzhengJson) -> {
+                        try {
+                            if (yanzhengJson.getInt("res") != 0) {//发送成功返回验证码
+                                Toast.makeText(getApplicationContext(), "邮件发送成功！",
+                                        Toast.LENGTH_LONG).show();
+                                yanzhengma=yanzhengJson.getInt("res") ;
+                            } else {
+                                Toast.makeText(getApplicationContext(), "邮件发送失败！ " ,
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Looper.loop();
+                    });
+                }).start();
                 break;
             case R.id.BackLoginButton:
                 // 跳转到登录界面
