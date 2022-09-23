@@ -111,10 +111,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
             case R.id.yanzhengmaButton:
+                final Map<String, String> map1 = new HashMap<>();
+                map1.put("email", email.getText().toString());
                 new Thread(() -> {
                     Looper.prepare();
-                    network.GET(network.Server + "php/email.php",  (yanzhengJson) -> {
-                        try {
+                    network.ppmapPOST(network.Server + "php/email.php",  map1,(yanzhengJson) -> {
+                        try {;
                             if (yanzhengJson.getInt("res") != 0) {//发送成功返回验证码
                                 Toast.makeText(getApplicationContext(), "邮件发送成功！",
                                         Toast.LENGTH_LONG).show();

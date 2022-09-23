@@ -45,7 +45,7 @@ public class network
     }
 
     /*mappost没有callback封装，导致同步请求冲突弃用*/
-    public static JSONObject mapPOST(String url, Map<String, String> map) {
+/*    public static JSONObject mapPOST(String url, Map<String, String> map) {
         final JSONObject jsonObject = new JSONObject();
         try {
             for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -57,7 +57,7 @@ public class network
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 
       public static void ppmapPOST(final String url, Map<String, String> map,PPCallBack ppCallBack) {
         final JSONObject jsonObject = new JSONObject();
