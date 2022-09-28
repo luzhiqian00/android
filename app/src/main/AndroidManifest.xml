@@ -33,7 +33,8 @@
         </activity>
         <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,7 +43,8 @@
         </activity>
         <activity
             android:name=".ui.login.SignUpActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleInstance">
         </activity>
 
     </application>

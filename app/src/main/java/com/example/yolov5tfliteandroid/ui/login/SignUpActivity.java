@@ -2,8 +2,11 @@ package com.example.yolov5tfliteandroid.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,7 +31,26 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private Button backLoginButton;
     private Button yangzhengButton;
     private int yanzhengma=0;
+    private void countDownTime() {
+        //用安卓自带的CountDownTimer实现
 
+        CountDownTimer mTimer = new CountDownTimer(60 * 1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                //Log.i(TAG, "millisUntilFinished: " + millisUntilFinished);
+                yangzhengButton.setText(millisUntilFinished / 1000 + "秒后重发");
+            }
+
+            @Override
+            public void onFinish() {
+                yangzhengButton.setEnabled(true);
+                yangzhengButton.setText("发送验证码");
+                cancel();
+            }
+        };
+        mTimer.start();
+        yangzhengButton.setEnabled(false);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,24 +133,27 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
             case R.id.yanzhengmaButton:
-                new Thread(() -> {
-                    Looper.prepare();
-                    network.GET(network.Server + "php/email.php",  (yanzhengJson) -> {
-                        try {
-                            if (yanzhengJson.getInt("res") != 0) {//发送成功返回验证码
-                                Toast.makeText(getApplicationContext(), "邮件发送成功！",
-                                        Toast.LENGTH_LONG).show();
-                                yanzhengma=yanzhengJson.getInt("res") ;
-                            } else {
-                                Toast.makeText(getApplicationContext(), "邮件发送失败！ " ,
-                                        Toast.LENGTH_LONG).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        Looper.loop();
-                    });
-                }).start();
+                countDownTime();
+//                final Map<String, String> map1 = new HashMap<>();
+//                map1.put("email", email.getText().toString());
+//                new Thread(() -> {
+//                    Looper.prepare();
+//                    network.ppmapPOST(network.Server + "php/email.php",  map1,(yanzhengJson) -> {
+//                        try {;
+//                            if (yanzhengJson.getInt("res") != 0) {//发送成功返回验证码
+//                                Toast.makeText(getApplicationContext(), "邮件发送成功！",
+//                                        Toast.LENGTH_LONG).show();
+//                                yanzhengma=yanzhengJson.getInt("res") ;
+//                            } else {
+//                                Toast.makeText(getApplicationContext(), "邮件发送失败！ " ,
+//                                        Toast.LENGTH_LONG).show();
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                        Looper.loop();
+//                    });
+//                }).start();
                 break;
             case R.id.BackLoginButton:
                 // 跳转到登录界面
