@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.setting.SettingFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:orientation="vertical"
+    android:background="@color/white">
+    <!--    用户设置        -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Mine" />
+        android:layout_height="wrap_content"
 
-</FrameLayout>
+        >
+        <ImageView
+            android:id="@+id/LogoImage"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/yolov5_tflite_android2"
+            />
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            android:background="@color/white">
+            <TextView
+                android:id="@+id/yonghuming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="用户名"
+                android:gravity="center"
+                android:textStyle="italic"
+                android:textColor="#808080"
+                android:textSize="40dp" />
+            <TextView
+                android:id="@+id/nihao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="你好!   "
+                android:gravity="center"
+                android:textStyle="italic"
+                android:textColor="#808080"
+                android:textSize="30dp" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--    菜单设置        -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/but1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/bottom_navigation_home"
+            android:textColor="@color/black"
+            android:gravity="center_vertical"
+            android:drawablePadding="20dp"
+            android:text="登录"
+            android:textSize="24dp" />
+
+        <Button
+            android:id="@+id/but2"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/bottom_navigation_home"
+            android:drawablePadding="20dp"
+            android:gravity="center_vertical"
+            android:text="登录"
+            android:textColor="@color/black"
+            android:textSize="24dp" />
+
+        <Button
+            android:id="@+id/but3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/bottom_navigation_home"
+            android:textColor="@color/black"
+            android:gravity="center_vertical"
+            android:drawablePadding="20dp"
+            android:text="登录"
+            android:textSize="24dp" />
+    </LinearLayout>
+    <!--   底部布局    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+        <Button
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
+            android:background="@color/red"
+            android:text="退出登录"
+            android:textStyle="bold|italic"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>
