@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">yolov5</string>
+
+    <string-array name="model">
+        <item>yolov5s</item>
+        <item>yolov5n </item>
+        <item>yolov5m</item>
+        <item>yolov5s-int8</item>
+    </string-array>
+    <string name="title_activity_bottom">Bottom</string>
+    <string name="title_detect">Detect</string>
+    <string name="title_history">History</string>
+    <string name="title_setting">Setting</string>
+</resources>
