@@ -1,8 +1,11 @@
 package com.example.yolov5tfliteandroid;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -25,12 +28,16 @@ public class Bottom extends AppCompatActivity {
     private ViewPager2 viewPager2;
     public RadioGroup radioGroup;
     private List<Integer> radioButtonIdList = Arrays.asList(R.id.rb_detect, R.id.rb_history, R.id.rb_setting);
-
+    private String name;//用户名
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom);
+//        Intent intent = getIntent();
+//        name=intent.getStringExtra("name");
+
+        //Log.d("TAG",name);
         initView();
         /*
         从ViewModel中获取FragmentList数据

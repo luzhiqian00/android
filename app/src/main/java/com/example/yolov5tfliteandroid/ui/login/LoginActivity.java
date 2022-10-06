@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Toast.makeText(getApplicationContext(), "登录成功",
                                         Toast.LENGTH_LONG).show();
                                 Intent intent=new Intent(LoginActivity.this,Bottom.class);
+                                intent.putExtra( "name", strUserName );
                                 startActivity(intent);
                                 finish();
                             } else {
@@ -84,6 +85,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+        }
     }
-}
+    @Override
+    public void onBackPressed() {
+        finish();
+        //android.os.Process.killProcess(android.os.Process.myPid());
+    }
 }

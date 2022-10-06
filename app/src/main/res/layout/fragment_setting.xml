@@ -60,7 +60,7 @@
             android:textColor="@color/black"
             android:gravity="center_vertical"
             android:drawablePadding="20dp"
-            android:text="登录"
+            android:text="历史"
             android:textSize="24dp" />
 
         <Button
@@ -71,7 +71,7 @@
             android:drawableLeft="@drawable/bottom_navigation_home"
             android:drawablePadding="20dp"
             android:gravity="center_vertical"
-            android:text="登录"
+            android:text="安全"
             android:textColor="@color/black"
             android:textSize="24dp" />
 
@@ -83,7 +83,7 @@
             android:textColor="@color/black"
             android:gravity="center_vertical"
             android:drawablePadding="20dp"
-            android:text="登录"
+            android:text="关于"
             android:textSize="24dp" />
     </LinearLayout>
     <!--   底部布局    -->
@@ -91,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent">
         <Button
-            android:id="@+id/content"
+            android:id="@+id/exitlogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
