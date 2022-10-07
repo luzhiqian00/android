@@ -1,13 +1,17 @@
 package com.example.yolov5tfliteandroid.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Looper;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -31,6 +35,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private Button backLoginButton;
     private Button yangzhengButton;
     private int yanzhengma=0;
+    boolean pendingCollapseKeywordInLogin = false;
+    View focusedViewInLogin;
     private void countDownTime() {
         //用安卓自带的CountDownTimer实现
 
@@ -57,6 +63,43 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_sign_up);
         InitView();
         InitEvent();
+    }
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+
+        focusedViewInLogin = getCurrentFocus();
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            pendingCollapseKeywordInLogin = isShouldHideInput(ev);
+        } else if (ev.getAction() == MotionEvent.ACTION_UP) {
+            if (pendingCollapseKeywordInLogin) {
+                hideInputMethod(this);
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    private boolean isShouldHideInput(MotionEvent event) {
+        if (focusedViewInLogin instanceof EditText) {
+            int[] location = {0, 0};
+            focusedViewInLogin.getLocationInWindow(location);
+            boolean t = event.getX() < location[0]
+                    || event.getX() > location[0] + focusedViewInLogin.getWidth()
+                    || event.getY() < location[1]
+                    || event.getY() > location[1] + focusedViewInLogin.getHeight();
+            ((EditText) focusedViewInLogin).setCursorVisible(!t);
+            return t;
+        }
+        return false;
+    }
+
+    private void hideInputMethod(SignUpActivity context) {
+        InputMethodManager imm = (InputMethodManager)context
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(focusedViewInLogin.getWindowToken(), 0);
+        }
     }
 
     private void InitView(){
