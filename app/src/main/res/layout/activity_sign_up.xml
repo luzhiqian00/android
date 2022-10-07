@@ -122,7 +122,6 @@
                     android:background="@drawable/login_text"
                     android:hint="输入邮箱地址"
                     android:textSize="24dp"
-                    android:maxLength="16"
                     android:singleLine="true" />
 
             </LinearLayout>
