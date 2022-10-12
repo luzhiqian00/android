@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.example.yolov5tfliteandroid.MainActivity;
@@ -13,7 +15,7 @@ import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.databinding.FragmentSettingBinding;
 
 public class DetectFragment extends Fragment {
-    private FragmentSettingBinding binding;
+    //private FragmentSettingBinding binding;
     private Button bt_detect;
     public DetectFragment() {
     }
@@ -36,10 +38,18 @@ public class DetectFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        //binding = null;
     }
 }
 
-
+/*
+    <Button
+        android:id="@+id/bt_detect2"
+        android:layout_width="220dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/photo"
+         />
+ */
 
 
