@@ -56,10 +56,10 @@
             android:id="@+id/but1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/bottom_navigation_home"
+
+
             android:textColor="@color/black"
             android:gravity="center_vertical"
-            android:drawablePadding="20dp"
             android:text="历史"
             android:textSize="24dp" />
 
@@ -68,8 +68,6 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/bottom_navigation_home"
-            android:drawablePadding="20dp"
             android:gravity="center_vertical"
             android:text="安全"
             android:textColor="@color/black"
@@ -79,10 +77,8 @@
             android:id="@+id/but3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/bottom_navigation_home"
             android:textColor="@color/black"
             android:gravity="center_vertical"
-            android:drawablePadding="20dp"
             android:text="关于"
             android:textSize="24dp" />
     </LinearLayout>

@@ -27,17 +27,14 @@ public class Bottom extends AppCompatActivity {
 
     private ViewPager2 viewPager2;
     public RadioGroup radioGroup;
-    private List<Integer> radioButtonIdList = Arrays.asList(R.id.rb_detect, R.id.rb_history, R.id.rb_setting);
+    private List<Integer> radioButtonIdList = Arrays.asList(R.id.rb_detect, R.id.rb_setting);
+    //private List<Integer> radioButtonIdList = Arrays.asList(R.id.rb_detect, R.id.rb_history, R.id.rb_setting);
     private String name;//用户名
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom);
-//        Intent intent = getIntent();
-//        name=intent.getStringExtra("name");
-
-        //Log.d("TAG",name);
         initView();
         /*
         从ViewModel中获取FragmentList数据
@@ -66,7 +63,7 @@ public class Bottom extends AppCompatActivity {
         // 初始化UI控件
         radioGroup = findViewById(R.id.activity_main_radiogroup);
         RadioButton rbdetect = findViewById(R.id.rb_detect);
-        RadioButton rbhistory = findViewById(R.id.rb_history);
+        //RadioButton rbhistory = findViewById(R.id.rb_history);
         RadioButton rbsetting = findViewById(R.id.rb_setting);
         // RadioButton点击响应事件
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -81,9 +78,9 @@ public class Bottom extends AppCompatActivity {
         dbHome.setBounds(0, 0, UIUtils.dipTopx(this, 25), UIUtils.dipTopx(this, 25));
         rbdetect.setCompoundDrawables(null, dbHome, null, null);
 
-        Drawable dbPond = getResources().getDrawable(R.drawable.selector_pond);
-        dbPond.setBounds(0, 0, UIUtils.dipTopx(this, 25), UIUtils.dipTopx(this, 25));
-        rbhistory.setCompoundDrawables(null, dbPond, null, null);
+        //Drawable dbPond = getResources().getDrawable(R.drawable.selector_pond);
+        //dbPond.setBounds(0, 0, UIUtils.dipTopx(this, 25), UIUtils.dipTopx(this, 25));
+        //rbhistory.setCompoundDrawables(null, dbPond, null, null);
 
         Drawable dbMsg = getResources().getDrawable(R.drawable.selector_person);
         dbMsg.setBounds(0, 0, UIUtils.dipTopx(this, 25), UIUtils.dipTopx(this, 25));

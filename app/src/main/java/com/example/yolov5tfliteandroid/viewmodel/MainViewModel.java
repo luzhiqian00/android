@@ -22,7 +22,7 @@ public class MainViewModel extends AndroidViewModel {
         /* 展示三个页面 */
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new DetectFragment());
-        fragmentList.add(new HistoryFragment());
+        //fragmentList.add(new HistoryFragment());
         fragmentList.add(new SettingFragment());
         return fragmentList;
     }

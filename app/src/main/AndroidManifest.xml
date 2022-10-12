@@ -22,7 +22,14 @@
             android:exported="true"
             android:label="@string/title_activity_bottom">
         </activity>
-
+        <activity
+            android:name=".ui.history.HistoryActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ui.About.AboutActivity"
+            android:exported="true">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

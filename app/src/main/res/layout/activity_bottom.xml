@@ -35,17 +35,6 @@
 
 
         <RadioButton
-            android:id="@+id/rb_history"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center"
-            android:text="History"
-            tools:text="History" />
-
-
-        <RadioButton
             android:id="@+id/rb_setting"
             android:layout_width="0dp"
             android:layout_height="match_parent"
