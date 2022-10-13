@@ -102,6 +102,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         Toast.LENGTH_LONG).show();
                                 Intent intent=new Intent(LoginActivity.this,Bottom.class);
                                 intent.putExtra( "name", strUserName );
+                                intent.putExtra( "pwd", strPassWord );
                                 startActivity(intent);
                                 finish();
                             } else {

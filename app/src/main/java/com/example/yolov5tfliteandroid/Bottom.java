@@ -1,11 +1,8 @@
 package com.example.yolov5tfliteandroid;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -35,6 +32,9 @@ public class Bottom extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom);
+        if (!CacheActivity.activityList.contains(Bottom.this)) {
+            CacheActivity.addActivity(Bottom.this);
+        }
         initView();
         /*
         从ViewModel中获取FragmentList数据
