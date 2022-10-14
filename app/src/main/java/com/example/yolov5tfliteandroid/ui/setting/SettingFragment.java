@@ -17,6 +17,7 @@ import com.example.yolov5tfliteandroid.Bottom;
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.databinding.FragmentSettingBinding;
 import com.example.yolov5tfliteandroid.ui.About.AboutActivity;
+import com.example.yolov5tfliteandroid.ui.changepwd.ChangePwdActivity;
 import com.example.yolov5tfliteandroid.ui.history.HistoryActivity;
 import com.example.yolov5tfliteandroid.ui.login.LoginActivity;
 
@@ -24,6 +25,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
     private Button btn_exit;
     private TextView tv_name;
     private String name;
+    private String pwd;
     private Button history;
     private Button security;
     private Button about;
@@ -35,6 +37,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
         View view=inflater.inflate(R.layout.fragment_setting,container,false);
         Intent intent = getActivity().getIntent();
         name=intent.getStringExtra("name");
+        pwd=intent.getStringExtra("pwd");
         Log.d("TAG",name);
         //绑定组件
         btn_exit=view.findViewById(R.id.exitlogin);
@@ -74,6 +77,10 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
                 openhistory();
                 break;
             case R.id.but2:
+                Intent intent=new Intent(getActivity(), ChangePwdActivity.class);
+                intent.putExtra( "pwd", pwd );
+                intent.putExtra( "name", name );
+                startActivity(intent);
                 break;
             case R.id.but3:
                 break;
