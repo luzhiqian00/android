@@ -38,6 +38,7 @@ dependencies {
     implementation "androidx.room:room-runtime:2.4.3"
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'com.google.firebase:protolite-well-known-types:18.0.0'
     kapt "androidx.room:room-compiler:2.4.3"
     // Import tflite dependencies
     // implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly-SNAPSHOT'

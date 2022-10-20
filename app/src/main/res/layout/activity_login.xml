@@ -78,7 +78,33 @@
                     android:inputType="textPassword" />
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/VerifyLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <EditText
+                    android:id="@+id/VerifyEdit"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/login_text"
+                    android:hint="输入验证码"
+                    android:textSize="24dp"
+                    android:maxLength="16"
+                    android:singleLine="true" />
+                <ImageView
+                    android:id="@+id/VerifyImage"
+                    android:layout_width="170dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/LayoutButton"
                 android:layout_width="match_parent"
