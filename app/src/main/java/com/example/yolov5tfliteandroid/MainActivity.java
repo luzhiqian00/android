@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.camera.view.PreviewView;
 
+import android.Manifest;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,12 +20,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.yolov5tfliteandroid.analysis.FullImageAnalyse;
 import com.example.yolov5tfliteandroid.analysis.FullScreenAnalyse;
 import com.example.yolov5tfliteandroid.detector.Yolov5TFLiteDetector;
 import com.example.yolov5tfliteandroid.utils.CameraProcess;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.permissionx.guolindev.PermissionX;
+import com.permissionx.guolindev.callback.ExplainReasonCallback;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 获取屏幕旋转角度,0表示拍照出来的图片是横屏
-     *
      */
     protected int getScreenOrientation() {
         switch (getWindowManager().getDefaultDisplay().getRotation()) {
@@ -130,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 String model = (String) adapterView.getItemAtPosition(i);
                 Toast.makeText(MainActivity.this, "loading model: " + model, Toast.LENGTH_LONG).show();
                 initModel(model);
-                if(IS_FULL_SCREEN){
+                if (IS_FULL_SCREEN) {
                     cameraPreviewWrap.removeAllViews();
                     FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(MainActivity.this,
                             cameraPreviewMatch,
@@ -140,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                             frameSizeTextView,
                             yolov5TFLiteDetector);
                     cameraProcess.startCamera(MainActivity.this, fullScreenAnalyse, cameraPreviewMatch);
-                }else{
+                } else {
                     cameraPreviewMatch.removeAllViews();
                     FullImageAnalyse fullImageAnalyse = new FullImageAnalyse(
                             MainActivity.this,
@@ -155,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 

@@ -86,4 +86,7 @@ dependencies {
     // define any required OkHttp artifacts without version
     //implementation("com.squareup.okhttp3:logging-interceptor")
 
+    // 权限相关 PermissionX
+    implementation 'com.permissionx.guolindev:permissionx:1.4.0'
+
 }
