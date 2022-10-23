@@ -11,14 +11,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.yolov5tfliteandroid.Bottom;
 import com.example.yolov5tfliteandroid.CacheActivity;
 import com.example.yolov5tfliteandroid.R;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.YARepository;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.network.response.ChangepwdResponse;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.network.response.LoginResponse;
+import com.example.yolov5tfliteandroid.ui.login.LoginActivity;
 import com.example.yolov5tfliteandroid.web.network;
 
 import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChangePwdActivity extends AppCompatActivity implements View.OnClickListener {
     boolean pendingCollapseKeywordInLogin = false;
@@ -63,33 +73,31 @@ public class ChangePwdActivity extends AppCompatActivity implements View.OnClick
         String newp2 = FirmPwd.getText().toString();
         String oldp = OldPwd.getText().toString();
         //CacheActivity.finishActivity();
-        if(newp!=newp2){
+        if(!newp.equals(newp2)){
             Toast.makeText(getApplicationContext(), "两次密码输入不一致",
                     Toast.LENGTH_LONG).show();
-        }else if(oldp==pwd){
-            final Map<String, String> map = new HashMap<>();
-            map.put("name", newp);
-            map.put("pwd", newp);
-            new Thread(() -> {
-                Looper.prepare();
-                network.ppmapPOST(network.Server + "php/changepwd.php", map, (ppansJson) -> {
-                    try {
-                        if (ppansJson.getInt("res") == 1) {//登录成功
-                            Toast.makeText(getApplicationContext(), "修改成功,请重新登录",
-                                    Toast.LENGTH_LONG).show();
-                            CacheActivity.finishActivity();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "修改失败 " ,
-                                    Toast.LENGTH_LONG).show();
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        }else if(oldp.equals(pwd)){
+            YARepository.postChangepwd(name,newp).enqueue(new Callback<ChangepwdResponse>() {
+                @Override
+                public void onResponse(Call<ChangepwdResponse> call, Response<ChangepwdResponse> response) {
+                    // 响应失败
+                    String res = response.body().getData().getRes();
+                    if (res.equals("1")) {//
+                        Toast.makeText(getApplicationContext(), "修改成功",
+                                Toast.LENGTH_LONG).show();
+                        CacheActivity.finishActivity();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "修改失败 " ,
+                                Toast.LENGTH_LONG).show();
                     }
-                    Looper.loop();
+                }
 
-                });
-            }).start();
+                @Override
+                public void onFailure(Call<ChangepwdResponse> call, Throwable t) {
+                    // 响应失败
+                    t.printStackTrace();
+                }
+            });
         }
         else{
             Toast.makeText(getApplicationContext(), "原密码不正确 " ,Toast.LENGTH_LONG).show();

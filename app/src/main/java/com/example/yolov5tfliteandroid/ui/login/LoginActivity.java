@@ -33,6 +33,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -126,10 +128,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                     // 登陆请求
+
                     YARepository.postLogin(strUserName,strPassWord).enqueue(new Callback<LoginResponse>() {
                         @Override
                         public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                            // 响应失败
+                            // 响应成功
                             String res = response.body().getData().getRes();
                             if (res.equals("1")) {//登录成功
                                 Toast.makeText(getApplicationContext(), "登录成功",
