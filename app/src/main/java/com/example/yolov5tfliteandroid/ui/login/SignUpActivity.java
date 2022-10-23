@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.yolov5tfliteandroid.Bottom;
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.YARepository;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.network.response.EmailResponse;
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.network.response.LoginResponse;
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.network.response.RegisterResponse;
 import com.example.yolov5tfliteandroid.web.network;
@@ -154,6 +155,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         @Override
                         public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                             // 响应成功
+
                             String res = response.body().getData().getRes();
                             if (res.equals("2")) {
                                 Toast.makeText(getApplicationContext(), "注册成功！",
@@ -179,26 +181,25 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.yanzhengmaButton:
                 countDownTime();
-//                final Map<String, String> map1 = new HashMap<>();
-//                map1.put("email", email.getText().toString());
-//                new Thread(() -> {
-//                    Looper.prepare();
-//                    network.ppmapPOST(network.Server + "php/email.php",  map1,(yanzhengJson) -> {
-//                        try {;
-//                            if (yanzhengJson.getInt("res") != 0) {//发送成功返回验证码
-//                                Toast.makeText(getApplicationContext(), "邮件发送成功！",
-//                                        Toast.LENGTH_LONG).show();
-//                                yanzhengma=yanzhengJson.getInt("res") ;
-//                            } else {
-//                                Toast.makeText(getApplicationContext(), "邮件发送失败！ " ,
-//                                        Toast.LENGTH_LONG).show();
-//                            }
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                        Looper.loop();
-//                    });
-//                }).start();
+                String Email = email.getText().toString();
+                YARepository.postEmail(Email).enqueue(new Callback<EmailResponse>() {
+                    @Override
+                    public void onResponse(Call<EmailResponse> call, Response<EmailResponse> response) {
+                        String res=response.body().getData().getRes();
+                        yanzhengma=Integer.parseInt(res);
+                        if(yanzhengma!=0){
+                            Toast.makeText(getApplicationContext(), "邮件发送成功！",
+                                        Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "邮件发送失败！",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<EmailResponse> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
                 break;
             case R.id.BackLoginButton:
                 // 跳转到登录界面

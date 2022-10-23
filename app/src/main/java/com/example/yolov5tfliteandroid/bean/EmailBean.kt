@@ -3,7 +3,8 @@ package com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.bean
 import com.google.gson.annotations.SerializedName
 
 /**
- * 收件人邮箱发送
+ * 邮件结果返回
  */
 
-class EmailBean(@SerializedName("res") val res:String)
+class EmailBean(@SerializedName("RequestEmail") val RequestEmail:String,
+    @SerializedName("res") val res:String)
