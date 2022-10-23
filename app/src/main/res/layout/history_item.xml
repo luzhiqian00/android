@@ -34,6 +34,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp">
             <ImageView
+                android:id="@+id/iv_history_item"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
                 android:src="@drawable/yolov5_tflite_android2"

@@ -22,7 +22,7 @@
         <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_changepwd.xml" value="0.2484375" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_item.xml" value="0.2484375" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_login.xml" value="0.186328125" />
-        <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_main.xml" value="0.109375" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/activity_sign_up.xml" value="0.2484375" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/fragment_detect.xml" value="0.109375" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/fragment_history.xml" value="0.24947916666666667" />
@@ -52,6 +52,8 @@
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/fragment_detect.xml" value="0.17300724637681159" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/fragment_home.xml" value="0.178125" />
         <entry key="app/src/main/res/layout/activity_bottom.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/activity_item.xml" value="0.30416666666666664" />
+        <entry key="app/src/main/res/layout/history_item.xml" value="0.14792299898682879" />
       </map>
     </option>
   </component>

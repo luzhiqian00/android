@@ -13,7 +13,9 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.yolov5tfliteandroid.R;
+import com.example.yolov5tfliteandroid.YAApplication;
 
 import java.util.List;
 
@@ -35,6 +37,9 @@ class RecyclerBuilder extends RecyclerView.Adapter<RecyclerBuilder.MyViewHolder>
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.itemTitle.setText(itemProperties.get(position).getTitle());
+        Glide.with(context)
+                .load(itemProperties.get(position).getImagePath())
+                .into(holder.ivHistoryItem);
 //        是否是编辑状态，是的话显示选中按钮，反之隐藏
         if (isEditStatus){
             holder.itemSelect.setVisibility(View.VISIBLE);
@@ -66,10 +71,12 @@ class RecyclerBuilder extends RecyclerView.Adapter<RecyclerBuilder.MyViewHolder>
         private final TextView itemTitle;
         private final ImageView itemSelect;
         private final CardView cardView;
+        private ImageView ivHistoryItem;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             itemTitle = itemView.findViewById(R.id.itemTitle);
             itemSelect = itemView.findViewById(R.id.itemSelect);
+            ivHistoryItem = itemView.findViewById(R.id.iv_history_item);
             cardView=itemView.findViewById(R.id.cardview);
             cardView.setCardBackgroundColor(ContextCompat.getColor(this.cardView.getContext(), R.color.white));
         }

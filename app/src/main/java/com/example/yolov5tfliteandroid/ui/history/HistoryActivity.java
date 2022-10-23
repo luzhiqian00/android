@@ -28,6 +28,8 @@ import java.util.List;
 
 import com.example.yolov5tfliteandroid.MainActivity;
 import com.example.yolov5tfliteandroid.R;
+import com.example.yolov5tfliteandroid.YAApplication;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.YARepository;
 import com.example.yolov5tfliteandroid.databinding.FragmentHistoryBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -76,6 +78,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         initData(); //初始化数据
         initEvent();
     }
+
     private void InitView(){
         editor_et = this.findViewById(R.id.editor);
         selectSum_tv = this.findViewById(R.id.selectSum);
@@ -84,7 +87,6 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView = this.findViewById(R.id.recyclerView);
         footBar = this.findViewById(R.id.footBar);
     }
-
 
     /**
      * 初始化数据，加载列表
@@ -98,7 +100,9 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 //        添加数据
         for (int i = 0; i < 100; i++) {
             ItemProperty itemProperty = new ItemProperty();
+            // TODO：接入数据库，将数据库的图片路径存入此处
             itemProperty.setTitle("第" + i + "项");
+            itemProperty.setImagePath(YAApplication.fDir+"1.png");
             itemProperties.add(itemProperty);
             recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
         }

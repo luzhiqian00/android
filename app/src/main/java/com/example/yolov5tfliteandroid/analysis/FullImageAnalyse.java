@@ -178,10 +178,10 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 
                         FileIO.saveImage(number, imageBitmap);
 
+                        FileIO.saveRes(number, recognitions, modelToPreviewTransform, boxPaint, cropCanvas, textPain);
                         number++;
                         edit.putInt("number", number);
                         edit.apply();
-                      FileIO.saveRes(number, recognitions, modelToPreviewTransform, boxPaint, cropCanvas, textPain);
 
 /*              准备从assets中读写的，但是因为assets只能读，不能写，因此，改用SharedPreferences
                 InputStream numberTxt= context.getAssets().open("number.txt");
