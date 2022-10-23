@@ -8,4 +8,6 @@ object YARepository {
 
     @JvmStatic
     public fun postLogin(user:String,pswd:String) = service.postLogin(user,pswd)
+    @JvmStatic
+    public fun postRegister(user: String,pswd: String,email:String)= service.postRegister(user, pswd, email)
 }

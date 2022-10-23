@@ -4,3 +4,4 @@ import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.bean.Logi
 
 class LoginResponse(msg: String, code: String, data: LoginBean):
     BaseResponse<LoginBean>(msg, code, data)
+

@@ -18,12 +18,19 @@ import android.widget.Toast;
 
 import com.example.yolov5tfliteandroid.Bottom;
 import com.example.yolov5tfliteandroid.R;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.YARepository;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.network.response.LoginResponse;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.network.response.RegisterResponse;
 import com.example.yolov5tfliteandroid.web.network;
 
 import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText userName;
@@ -138,41 +145,36 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(SignUpActivity.this, "两次密码输入不一致！", Toast.LENGTH_SHORT).show();
                 } else if (!strPhoneNumber.contains("@")) {
                     Toast.makeText(SignUpActivity.this, "邮箱格式不正确！", Toast.LENGTH_SHORT).show();
+                } else if(yanzhengma==0){
+                    Toast.makeText(SignUpActivity.this, "请先获取验证码！", Toast.LENGTH_SHORT).show();
                 } else if(yanzhengma!=Integer.parseInt(email2.getText().toString())){
                     Toast.makeText(SignUpActivity.this, "验证码不正确！", Toast.LENGTH_SHORT).show();
                 } else {
-                    final Map<String, String> map = new HashMap<>();
-                    map.put("name", strUserName);
-                    map.put("pwd", strPassWord);
-                    map.put("email",strPhoneNumber);
-                    new Thread(() -> {
-                        Looper.prepare();
-                        network.ppmapPOST(network.Server + "php/regist.php", map, (ppansJson) -> {
-                            try {
-                                int res=ppansJson.getInt("res");
-                                if (res == 2) {//登录成功
-                                    Toast.makeText(getApplicationContext(), "注册成功！",
-                                            Toast.LENGTH_LONG).show();
-                                    Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else if(res==1) {
-                                    Toast.makeText(getApplicationContext(), "邮箱已被注册！" ,
-                                            Toast.LENGTH_LONG).show();
-                                    //Intent intent=new Intent(LoginActivity.this,Bottom.class);
-                                    //startActivity(intent);
-                                }else {
-                                    Toast.makeText(getApplicationContext(), "用户名已被注册！" ,
-                                            Toast.LENGTH_LONG).show();
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                    YARepository.postRegister(strUserName,strPassWord,strPhoneNumber).enqueue(new Callback<RegisterResponse>() {
+                        @Override
+                        public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                            // 响应成功
+                            String res = response.body().getData().getRes();
+                            if (res.equals("2")) {
+                                Toast.makeText(getApplicationContext(), "注册成功！",
+                                        Toast.LENGTH_LONG).show();
+                                Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }else if(res.equals("1")) {
+                                Toast.makeText(getApplicationContext(), "邮箱已被注册！" , Toast.LENGTH_LONG).show();
+                            }else {
+                                Toast.makeText(getApplicationContext(), "用户名已被注册！" , Toast.LENGTH_LONG).show();
                             }
-                            Looper.loop();
 
-                        });
-                    }).start();
+                        }
+
+                        @Override
+                        public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                            // 响应失败
+                            t.printStackTrace();
+                        }
+                    });
                 }
                 break;
             case R.id.yanzhengmaButton:
