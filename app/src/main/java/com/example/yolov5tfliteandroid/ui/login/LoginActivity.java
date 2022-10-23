@@ -104,17 +104,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String strPassWord = passWord.getText().toString();
                 String strVerifyCode=VerifyEdit.getText().toString();
                 strVerifyCode=strVerifyCode.toLowerCase(Locale.ROOT);
-                //TODO 账号密码处理
                 if(strVerifyCode.equals(realCode))
                 {
                     final Map<String, String> map = new HashMap<>();
                     map.put("name", strUserName);
                     map.put("pwd", strPassWord);
                     new Thread(() -> {
-                        Looper.prepare();
                         network.ppmapPOST(network.Server + "php/connect.php", map, (ppansJson) -> {
                             try {
-                                if (ppansJson.getInt("res") == 1) {//登录成功
+                                Looper.prepare();
+                                JSONObject state=ppansJson.getJSONObject("state");
+                                int res=state.getInt("res");
+                                if (res == 1) {//登录成功
                                     Toast.makeText(getApplicationContext(), "登录成功",
                                             Toast.LENGTH_LONG).show();
                                     Intent intent=new Intent(LoginActivity.this,Bottom.class);
@@ -131,7 +132,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 e.printStackTrace();
                             }
                             Looper.loop();
-
                         });
                     }).start();
                 }

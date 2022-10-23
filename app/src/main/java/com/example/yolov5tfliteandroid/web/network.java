@@ -13,7 +13,7 @@ import okhttp3.Response;
 
 public class network
 {
-    public static String Server = "http://43.143.165.48/";
+    public static String Server = "http://43.143.146.203/";
     public static MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static OkHttpClient client = new OkHttpClient();
     public static String GET(String url,PPCallBack ppCallBack) {
