@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.yolov5tfliteandroid.Bottom;
 import com.example.yolov5tfliteandroid.R;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.YARepository;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.network.response.LoginResponse;
 import com.example.yolov5tfliteandroid.utils.VerifyCode;
 import com.example.yolov5tfliteandroid.web.network;
 import com.permissionx.guolindev.PermissionX;
@@ -30,6 +32,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 //将验证码用图片的形式显示出来
 //RegisteractivityShowcode.setImageBitmap(Code.getInstance().createBitmap());
 //        realCode = Code.getInstance().getCode().toLowerCase();
@@ -116,31 +123,62 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 strVerifyCode = strVerifyCode.toLowerCase(Locale.ROOT);
                 //TODO 账号密码处理
                 if (strVerifyCode.equals(realCode)) {
-                    final Map<String, String> map = new HashMap<>();
-                    map.put("name", strUserName);
-                    map.put("pwd", strPassWord);
-                    new Thread(() -> {
-                        network.ppmapPOST(network.Server + "php/connect.php", map, (ppansJson) -> {
-                            try {
-                                if (ppansJson.getInt("res") == 1) {//登录成功
-                                    Toast.makeText(getApplicationContext(), "登录成功",
-                                            Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(LoginActivity.this, Bottom.class);
-                                    intent.putExtra("name", strUserName);
-                                    intent.putExtra("pwd", strPassWord);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "登录失败：账号或密码错误 ",
-                                            Toast.LENGTH_LONG).show();
-                                }
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+
+                    // 登陆请求
+                    YARepository.postLogin(strUserName,strPassWord).enqueue(new Callback<LoginResponse>() {
+                        @Override
+                        public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                            // 响应失败
+                            String res = response.body().getData().getRes();
+                            if (res.equals("1")) {//登录成功
+                                Toast.makeText(getApplicationContext(), "登录成功",
+                                        Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(LoginActivity.this, Bottom.class);
+                                intent.putExtra("name", strUserName);
+                                intent.putExtra("pwd", strPassWord);
+                                startActivity(intent);
+                                finish();
+                            }else{
+                                Toast.makeText(getApplicationContext(), "登录失败：账号或密码错误 ", Toast.LENGTH_LONG).show();
                             }
+                        }
 
-                        });
-                    }).start();
+                        @Override
+                        public void onFailure(Call<LoginResponse> call, Throwable t) {
+                            // 响应失败
+                            t.printStackTrace();
+                        }
+                    });
+
+
+
+
+//                    final Map<String, String> map = new HashMap<>();
+//                    map.put("name", strUserName);
+//                    map.put("pwd", strPassWord);
+//                    new Thread(() -> {
+//                        network.ppmapPOST(network.Server + "php/connect.php", map, (ppansJson) -> {
+//                            try {
+//                                if (ppansJson.getInt("res") == 1) {//登录成功
+//                                    Toast.makeText(getApplicationContext(), "登录成功",
+//                                            Toast.LENGTH_LONG).show();
+//                                    Intent intent = new Intent(LoginActivity.this, Bottom.class);
+//                                    intent.putExtra("name", strUserName);
+//                                    intent.putExtra("pwd", strPassWord);
+//                                    startActivity(intent);
+//                                    finish();
+//                                } else {
+//                                    Toast.makeText(getApplicationContext(), "登录失败：账号或密码错误 ",
+//                                            Toast.LENGTH_LONG).show();
+//                                }
+//
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//
+//                        });
+//                    }).start();
                 } else
                     Toast.makeText(getApplicationContext(), "登录失败：验证码输入错误 ",
                             Toast.LENGTH_LONG).show();
