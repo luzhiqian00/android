@@ -51,6 +51,7 @@
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/activity_main.xml" value="0.11676798378926039" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/fragment_detect.xml" value="0.17300724637681159" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/layout/fragment_home.xml" value="0.178125" />
+        <entry key="app/src/main/res/layout/activity_bottom.xml" value="0.37604166666666666" />
       </map>
     </option>
   </component>
