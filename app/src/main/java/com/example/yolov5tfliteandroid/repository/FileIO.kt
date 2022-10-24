@@ -58,4 +58,12 @@ object FileIO {
             }
         }
     }
+
+    @JvmStatic
+    fun deleteImage(imageName:String){
+        GlobalScope.launch(Dispatchers.IO) {
+            val userDao = getDatabase(YAApplication.context).imageDataBaseDao()
+            userDao.deleteByName(imageName)
+        }
+    }
 }
