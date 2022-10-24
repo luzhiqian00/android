@@ -23,6 +23,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +106,8 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             ItemProperty itemProperty = new ItemProperty();
             // TODO：接入数据库，将数据库的图片路径存入此处
             itemProperty.setTitle("第" + i + "项");
+            File file = new File(YAApplication.fDir+i+".png");
+            while(!file.exists()) {i++;}
             itemProperty.setImagePath(YAApplication.fDir+i+".png");
             itemProperties.add(itemProperty);
             recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
