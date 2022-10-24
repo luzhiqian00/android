@@ -13,9 +13,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.yolov5tfliteandroid.adapter.MyFragmentStateAdapter;
+import com.example.yolov5tfliteandroid.repository.FileIO;
 import com.example.yolov5tfliteandroid.utils.UIUtils;
 import com.example.yolov5tfliteandroid.viewmodel.MainViewModel;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class Bottom extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_bottom);
         if (!CacheActivity.activityList.contains(Bottom.this)) {
             CacheActivity.addActivity(Bottom.this);

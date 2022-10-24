@@ -24,6 +24,9 @@ public class ItemProperty {
         return imagePath;
     }
 
+    public String getImageName(){
+        return imagePath.split("/")[6];
+    }
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
