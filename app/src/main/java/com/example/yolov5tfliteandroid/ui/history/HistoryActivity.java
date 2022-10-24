@@ -23,6 +23,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +34,7 @@ import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.YAApplication;
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.YARepository;
 import com.example.yolov5tfliteandroid.databinding.FragmentHistoryBinding;
+import com.example.yolov5tfliteandroid.repository.FileIO;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -102,7 +106,9 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             ItemProperty itemProperty = new ItemProperty();
             // TODO：接入数据库，将数据库的图片路径存入此处
             itemProperty.setTitle("第" + i + "项");
-            itemProperty.setImagePath(YAApplication.fDir+"1.png");
+            File file = new File(YAApplication.fDir+i+".png");
+            while(!file.exists()) {i++;}
+            itemProperty.setImagePath(YAApplication.fDir+i+".png");
             itemProperties.add(itemProperty);
             recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
         }
@@ -275,6 +281,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             ItemProperty itemProperty = itemProperties.get(i);
             if (itemProperty.isSelect()){
                 itemProperties.remove(itemProperty);
+                FileIO.deleteImage(itemProperty.getImagePath());
                 selectedSum--;
             }
         }
