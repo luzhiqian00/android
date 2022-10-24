@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">yolov5</string>
+    <string name="app_name">路探</string>
 
     <string-array name="model">
         <item>yolov5s</item>
