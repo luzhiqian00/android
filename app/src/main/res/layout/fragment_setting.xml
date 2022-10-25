@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/white">
+    >
+    <!--    顶部框-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/blue"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Setting"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <!--    用户设置        -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/item_setting"
         >
         <ImageView
             android:id="@+id/LogoImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="20dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+
             android:background="@drawable/logo"
             />
         <LinearLayout
@@ -56,8 +81,10 @@
             android:id="@+id/but1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-
+            android:background="@drawable/item_setting"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
             android:textColor="@color/black"
             android:gravity="center_vertical"
             android:text="历史"
@@ -65,7 +92,10 @@
 
         <Button
             android:id="@+id/but2"
-
+            android:background="@drawable/item_setting"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -75,6 +105,10 @@
 
         <Button
             android:id="@+id/but3"
+            android:background="@drawable/item_setting"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="80dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -85,6 +119,7 @@
     <!--   底部布局    -->
     <LinearLayout
         android:layout_width="match_parent"
+
         android:layout_height="fill_parent">
         <Button
             android:id="@+id/exitlogin"
@@ -92,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginBottom="20dp"
-            android:background="@color/red"
+            android:background="@drawable/login_button"
             android:text="退出登录"
             android:textStyle="bold|italic"
             android:textColor="@color/white"
