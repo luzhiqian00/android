@@ -97,6 +97,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
      * 初始化数据，加载列表
      */
     private void initData() {
+        Integer count = 0;
         recyclerBuilder = new RecyclerBuilder(this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -107,14 +108,16 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             ItemProperty itemProperty = new ItemProperty();
             // TODO：接入数据库，将数据库的图片路径存入此处
             File file =null;
-            itemProperty.setTitle("第" + i + "项");
+            itemProperty.setTitle("第" + (++count) + "项");
             String fileName = YAApplication.fDir+i+".png";
             file = new File(fileName);
+
             while(!file.exists()& i<100){
                 i++;
                 fileName = YAApplication.fDir+i+".png";
                 file = new File(fileName);
             }
+
             itemProperty.setImagePath(YAApplication.fDir+i+".png");
             itemProperties.add(itemProperty);
             recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
