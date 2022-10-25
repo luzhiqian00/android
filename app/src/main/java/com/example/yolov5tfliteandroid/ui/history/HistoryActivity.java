@@ -29,11 +29,12 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.io.File;
 import com.example.yolov5tfliteandroid.MainActivity;
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.YAApplication;
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.YARepository;
-import com.example.yolov5tfliteandroid.databinding.FragmentHistoryBinding;
+//import com.example.yolov5tfliteandroid.databinding.FragmentHistoryBinding;
 import com.example.yolov5tfliteandroid.repository.FileIO;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -73,7 +74,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     private boolean isSelectAll = false; //是否是全选状态
 
     private int selectedSum; //已经选中的item的数量
-    private FragmentHistoryBinding binding;
+//    private FragmentHistoryBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +97,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
      * 初始化数据，加载列表
      */
     private void initData() {
+        Integer count = 0;
         recyclerBuilder = new RecyclerBuilder(this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -105,9 +107,17 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         for (int i = 0; i < 100; i++) {
             ItemProperty itemProperty = new ItemProperty();
             // TODO：接入数据库，将数据库的图片路径存入此处
-            itemProperty.setTitle("第" + i + "项");
-            File file = new File(YAApplication.fDir+i+".png");
-            while(!file.exists()) {i++;}
+            File file =null;
+            itemProperty.setTitle("第" + (++count) + "项");
+            String fileName = YAApplication.fDir+i+".png";
+            file = new File(fileName);
+
+            while(!file.exists()& i<100){
+                i++;
+                fileName = YAApplication.fDir+i+".png";
+                file = new File(fileName);
+            }
+
             itemProperty.setImagePath(YAApplication.fDir+i+".png");
             itemProperties.add(itemProperty);
             recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
@@ -281,12 +291,17 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             ItemProperty itemProperty = itemProperties.get(i);
             if (itemProperty.isSelect()){
                 itemProperties.remove(itemProperty);
-                FileIO.deleteImage(itemProperty.getImagePath());
+
+                File file = new File(itemProperty.getImagePath());//删除图片
+                deleteFile(file.getName());
+
+                FileIO.deleteImage(itemProperty.getImageName());//删除数据库里的数据
                 selectedSum--;
             }
         }
         selectSum_tv.setText("当前选中了: " + selectedSum + "个"); //设置选中个数显示
-        recyclerBuilder.notifyDataSetChanged(); //刷新数据
+        recyclerBuilder.notifyList(itemProperties); //刷新数据
+        recyclerView.setAdapter(recyclerBuilder);
     }
 
 }

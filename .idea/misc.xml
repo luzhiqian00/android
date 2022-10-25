@@ -40,10 +40,20 @@
         <entry key="..\:/TFlite_android/9.12/android/app/src/main/res/layout/activity_bottom.xml" value="0.1" />
         <entry key="..\:/TFlite_android/9.12/android/app/src/main/res/layout/fragment_detect.xml" value="0.25885416666666666" />
         <entry key="..\:/TFlite_android/9.12/android/app/src/main/res/layout/fragment_history.xml" value="0.25885416666666666" />
+        <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/layout/activity_about.xml" value="0.23229166666666667" />
+        <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/layout/activity_bottom.xml" value="0.115625" />
+        <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/layout/activity_changepwd.xml" value="0.23229166666666667" />
         <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/layout/activity_item.xml" value="0.1" />
         <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/layout/activity_login.xml" value="0.14375" />
+        <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/layout/activity_main.xml" value="0.23229166666666667" />
+        <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/layout/activity_sign_up.xml" value="0.23229166666666667" />
+        <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/layout/fragment_detect.xml" value="0.1" />
+        <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/layout/fragment_history.xml" value="0.4" />
         <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/layout/fragment_setting.xml" value="0.17239583333333333" />
         <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/layout/history_item.xml" value="0.1" />
+        <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.23229166666666667" />
+        <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.231" />
+        <entry key="..\:/TFlite_android/9.18/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.231" />
         <entry key="..\:/TFlite_android/true/yolov5-tflite-android/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/android/android/app/src/main/res/layout/activity_bottom.xml" value="0.25364583333333335" />
         <entry key="..\:/android/android/app/src/main/res/layout/activity_login.xml" value="0.12335359675785208" />

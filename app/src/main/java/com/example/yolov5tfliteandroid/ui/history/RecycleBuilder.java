@@ -88,6 +88,8 @@ class RecyclerBuilder extends RecyclerView.Adapter<RecyclerBuilder.MyViewHolder>
         return itemProperties;
     }
 
+
+
     //刷新列表数据
     @SuppressLint("NotifyDataSetChanged")
     public void notifyList(List<ItemProperty> itemProperties){
