@@ -106,8 +106,15 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         for (int i = 0; i < 100; i++) {
             ItemProperty itemProperty = new ItemProperty();
             // TODO：接入数据库，将数据库的图片路径存入此处
+            File file =null;
             itemProperty.setTitle("第" + i + "项");
-
+            String fileName = YAApplication.fDir+i+".png";
+            file = new File(fileName);
+            while(!file.exists()& i<100){
+                i++;
+                fileName = YAApplication.fDir+i+".png";
+                file = new File(fileName);
+            }
             itemProperty.setImagePath(YAApplication.fDir+i+".png");
             itemProperties.add(itemProperty);
             recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
