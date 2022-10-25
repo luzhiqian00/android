@@ -14,8 +14,8 @@
         <ImageView
             android:id="@+id/LogoImage"
             android:layout_width="150dp"
-            android:layout_height="120dp"
-            android:background="@drawable/yolov5_tflite_android2"
+            android:layout_height="150dp"
+            android:background="@drawable/logo"
             />
 
         <TextView
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Detect"
+            android:text="路探"
             android:gravity="center"
             android:textStyle="italic"
             android:textColor="#808080"
