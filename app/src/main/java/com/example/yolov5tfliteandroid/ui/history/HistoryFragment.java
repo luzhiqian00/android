@@ -85,7 +85,7 @@ public class HistoryFragment extends Fragment implements View.OnClickListener, R
         initEvent(); //初始化事件
         return view;
     }
-
+///已经被弃用的文件
 
     /**
      * 初始化数据，加载列表

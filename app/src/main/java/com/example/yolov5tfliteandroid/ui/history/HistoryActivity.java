@@ -111,15 +111,17 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             itemProperty.setTitle("第" + (++count) + "项");
             String fileName = YAApplication.fDir+i+".png";
             file = new File(fileName);
+            itemProperty.setImageId(i);
 
-            while(!file.exists()& i<100){
+            while(!file.exists() & i<100){
                 i++;
                 fileName = YAApplication.fDir+i+".png";
                 file = new File(fileName);
+                itemProperty.setImageId(i);
             }
-
-            itemProperty.setImagePath(YAApplication.fDir+i+".png");
-            itemProperties.add(itemProperty);
+            if(file.exists()){
+            itemProperty.setImagePath(fileName);
+            itemProperties.add(itemProperty);}
             recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
         }
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
@@ -167,9 +169,10 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         }
 //        没有位于编辑状态
         else {
+            ItemProperty itemProperty = itemProperties.get(position);
             Toast.makeText(this, "点击了：" + position, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ItemActivity.class);
-            intent.putExtra( "position", position );
+            intent.putExtra( "position", itemProperty.getImageId());
             startActivity(intent );// 启动Intent
         }
     }
@@ -301,7 +304,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         }
         selectSum_tv.setText("当前选中了: " + selectedSum + "个"); //设置选中个数显示
         recyclerBuilder.notifyList(itemProperties); //刷新数据
-        recyclerView.setAdapter(recyclerBuilder);
+
     }
 
 }
