@@ -2,6 +2,7 @@ package com.example.yolov5tfliteandroid.ui.history;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
