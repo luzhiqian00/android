@@ -104,6 +104,10 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView.setAdapter(recyclerBuilder); //设置适配器
         recyclerView.setLayoutManager(linearLayoutManager); //设置布局
 //        添加数据
+        //ItemProperty itemPropertyt = new ItemProperty();
+        //itemPropertyt.setTitle("2022/10/26");
+        //itemProperties.add(itemPropertyt);
+
         for (int i = 0; i < 100; i++) {
             ItemProperty itemProperty = new ItemProperty();
             // TODO：接入数据库，将数据库的图片路径存入此处

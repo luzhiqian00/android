@@ -9,50 +9,64 @@
     app:cardElevation="0dp"
     android:layout_margin="5dp"
     >
-    <LinearLayout
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:background="@drawable/round"
-        android:padding="40dp"
-        tools:ignore="UseCompoundDrawables">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/cardview1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_setting"
+    android:layout_margin="5dp"
+
+    >
+
         <!--    是否选中-->
         <ImageView
             android:visibility="gone"
             android:id="@+id/itemSelect"
             android:src="@drawable/select"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            tools:ignore="ContentDescription" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
             <ImageView
                 android:id="@+id/iv_history_item"
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="220dp"
                 android:src="@drawable/yolov5_tflite_android2"
-                android:scaleType="fitXY"/>
-            <TextView
-                android:id="@+id/itemTitle"
-                android:paddingTop="10dp"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="contenr"
-               />
-        </LinearLayout>
-    </LinearLayout>
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/itemTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/itemTitle"
+        android:paddingTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2022/07/19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/itemTitle2"
+        android:paddingTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="16:24:59"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemTitle"
+        />
 
-</androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 <!--<?xml version="1.0" encoding="utf-8"?>-->
 
 <!--<androidx.cardview.widget.CardView-->
