@@ -15,7 +15,7 @@
         <com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.EMImageView
             android:id='@+id/image_item'
             android:layout_width="match_parent"
-            android:layout_height="1440px"
+            android:layout_height="wrap_content"
             android:src="@drawable/photo"
             />
             android:rotation="90"
