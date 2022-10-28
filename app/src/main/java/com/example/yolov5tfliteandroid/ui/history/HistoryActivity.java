@@ -105,14 +105,18 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView.setLayoutManager(linearLayoutManager); //设置布局
 //        添加数据
         //ItemProperty itemPropertyt = new ItemProperty();
-        //itemPropertyt.setTitle("2022/10/26");
+        //itemPropertyt.setTime1("2022/10/26");
+        //itemPropertyt.setTime2("16:59:59");
         //itemProperties.add(itemPropertyt);
 
         for (int i = 0; i < 100; i++) {
             ItemProperty itemProperty = new ItemProperty();
-            // TODO：接入数据库，将数据库的图片路径存入此处
             File file =null;
-            itemProperty.setTitle("第" + (++count) + "项");
+            ++count;
+            //itemProperty.setTitle("第" + (++count) + "项");
+            //TODO:接入数据库图片对应的存储时间
+            //itemProperty.setTime1("2022/10/26");
+            //itemProperty.setTime2("16:59:59");
             String fileName = YAApplication.fDir+i+".png";
             file = new File(fileName);
             itemProperty.setImageId(i);

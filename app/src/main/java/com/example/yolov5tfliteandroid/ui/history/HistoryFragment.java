@@ -99,7 +99,7 @@ public class HistoryFragment extends Fragment implements View.OnClickListener, R
 //        添加数据
         for (int i = 0; i < 100; i++) {
             ItemProperty itemProperty = new ItemProperty();
-            itemProperty.setTitle("第" + i + "项");
+            //itemProperty.setTitle("第" + i + "项");
             itemProperties.add(itemProperty);
             recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
         }

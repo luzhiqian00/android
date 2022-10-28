@@ -37,7 +37,8 @@ class RecyclerBuilder extends RecyclerView.Adapter<RecyclerBuilder.MyViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.itemTitle.setText(itemProperties.get(position).getTitle());
+        holder.itemTitle.setText(itemProperties.get(position).getTime1());
+        holder.itemTitle2.setText(itemProperties.get(position).getTime2());
         Glide.with(context)
                 .load(itemProperties.get(position).getImagePath())
                 .into(holder.ivHistoryItem);
@@ -70,12 +71,14 @@ class RecyclerBuilder extends RecyclerView.Adapter<RecyclerBuilder.MyViewHolder>
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView itemTitle;
+        private final TextView itemTitle2;
         private final ImageView itemSelect;
         private final CardView cardView;
         private ImageView ivHistoryItem;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             itemTitle = itemView.findViewById(R.id.itemTitle);
+            itemTitle2=itemView.findViewById(R.id.itemTitle2);
             itemSelect = itemView.findViewById(R.id.itemSelect);
             ivHistoryItem = itemView.findViewById(R.id.iv_history_item);
             cardView=itemView.findViewById(R.id.cardview);
