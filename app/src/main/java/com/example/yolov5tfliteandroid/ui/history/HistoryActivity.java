@@ -111,6 +111,8 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 
         for (int i = 0; i < 100; i++) {
             ItemProperty itemProperty = new ItemProperty();
+            itemProperty.setTime1("2022/10/26  16:59:59");
+            //itemProperty.setTime2("16:59:59");
             File file =null;
             ++count;
             //itemProperty.setTitle("第" + (++count) + "项");

@@ -51,8 +51,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button loginButton;
     private Button signUpButton;
     private ImageView yanzheng;
-    private String realCode;
     private CheckBox RememberPwd;
+    private String realCode;
     boolean pendingCollapseKeywordInLogin = false;
     View focusedViewInLogin;
 
