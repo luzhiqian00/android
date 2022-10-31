@@ -2,7 +2,7 @@ package com.example.yolov5tfliteandroid.ui.history;
 
 public class ItemProperty {
     private String time1; //item标题
-    private String time2;
+    //private String time2;
     private boolean isSelect; //是否选中
     private String imagePath;   // 图片本地地址
     private int imageId;   //图片的id，也是存储的数据库中的id
@@ -23,13 +23,13 @@ public class ItemProperty {
         this.time1 = time;
     }
 
-    public void setTime2(String time){this.time2=time;}
+    //public void setTime2(String time){this.time2=time;}
 
     public void setSelect(boolean select) {
         isSelect = select;
     }
 
-    public String getTime2(){return time2;}
+    //public String getTime2(){return time2;}
 
     public String getImagePath() {
         return imagePath;
