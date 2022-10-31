@@ -9,66 +9,45 @@
     app:cardElevation="0dp"
     android:layout_margin="5dp"
     >
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/cardview1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/item_setting"
-    android:layout_margin="5dp"
-
-    >
-
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@drawable/item_setting"
+        tools:ignore="UseCompoundDrawables">
         <!--    是否选中-->
         <ImageView
             android:visibility="gone"
             android:id="@+id/itemSelect"
             android:src="@drawable/select"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-             />
-
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            tools:ignore="ContentDescription" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <ImageView
                 android:id="@+id/iv_history_item"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="220dp"
                 android:src="@drawable/yolov5_tflite_android2"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/itemTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:id="@+id/itemTitle"
-        android:paddingTop="10dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2022/07/19"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/itemTitle2"
-        android:paddingTop="10dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="16:24:59"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemTitle"
-        />
+                android:scaleType="fitXY"/>
+            <TextView
+                android:id="@+id/itemTitle"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="contenr"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>
 <!--<?xml version="1.0" encoding="utf-8"?>-->
-
 <!--<androidx.cardview.widget.CardView-->
 <!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
 <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
@@ -79,54 +58,62 @@
 <!--    app:cardElevation="0dp"-->
 <!--    android:layout_margin="5dp"-->
 <!--    >-->
+<!--<LinearLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="vertical"-->
+<!--    android:background="@drawable/item_setting"-->
+<!--    >-->
 <!--    <LinearLayout-->
-<!--        xmlns:tools="http://schemas.android.com/tools"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="center_vertical"-->
-<!--        android:background="@drawable/round"-->
-<!--        android:padding="40dp"-->
-<!--        tools:ignore="UseCompoundDrawables">-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        >-->
 <!--        &lt;!&ndash;    是否选中&ndash;&gt;-->
 <!--        <ImageView-->
 <!--            android:visibility="gone"-->
 <!--            android:id="@+id/itemSelect"-->
 <!--            android:src="@drawable/select"-->
-<!--            android:layout_width="20dp"-->
-<!--            android:layout_height="20dp"-->
-<!--            tools:ignore="ContentDescription" />-->
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:paddingLeft="20dp"-->
-<!--            android:paddingRight="20dp"-->
-<!--            android:paddingTop="10dp"-->
-<!--            android:paddingBottom="10dp">-->
-<!--            <TextView-->
-<!--                android:id="@+id/itemTitle"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"/>-->
-<!--            <TextView-->
-<!--                android:id="@+id/itemContent"-->
-<!--                android:textSize="15sp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="content"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/itemTitle" />-->
-<!--            <ImageView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-<!--                -->
-<!--            </ImageView>-->
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--    </LinearLayout>-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            />-->
 
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_history_item"-->
+<!--            android:layout_width="380dp"-->
+<!--            android:layout_height="220dp"-->
+
+<!--            android:src="@drawable/yolov5_tflite_android2"-->
+<!--            android:scaleType="fitXY" />-->
+<!--        </LinearLayout>-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+<!--        <TextView-->
+<!--            android:id="@+id/itemTitle"-->
+<!--            android:paddingTop="10dp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="2022/07/19"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/itemTitle2"-->
+<!--            android:paddingTop="10dp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="  16:24:59"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/itemTitle"-->
+<!--            />-->
+<!--    </LinearLayout>-->
+<!--</LinearLayout>-->
 <!--</androidx.cardview.widget.CardView>-->
 

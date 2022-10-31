@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ImageView yanzheng;
     private CheckBox RememberPwd;
     private String realCode;
-    private CheckBox RememberPwd;
     boolean pendingCollapseKeywordInLogin = false;
     View focusedViewInLogin;
 
