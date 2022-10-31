@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Github Project/11/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2015" />
+        <entry key="..\:/Github Project/11/app/src/main/res/drawable/circlebutton.xml" value="0.2525" />
+        <entry key="..\:/Github Project/11/app/src/main/res/drawable/circlebutton2.xml" value="0.2525" />
         <entry key="..\:/Github Project/11/app/src/main/res/drawable/detect_jumped.xml" value="0.1615" />
         <entry key="..\:/Github Project/11/app/src/main/res/drawable/detect_pressed.xml" value="0.1615" />
         <entry key="..\:/Github Project/11/app/src/main/res/drawable/detect_round.xml" value="0.2525" />
@@ -14,6 +16,7 @@
         <entry key="..\:/Github Project/11/app/src/main/res/drawable/login_button.xml" value="0.2015" />
         <entry key="..\:/Github Project/11/app/src/main/res/drawable/login_text.xml" value="0.2015" />
         <entry key="..\:/Github Project/11/app/src/main/res/drawable/round.xml" value="0.2015" />
+        <entry key="..\:/Github Project/11/app/src/main/res/drawable/selector_detect.xml" value="0.2525" />
         <entry key="..\:/Github Project/11/app/src/main/res/drawable/selector_detectbtn.xml" value="0.1705" />
         <entry key="..\:/Github Project/11/app/src/main/res/drawable/selector_home.xml" value="0.1" />
         <entry key="..\:/Github Project/11/app/src/main/res/drawable/selector_person.xml" value="0.1715" />
@@ -29,7 +32,7 @@
         <entry key="..\:/Github Project/11/app/src/main/res/layout/fragment_detect.xml" value="0.16799999999999998" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/fragment_history.xml" value="0.24947916666666667" />
         <entry key="..\:/Github Project/11/app/src/main/res/layout/fragment_setting.xml" value="0.1625" />
-        <entry key="..\:/Github Project/11/app/src/main/res/layout/history_item.xml" value="0.152" />
+        <entry key="..\:/Github Project/11/app/src/main/res/layout/history_item.xml" value="0.25" />
         <entry key="..\:/Github Project/11/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24947916666666667" />
         <entry key="..\:/Github Project/11/app/src/main/res/xml/network_security_config.xml" value="0.1" />
         <entry key="..\:/Github Project/22/android-uirewrite/app/src/main/res/drawable/ic_history.xml" value="0.1705" />
@@ -61,13 +64,6 @@
         <entry key="..\:/android/android/app/src/main/res/layout/activity_sign_up.xml" value="0.12335359675785208" />
         <entry key="..\:/android/android/app/src/main/res/layout/fragment_setting.xml" value="0.1" />
         <entry key="..\:/android/android/app/src/main/res/layout/history_item.xml" value="0.12335359675785208" />
-        <entry key="..\:/android/app/src/main/res/layout/activity_item.xml" value="0.22291666666666668" />
-        <entry key="..\:/android/app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="..\:/android/app/src/main/res/layout/activity_main.xml" value="0.22291666666666668" />
-        <entry key="..\:/android/app/src/main/res/layout/fragment_detect.xml" value="0.22291666666666668" />
-        <entry key="..\:/android/app/src/main/res/layout/fragment_history.xml" value="0.25" />
-        <entry key="..\:/android/app/src/main/res/layout/fragment_setting.xml" value="0.11145833333333334" />
-        <entry key="..\:/android/app/src/main/res/layout/history_item.xml" value="0.25" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1125" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1125" />
         <entry key="..\:/yolov5-tflite-android/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1125" />
