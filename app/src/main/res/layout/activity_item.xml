@@ -16,9 +16,8 @@
             android:id='@+id/image_item'
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/photo"
-            />
-            android:rotation="90"
+            android:src="@drawable/photo"/>
+
 
         <TextView
             android:id='@+id/text_item'

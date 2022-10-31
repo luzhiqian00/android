@@ -36,7 +36,7 @@ class EMImageView (context:Context,attrs:AttributeSet):
                         (data.top).toFloat(), (480-data.right*0.75).toFloat(),
                         (data.bottom).toFloat(), (480-data.left*0.75).toFloat(),paintRect)
                     drawText(data.label+":"+String.format("%.2f",data.confidence),
-                        (data.top).toFloat(),480-data.right,textPain)
+                        (data.top).toFloat(),(480-data.right*0.75).toFloat(),textPain)
                 }
             }
         }
