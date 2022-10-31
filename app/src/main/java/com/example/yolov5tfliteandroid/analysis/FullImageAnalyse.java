@@ -36,6 +36,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -170,13 +174,28 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                     textPain.setColor(Color.RED);
                     textPain.setStyle(Paint.Style.FILL);
 
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("Number", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor edit = sharedPreferences.edit();
+
+                    //保存日期的spre
+                    SharedPreferences spreDate = context.getSharedPreferences("Date",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor dateEditor = spreDate.edit();
 
                     if (!recognitions.isEmpty()) {
-                        SharedPreferences sharedPreferences = context.getSharedPreferences("Number", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor edit = sharedPreferences.edit();
+
                         number = sharedPreferences.getInt("number", 0);//0代表着没有，从1开始输入
 
                         FileIO.saveImage(number, imageBitmap);
+
+                        //获得当前时间
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+                        Date date = new Date(System.currentTimeMillis());
+                        String dateStr=simpleDateFormat.format(date);
+
+                        dateEditor.putString("date"+number,dateStr);
+                        dateEditor.apply();
+
+
 
                         FileIO.saveRes(number, recognitions, modelToPreviewTransform, boxPaint, cropCanvas, textPain);
                         number++;
@@ -202,4 +221,6 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 });
         
     }
+
+
 }

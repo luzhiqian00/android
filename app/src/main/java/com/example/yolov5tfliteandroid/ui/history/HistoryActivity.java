@@ -1,6 +1,8 @@
 package com.example.yolov5tfliteandroid.ui.history;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -108,10 +110,11 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         //itemPropertyt.setTime1("2022/10/26");
         //itemPropertyt.setTime2("16:59:59");
         //itemProperties.add(itemPropertyt);
+        SharedPreferences spre = getSharedPreferences("Date",MODE_PRIVATE);
+        String date;
 
         for (int i = 0; i < 100; i++) {
             ItemProperty itemProperty = new ItemProperty();
-            itemProperty.setTime1("2022/10/26  16:59:59");
             //itemProperty.setTime2("16:59:59");
             File file =null;
             ++count;
@@ -130,6 +133,8 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
                 itemProperty.setImageId(i);
             }
             if(file.exists()){
+                date = spre.getString("date"+i,"");
+                itemProperty.setTime1(date);
                 itemProperty.setImageId(i);
             itemProperty.setImagePath(fileName);
             itemProperties.add(itemProperty);
