@@ -16,13 +16,14 @@
             android:id="@+id/LogoImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
+
             android:background="@drawable/logo" />
 
         <TextView
             android:id="@+id/TitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="25dp"
+            android:layout_margin="10dp"
             android:text="路探"
             android:gravity="center"
             android:textStyle="italic"
@@ -104,6 +105,17 @@
                     android:layout_gravity="center"
                     android:scaleType="fitXY"
                     />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <CheckBox
+                    android:id="@+id/RememberPwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="记住密码"
+                    android:textSize="24dp"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/LayoutButton"

@@ -109,7 +109,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         //itemPropertyt.setTime2("16:59:59");
         //itemProperties.add(itemPropertyt);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 1; i < 100; i++) {
             ItemProperty itemProperty = new ItemProperty();
             File file =null;
             ++count;

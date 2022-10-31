@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -49,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button loginButton;
     private Button signUpButton;
     private ImageView yanzheng;
+    private CheckBox RememberPwd;
     private String realCode;
     boolean pendingCollapseKeywordInLogin = false;
     View focusedViewInLogin;
@@ -108,6 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginButton = findViewById(R.id.LoginButton);
         signUpButton = findViewById(R.id.SignUpButton);
         yanzheng = findViewById(R.id.VerifyImage);
+        RememberPwd=findViewById(R.id.RememberPwd);
     }
 
     private void InitEvent() {
