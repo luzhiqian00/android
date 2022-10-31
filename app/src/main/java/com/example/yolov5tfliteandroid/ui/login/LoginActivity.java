@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -50,8 +52,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button signUpButton;
     private ImageView yanzheng;
     private String realCode;
+    private CheckBox RememberPwd;
     boolean pendingCollapseKeywordInLogin = false;
     View focusedViewInLogin;
+
+    //sharedPreferences的实现
+    private SharedPreferences spre;
+    //sharedPreferences的编辑器
+    private SharedPreferences.Editor editor;
+
 
     //String test=network.Server;
     @Override
@@ -59,10 +68,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         requestPermission(this);
+
+        spre = getPreferences(MODE_PRIVATE);
+        editor = spre.edit();
+
+        if(spre.getBoolean("ISCHECK", false)){
+            Intent intent = new Intent(LoginActivity.this, Bottom.class);
+            intent.putExtra("name", "admin");
+            intent.putExtra("pwd", "123456");
+            startActivity(intent);
+            finish();
+        }
+
         InitView();
         InitEvent();
         yanzheng.setImageBitmap(VerifyCode.getInstance().createBitmap());
         realCode = VerifyCode.getInstance().getCode().toLowerCase();
+        //文件名默认为LoginActivity
+
+
+        //检查是否有记住密码了，如果记住密码了，就将用户名和密码分别送给userName和passWord
+
+
     }
 
     @Override
@@ -108,6 +135,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginButton = findViewById(R.id.LoginButton);
         signUpButton = findViewById(R.id.SignUpButton);
         yanzheng = findViewById(R.id.VerifyImage);
+        RememberPwd=findViewById(R.id.RememberPwd);
     }
 
     private void InitEvent() {
@@ -137,6 +165,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (res.equals("1")) {//登录成功
                                 Toast.makeText(getApplicationContext(), "登录成功",
                                         Toast.LENGTH_LONG).show();
+                                if(RememberPwd.isChecked()){
+                                    editor.putBoolean("ISCHECK",true);
+                                    editor.putString("userName",strUserName);
+                                    editor.putString("passWord",strPassWord);
+                                    editor.apply();
+                                }
                                 Intent intent = new Intent(LoginActivity.this, Bottom.class);
                                 intent.putExtra("name", strUserName);
                                 intent.putExtra("pwd", strPassWord);
@@ -196,6 +230,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 yanzheng.setImageBitmap(VerifyCode.getInstance().createBitmap());
                 realCode = VerifyCode.getInstance().getCode().toLowerCase();
                 break;
+
         }
     }
 
