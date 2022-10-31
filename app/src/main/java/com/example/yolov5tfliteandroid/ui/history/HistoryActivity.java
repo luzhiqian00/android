@@ -38,7 +38,6 @@ import com.example.yolov5tfliteandroid.YAApplication;
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.YARepository;
 //import com.example.yolov5tfliteandroid.databinding.FragmentHistoryBinding;
 import com.example.yolov5tfliteandroid.repository.FileIO;
-import com.example.yolov5tfliteandroid.utils.GPSUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -77,7 +76,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     private boolean isSelectAll = false; //是否是全选状态
 
     private int selectedSum; //已经选中的item的数量
-    //    private FragmentHistoryBinding binding;
+//    private FragmentHistoryBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,8 +136,8 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
                 date = spre.getString("date"+i,"");
                 itemProperty.setTime1(date);
                 itemProperty.setImageId(i);
-                itemProperty.setImagePath(fileName);
-                itemProperties.add(itemProperty);
+            itemProperty.setImagePath(fileName);
+            itemProperties.add(itemProperty);
             }
             recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
         }
