@@ -2,17 +2,16 @@ package com.example.yolov5tfliteandroid.repository
 
 import android.graphics.*
 import com.example.yolov5tfliteandroid.YAApplication
-import com.example.yolov5tfliteandroid.analysis.AppDataBase
 import com.example.yolov5tfliteandroid.analysis.AppDataBase.Companion.getDatabase
 import com.example.yolov5tfliteandroid.analysis.ImageDataBase
-import com.example.yolov5tfliteandroid.analysis.ImageDataBaseDao
 import com.example.yolov5tfliteandroid.utils.Recognition
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
-import java.util.ArrayList
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
 
 object FileIO {
     @JvmStatic
@@ -43,6 +42,9 @@ object FileIO {
                     location.top,
                     textPain
                 )
+                var time = System.currentTimeMillis()
+                var timestamp = Timestamp(time)
+                val strn: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(time)
 
                 val userDao = getDatabase(YAApplication.context).imageDataBaseDao()
                 val a = ImageDataBase(
@@ -52,7 +54,8 @@ object FileIO {
                     res.location.left,
                     res.location.top,
                     res.location.right,
-                    res.location.bottom
+                    res.location.bottom,
+                    strn
                 )//储存时是在W=640 和H=640的条件下的图像
                 userDao.insertImageData(a)
             }
