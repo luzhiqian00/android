@@ -12,10 +12,11 @@
         android:background="@color/white"
         android:padding="20dp"
         >
+
         <com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.EMImageView
             android:id='@+id/image_item'
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="480dp"
             android:src="@drawable/photo"/>
 
 
