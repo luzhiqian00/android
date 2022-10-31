@@ -219,8 +219,12 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                     frameSizeTextView.setText(previewHeight + "x" + previewWidth);
                     inferenceTimeTextView.setText(Long.toString(result.costTime) + "ms");
                 });
-        
+
     }
+<<<<<<< HEAD
 
 
 }
+=======
+}
+>>>>>>> 0e979d2c99d8d1f6d746eac38d39e8c428c20cb0
