@@ -1,6 +1,8 @@
 package com.example.yolov5tfliteandroid.ui.setting;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -93,6 +95,12 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
     }
     //退出登录
     private void exit_login(){
+        SharedPreferences spre = getActivity().
+                getSharedPreferences("ui.login.LoginActivity", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = spre.edit();
+        editor.putBoolean("ISCHECK",false);
+        editor.apply();
+
         Intent intent=new Intent(getActivity(),LoginActivity.class);
         startActivity(intent);
         getActivity().finish();

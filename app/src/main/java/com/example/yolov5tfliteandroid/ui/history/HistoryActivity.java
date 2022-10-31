@@ -128,6 +128,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
                 itemProperty.setImageId(i);
             }
             if(file.exists()){
+                itemProperty.setImageId(i);
             itemProperty.setImagePath(fileName);
             itemProperties.add(itemProperty);}
             recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
