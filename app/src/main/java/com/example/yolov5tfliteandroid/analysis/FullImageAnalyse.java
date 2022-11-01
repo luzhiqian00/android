@@ -221,10 +221,4 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 });
 
     }
-<<<<<<< HEAD
-
-
 }
-=======
-}
->>>>>>> 0e979d2c99d8d1f6d746eac38d39e8c428c20cb0

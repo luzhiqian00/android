@@ -27,7 +27,7 @@ import com.example.yolov5tfliteandroid.analysis.FullScreenAnalyse;
 import com.example.yolov5tfliteandroid.detector.Yolov5TFLiteDetector;
 import com.example.yolov5tfliteandroid.repository.FileIO;
 import com.example.yolov5tfliteandroid.utils.CameraProcess;
-import com.example.yolov5tfliteandroid.utils.GPSUtils;
+
 import com.google.common.util.concurrent.ListenableFuture;
 
 
