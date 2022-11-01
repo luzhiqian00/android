@@ -85,6 +85,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.but3:
+                Intent intent2=new Intent(getActivity(), AboutActivity.class);
+                startActivity(intent2);
                 break;
         }
     }

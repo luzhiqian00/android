@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,40 +10,42 @@
     app:cardElevation="0dp"
     android:layout_margin="5dp"
     >
+
     <LinearLayout
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
         android:background="@drawable/item_setting"
+        android:gravity="center_vertical"
         tools:ignore="UseCompoundDrawables">
         <!--    是否选中-->
         <ImageView
-            android:visibility="gone"
             android:id="@+id/itemSelect"
-            android:src="@drawable/select"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:src="@drawable/select"
+            android:visibility="gone"
             tools:ignore="ContentDescription" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/iv_history_item"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:src="@drawable/yolov5_tflite_android2"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/yolov5_tflite_android2" />
+
             <TextView
                 android:id="@+id/itemTitle"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="contenr"
-                />
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
