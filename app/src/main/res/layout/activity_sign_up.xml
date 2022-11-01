@@ -13,8 +13,8 @@
         android:background="@color/white">
         <ImageView
             android:id="@+id/LogoImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:background="@drawable/logo"
             />
 
@@ -133,16 +133,16 @@
 
                 <EditText
                     android:id="@+id/Email2Edit"
-                    android:layout_width="170dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/login_text"
                     android:hint="输入验证码"
-                    android:textSize="24dp"
+                    android:textSize="22dp"
                     android:maxLength="4"
                     android:singleLine="true" />
                 <Button
@@ -155,7 +155,7 @@
                     android:background="@drawable/yanzheng_selector"
                     android:text="发送验证码"
                     android:textColor="@color/white"
-                    android:textSize="24dp" />
+                    android:textSize="22dp" />
 
             </LinearLayout>
             <!--嵌套线性布局-->
