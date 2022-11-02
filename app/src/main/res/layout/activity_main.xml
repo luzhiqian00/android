@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <androidx.camera.view.PreviewView
         android:id="@+id/camera_preview_match"
         android:layout_width="match_parent"
@@ -14,14 +13,16 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <androidx.camera.view.PreviewView
+        android:layout_marginTop="150dp"
         android:id="@+id/camera_preview_wrap"
         android:layout_width="1080px"
         android:layout_height="1440px"
-        android:background="#00000000"
+        android:background="#000fffff"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <ImageView
+        android:layout_marginTop="150dp"
         android:id="@+id/box_label_canvas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +34,7 @@
         android:id="@+id/layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#66000000"
+        android:background="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
 
@@ -41,102 +42,87 @@
             android:id="@+id/inference"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="20dp"
+            android:text="inference time: "
+            android:textSize="20dp"
             android:textColor="#FFFFFF"
-            android:text="inference time: " />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
         <Button
             android:id="@+id/getphoto"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:background="@drawable/selector_detect"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/selector_detect">
-        </Button>
+            app:layout_constraintTop_toTopOf="parent"></Button>
+
         <TextView
             android:id="@+id/inference_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="20dp"
+            android:textSize="20dp"
             android:text="xx ms"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/frame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/inference"
-            app:layout_constraintLeft_toLeftOf="parent"
+
             android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"
+            android:text="Frame size: "
             android:textColor="#FFFFFF"
-            android:text="Frame size: " />
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/inference"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
             android:id="@+id/frame_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/inference_time"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:text="heigth x width"
-            android:textColor="#FFFFFF" />
-
-
-        <TextView
-            android:id="@+id/immersive_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/frame"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
             android:textColor="#FFFFFF"
-            android:text="immersive: " />
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/inference_time"
+            app:layout_constraintRight_toRightOf="parent" />
 
-        <Switch
-            android:id="@+id/immersive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOn="on"
-            android:textOff="off"
-            app:layout_constraintBottom_toTopOf="@id/frame_size"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <TextView
             android:id="@+id/model_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/immersive_name"
-            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"
+            android:text="model: "
             android:textColor="#FFFFFF"
-            android:text="model: " />
+            app:layout_constraintBottom_toTopOf="@id/frame"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="20dp" />
 
         <Spinner
             android:id="@+id/model"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/immersive"
-            app:layout_constraintRight_toRightOf="parent"
-            android:background="#00000000"
-            android:entries="@array/model"
-            android:padding="0dp"
-            android:gravity="right"
             android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="5dp"
+            android:background="#4682B4"
+            android:entries="@array/model"
+            android:gravity="right"
+            android:padding="0dp"
+            android:theme="@style/life_spinner_style"
+            app:layout_constraintBottom_toTopOf="@id/frame_size"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -144,6 +130,7 @@
             android:text=""
             app:layout_constraintBottom_toTopOf="@id/model_name"
             app:layout_constraintLeft_toLeftOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

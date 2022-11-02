@@ -111,11 +111,12 @@ public class MainActivity extends AppCompatActivity {
         modelSpinner = findViewById(R.id.model);
 
         // 沉浸式体验按钮
-        immersive = findViewById(R.id.immersive);
+//        immersive = findViewById(R.id.immersive);
 
         // 实时更新的一些view
         inferenceTimeTextView = findViewById(R.id.inference_time);
         frameSizeTextView = findViewById(R.id.frame_size);
+//        frameSizeTextView.setText("1440", TextView.BufferType.valueOf("1080"));
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
 
         // 申请摄像头权限
@@ -131,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
 
         // 初始化加载yolov5s
         initModel("yolov5s");
-
         // 监听模型切换按钮
         modelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -172,36 +172,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 监听视图变化按钮
-        immersive.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                IS_FULL_SCREEN = b;
-                if (b) {
-                    // 进入全屏模式
-                    cameraPreviewWrap.removeAllViews();
-                    FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(MainActivity.this,
-                            cameraPreviewMatch,
-                            boxLabelCanvas,
-                            rotation,
-                            inferenceTimeTextView,
-                            frameSizeTextView,
-                            yolov5TFLiteDetector);
-                    cameraProcess.startCamera(MainActivity.this, fullScreenAnalyse, cameraPreviewMatch);
-
-                } else {
-                    // 进入全图模式
-                    cameraPreviewMatch.removeAllViews();
-                    FullImageAnalyse fullImageAnalyse = new FullImageAnalyse(
-                            MainActivity.this,
-                            cameraPreviewWrap,
-                            boxLabelCanvas,
-                            rotation,
-                            inferenceTimeTextView,
-                            frameSizeTextView,
-                            yolov5TFLiteDetector);
-                    cameraProcess.startCamera(MainActivity.this, fullImageAnalyse, cameraPreviewWrap);
-                }
-            }
-        });
+//        immersive.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                IS_FULL_SCREEN = b;
+//                if (b) {
+//                    // 进入全屏模式
+//                    cameraPreviewWrap.removeAllViews();
+//                    FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(MainActivity.this,
+//                            cameraPreviewMatch,
+//                            boxLabelCanvas,
+//                            rotation,
+//                            inferenceTimeTextView,
+//                            frameSizeTextView,
+//                            yolov5TFLiteDetector);
+//                    cameraProcess.startCamera(MainActivity.this, fullScreenAnalyse, cameraPreviewMatch);
+//
+//                } else {
+//                    // 进入全图模式
+//                    cameraPreviewMatch.removeAllViews();
+//                    FullImageAnalyse fullImageAnalyse = new FullImageAnalyse(
+//                            MainActivity.this,
+//                            cameraPreviewWrap,
+//                            boxLabelCanvas,
+//                            rotation,
+//                            inferenceTimeTextView,
+//                            frameSizeTextView,
+//                            yolov5TFLiteDetector);
+//                    cameraProcess.startCamera(MainActivity.this, fullImageAnalyse, cameraPreviewWrap);
+//                }
+//            }
+//        });
     }
 }
