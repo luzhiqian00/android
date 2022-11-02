@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
-    <stroke android:width="2dp" android:color="@color/black" />
+    <stroke android:width="10dp" android:color="@color/black" />
     <!-- 填充颜色 -->
     <solid android:color="@color/cardview_dark_background" />
 
