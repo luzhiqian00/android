@@ -10,44 +10,92 @@
     app:cardElevation="0dp"
     android:layout_margin="5dp"
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/item_setting"
         android:gravity="center_vertical"
         tools:ignore="UseCompoundDrawables">
-        <!--    是否选中-->
-        <ImageView
-            android:id="@+id/itemSelect"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/select"
-            android:visibility="gone"
-            tools:ignore="ContentDescription" />
-
+    <!--    是否选中-->
+    <ImageView
+        android:id="@+id/itemSelect"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/select"
+        android:visibility="gone"
+        tools:ignore="ContentDescription" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:gravity="center_vertical"
+            tools:ignore="UseCompoundDrawables">
+            <!--    是否选中-->
 
-            <ImageView
-                android:id="@+id/iv_history_item"
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_history_item"
+                    android:layout_width="98dp"
+                    android:layout_height="100dp"
+                    android:padding="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/yolov5_tflite_android2" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/yolov5_tflite_android2" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="10dp"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/itemTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="contenr"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                    <ImageView
+                        android:layout_width="35dp"
+
+                        android:layout_height="match_parent"
+                        android:src="@drawable/icon_position">
+                    </ImageView>
+                    <TextView
+                        android:id="@+id/itemTitle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="北京市海淀区"
+
+                        android:textColor="@color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/icon_time"></ImageView>
+                    <TextView
+                        android:id="@+id/itemTitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2022-01-05"
+                        android:textColor="@color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>
 <!--<?xml version="1.0" encoding="utf-8"?>-->
