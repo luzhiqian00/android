@@ -77,7 +77,7 @@ class RecyclerBuilder extends RecyclerView.Adapter<RecyclerBuilder.MyViewHolder>
         private ImageView ivHistoryItem;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemTitle = itemView.findViewById(R.id.itemTitle);
+            itemTitle = itemView.findViewById(R.id.itemTitle1);
             //itemTitle2=itemView.findViewById(R.id.itemTitle2);
             itemSelect = itemView.findViewById(R.id.itemSelect);
             ivHistoryItem = itemView.findViewById(R.id.iv_history_item);
