@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <androidx.camera.view.PreviewView
         android:id="@+id/camera_preview_match"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        android:layout_width="407dp"
+        android:layout_height="727dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.camera.view.PreviewView
         android:layout_marginTop="150dp"
@@ -37,6 +39,9 @@
         android:background="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
+
+
+
 
         <TextView
             android:id="@+id/inference"
@@ -91,9 +96,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:text="heigth x width"
+
             android:textColor="#FFFFFF"
-            android:visibility="invisible"
+
             app:layout_constraintBottom_toTopOf="@id/inference_time"
             app:layout_constraintRight_toRightOf="parent" />
 

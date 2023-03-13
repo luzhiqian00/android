@@ -115,7 +115,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         SharedPreferences spre = getSharedPreferences("Date",MODE_PRIVATE);
         String date;
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             ItemProperty itemProperty = new ItemProperty();
             //itemProperty.setTime2("16:59:59");
             File file =null;
@@ -128,7 +128,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             file = new File(fileName);
             itemProperty.setImageId(i);
 
-            while(!file.exists() & i<100){
+            while(!file.exists() & i<1000){
                 i++;
                 fileName = YAApplication.fDir+i+".png";
                 file = new File(fileName);
