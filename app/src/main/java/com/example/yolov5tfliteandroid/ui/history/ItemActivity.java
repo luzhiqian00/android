@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -102,7 +103,21 @@ public class ItemActivity extends AppCompatActivity {
         }
         currentPosition.append("纬度：").append(array[0].toString()).append("\n");
         currentPosition.append("经度：").append(array[1].toString()).append("\n");
+        Double latitude = array[0];
+        Double longitude = array[1];
         locationInfo.setText(currentPosition);
+        locationInfo.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i1 = new Intent();
+// 展示地图
+                i1.setData(Uri.parse("baidumap://map/show?center="+latitude+","+longitude+"&zoom=11&traffic=on&bounds=37.8608310000,112.5963090000,42.1942670000,118.9491260000&src=andr.baidu.openAPIdemo"));
+
+                startActivity(i1);
+
+            }
+
+        });
     }
 
 //    private class MyLocationListener extends BDAbstractLocationListener{
