@@ -111,7 +111,7 @@ public class ItemActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent i1 = new Intent();
 // 展示地图
-                i1.setData(Uri.parse("baidumap://map/show?center="+latitude+","+longitude+"&zoom=11&traffic=on&bounds=37.8608310000,112.5963090000,42.1942670000,118.9491260000&src=andr.baidu.openAPIdemo"));
+                i1.setData(Uri.parse("baidumap://map/marker?location="+latitude+","+longitude+"&title=Marker&content=makeamarker&traffic=on&src=andr.baidu.openAPIdemo"));
 
                 startActivity(i1);
 
