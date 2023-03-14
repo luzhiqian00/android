@@ -10,7 +10,7 @@
         android:padding="20dp"
         >
 
-        <com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.EMImageView
+        <com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.YAImageView
             android:id='@+id/image_item'
             android:layout_width="match_parent"
             android:layout_height="360dp"

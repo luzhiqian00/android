@@ -37,6 +37,7 @@ import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.YAApplication;
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.YARepository;
 //import com.example.yolov5tfliteandroid.databinding.FragmentHistoryBinding;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.ui.history.HistoryViewModel;
 import com.example.yolov5tfliteandroid.repository.FileIO;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
