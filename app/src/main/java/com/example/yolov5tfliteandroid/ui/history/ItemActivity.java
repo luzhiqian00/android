@@ -71,30 +71,7 @@ public class ItemActivity extends AppCompatActivity {
 
         Canvas canvas =new Canvas(bitmap);
         imageView.setImageBitmap(bitmap);
-<<<<<<< HEAD
-        try {
-            TimeUnit.MILLISECONDS.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        currentPosition.append("纬度：").append(array[0].toString()).append("\n");
-        currentPosition.append("经度：").append(array[1].toString()).append("\n");
-        Double latitude = array[0];
-        Double longitude = array[1];
-        locationInfo.setText(currentPosition);
-        locationInfo.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent i1 = new Intent();
-// 展示地图
-                i1.setData(Uri.parse("baidumap://map/marker?location="+latitude+","+longitude+"&title=Marker&content=makeamarker&traffic=on&src=andr.baidu.openAPIdemo"));
 
-                startActivity(i1);
-
-            }
-
-        });
-=======
 
         model.getMImageDataBase().observe(
                 this, imageDataBase -> {
@@ -118,7 +95,7 @@ public class ItemActivity extends AppCompatActivity {
                 }
         );
 
->>>>>>> mapbug
+
     }
 
     @Override
