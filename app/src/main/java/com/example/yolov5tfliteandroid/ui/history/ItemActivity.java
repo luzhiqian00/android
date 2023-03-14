@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -78,8 +79,21 @@ public class ItemActivity extends AppCompatActivity {
                     currentPosition.append("纬度：").append(imageDataBase.getLatitude()).append("\n");
                     currentPosition.append("经度：").append(imageDataBase.getLongitude()).append("\n");
                     locationInfo.setText(currentPosition);
+                    locationInfo.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v){
+                            Intent i1 = new Intent();
+// 展示地图
+                            i1.setData(Uri.parse("baidumap://map/marker?location="+imageDataBase.getLatitude()+","+imageDataBase.getLongitude()+"&title=Marker&content=makeamarker&traffic=on&src=andr.baidu.openAPIdemo"));
+
+                            startActivity(i1);
+
+                        }
+
+                    });
                 }
         );
+
     }
 
     @Override
