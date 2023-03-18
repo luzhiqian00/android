@@ -40,6 +40,23 @@
             android:layout_marginEnd="20dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!--    中间的列表-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/unfinished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="待处理" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/finished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已完成" />
+    </com.google.android.material.tabs.TabLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:padding="8dp"
@@ -92,4 +109,5 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>
