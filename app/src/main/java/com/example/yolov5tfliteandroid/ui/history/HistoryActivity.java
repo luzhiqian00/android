@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +42,7 @@ import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repositor
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.ui.history.HistoryViewModel;
 import com.example.yolov5tfliteandroid.repository.FileIO;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,6 +71,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     private Button selectAll_btn; //全部选中按钮
     private RecyclerView recyclerView; //列表
     private ConstraintLayout footBar; //底部的操作栏
+    private TabLayout tabLayout; //切换栏
 
     private final List<ItemProperty> itemProperties = new ArrayList<>(); //item属性集合
 
@@ -77,7 +81,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     private boolean isSelectAll = false; //是否是全选状态
 
     private int selectedSum; //已经选中的item的数量
-
+    private int tabstate = 0;
 
     //    private FragmentHistoryBinding binding;
     @Override
@@ -96,6 +100,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         selectAll_btn = this.findViewById(R.id.selectAll);
         recyclerView = this.findViewById(R.id.recyclerView);
         footBar = this.findViewById(R.id.footBar);
+        tabLayout = this.findViewById(R.id.tab_layout);
     }
 
     /**
@@ -147,6 +152,8 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
+
+
     /**
      * 监听事件
      */
@@ -155,6 +162,33 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         editor_et.setOnClickListener(this); //编辑按钮
         selectAll_btn.setOnClickListener(this);
         deleteAll_btn.setOnClickListener(this);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                //Toast.makeText(HistoryActivity.this, tab.getText(), Toast.LENGTH_SHORT).show();
+                /*
+                TODO 这里数据库再加一列判断完成状态然后查数据放进去
+                 */
+                if(tabstate == 1){
+                    clearRecycleBuilder();//清空原有数据
+                    //查找未完成数据
+                    tabstate = 0;
+                }else{
+                    clearRecycleBuilder();//清空原有数据
+                    //查找已经完成数据
+                    tabstate = 1;
+                }
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                //replaceFragment(new f1());
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @SuppressLint({"SetTextI18n", "NotifyDataSetChanged"})
@@ -325,6 +359,16 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         selectSum_tv.setText("当前选中了: " + selectedSum + "个"); //设置选中个数显示
         recyclerBuilder.notifyList(itemProperties); //刷新数据
 
+    }
+
+    private void clearRecycleBuilder(){
+        List<ItemProperty> itemProperties = recyclerBuilder.getItemProperties();
+//        循环判断选中状态的item属性类，并从item属性集合中删除
+        for (int i = itemProperties.size()-1; i >= 0; i--){
+            ItemProperty itemProperty = itemProperties.get(i);
+            itemProperties.remove(itemProperty);
+        }
+        recyclerBuilder.notifyList(itemProperties); //刷新数据
     }
 
 }
