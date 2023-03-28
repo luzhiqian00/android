@@ -31,16 +31,16 @@ class YAImageView (context:Context,attrs:AttributeSet):
 
         canvas?.apply {
             drawRect(
-                (mImageDataBase.top).toFloat(),
-                (480 - mImageDataBase.right * 0.75).toFloat(),
-                (mImageDataBase.bottom).toFloat(),
-                (480 - mImageDataBase.left * 0.75).toFloat(),
+                (mImageDataBase.top*2).toFloat(),
+                (480 - mImageDataBase.right * 1.5).toFloat(),
+                (mImageDataBase.bottom*2).toFloat(),
+                (480 - mImageDataBase.left * 1.5).toFloat(),
                 paintRect
             )
             drawText(
                 mImageDataBase.label + ":" + String.format("%.2f", mImageDataBase.confidence),
-                (mImageDataBase.top).toFloat(),
-                (480 - mImageDataBase.right * 0.75).toFloat(),
+                (mImageDataBase.top*2).toFloat(),
+                (480 - mImageDataBase.right * 1.5).toFloat(),
                 textPain
             )
         }
