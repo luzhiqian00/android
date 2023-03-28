@@ -6,5 +6,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="life_spinner_style"  parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:textSize">20dp</item><!--可以按照自己的情况在里面设定-->
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:popupBackground">@color/blue</item>
+        <item name="android:background">@color/blue</item>
+    </style>
 
 </resources>

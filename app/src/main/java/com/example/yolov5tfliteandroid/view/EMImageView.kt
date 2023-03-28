@@ -6,6 +6,8 @@ import android.util.AttributeSet
 import com.example.yolov5tfliteandroid.YAApplication
 import com.example.yolov5tfliteandroid.analysis.AppDataBase
 import com.example.yolov5tfliteandroid.analysis.ImageDataBase
+import com.permissionx.guolindev.dialog.getPermissionMapOnQ
+import kotlinx.android.synthetic.main.activity_item.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -13,7 +15,9 @@ import kotlinx.coroutines.launch
 class EMImageView (context:Context,attrs:AttributeSet):
     androidx.appcompat.widget.AppCompatImageView(context,attrs){
 
-     fun draw(canvas: Canvas?,id:Integer) {
+    var array = arrayOfNulls<Double>(2)
+
+     fun draw(canvas: Canvas?, id:Integer):Array<Double?>{
         super.draw(canvas)
 
         val paintRect= Paint()
@@ -27,9 +31,12 @@ class EMImageView (context:Context,attrs:AttributeSet):
         textPain.color = Color.RED
         textPain.style = Paint.Style.FILL
 
+
+
         GlobalScope.launch(Dispatchers.IO) {
             val userDao= AppDataBase.getDatabase(YAApplication.context).imageDataBaseDao();//如何使用ROOM
             val imageList:List<ImageDataBase> =userDao.loadImageDataBaseImageNumber("image${id}.png");
+
             for(data in imageList){
                 canvas?.apply {
                     drawRect(
@@ -39,6 +46,8 @@ class EMImageView (context:Context,attrs:AttributeSet):
                         (data.top).toFloat(),(480-data.right*0.75).toFloat(),textPain)
                 }
             }
-        }
+            array[0]=imageList[0].latitude
+            array[1]=imageList[0].longitude
     }
-}
+    return array
+} }

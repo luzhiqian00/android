@@ -15,17 +15,11 @@ import androidx.annotation.RequiresApi;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.view.PreviewView;
-import com.example.yolov5tfliteandroid.detector.Yolov5TFLiteDetector;
-import com.example.yolov5tfliteandroid.repository.FileIO;
-import com.example.yolov5tfliteandroid.utils.ImageProcess;
-import com.example.yolov5tfliteandroid.utils.Recognition;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.ObservableEmitter;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+
+
+import com.example.yolov5tfliteandroid.MainActivity;
+import com.example.yolov5tfliteandroid.YAApplication;
+
 
 public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 
@@ -47,6 +41,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
     ImageProcess imageProcess;
     private Yolov5TFLiteDetector yolov5TFLiteDetector;
     Integer number;//一个记录图片的序号的Int类型数值
+
     public FullImageAnalyse(Context context,
                             PreviewView previewView,
                             ImageView boxLabelCanvas,
@@ -193,7 +188,9 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 // 这里就是回到主线程处理子线程的回调数据.
                 .subscribe((Result result) -> {
                     boxLabelCanvas.setImageBitmap(result.bitmap);
-                    frameSizeTextView.setText(previewHeight + "x" + previewWidth);
+                    frameSizeTextView.setText("纬度："+ YAApplication.latitude[0]+"\n" +
+                            "经度："+YAApplication.latitude[1]);
+//                    frameSizeTextView.setText(previewHeight + "x" + previewWidth);
                     inferenceTimeTextView.setText(Long.toString(result.costTime) + "ms");
                 });
 

@@ -67,7 +67,9 @@ object FileIO {
                     res.location.right,
                     res.location.bottom,
                     0,
-                    dateStr
+                    dateStr,
+                    YAApplication.latitude[0],
+                    YAApplication.latitude[1]
                 )//储存时是在W=640 和H=640的条件下的图像
                 userDao.insertImageData(a)
             }

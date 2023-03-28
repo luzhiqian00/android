@@ -31,6 +31,7 @@ import com.example.yolov5tfliteandroid.analysis.AppDataBase;
 import com.example.yolov5tfliteandroid.analysis.ImageDataBase;
 import com.example.yolov5tfliteandroid.analysis.ImageDataBaseDao;
 //import com.example.yolov5tfliteandroid.databinding.FragmentHistoryBinding;
+import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.ui.history.HistoryViewModel;
 import com.example.yolov5tfliteandroid.repository.FileIO;
 import com.google.android.material.tabs.TabLayout;
 
@@ -96,7 +97,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView.setAdapter(recyclerBuilder); //设置适配器
         recyclerView.setLayoutManager(linearLayoutManager); //设置布局
         //        添加数据
-        String date;
+
         ExecutorService executor = Executors.newCachedThreadPool();
         // FutureTask包装callbale任务，再交给线程池执行
         FutureTask<List<ImageDataBase>> futureTask = new FutureTask<List<ImageDataBase>>(() -> {
