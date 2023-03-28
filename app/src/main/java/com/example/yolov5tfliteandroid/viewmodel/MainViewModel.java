@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.example.yolov5tfliteandroid.ui.detect.DetectFragment;
-import com.example.yolov5tfliteandroid.ui.history.HistoryFragment;
 import com.example.yolov5tfliteandroid.ui.setting.SettingFragment;
 
 import java.util.ArrayList;

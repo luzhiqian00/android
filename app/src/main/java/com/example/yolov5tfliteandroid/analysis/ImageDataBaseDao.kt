@@ -14,10 +14,14 @@ interface ImageDataBaseDao {
     fun loadAllImageData():List<ImageDataBase>
 
     @Query("select * from ImageDataBase where imageName=:imageName")
-    fun loadImageDabaBaseImageNumber(imageName:String):List<ImageDataBase>
+    fun loadImageDataBaseImageNumber(imageName:String):List<ImageDataBase>
+
+    @Query("select * from ImageDataBase where finish_status=:status")
+    fun loadImageDataBaseFinishStatus(status:Int):List<ImageDataBase>
 
     @Query("delete from ImageDataBase where imageName=:imageName")
     fun deleteByName(imageName :String)
+
 
 
 }
