@@ -35,7 +35,7 @@ class EMImageView (context:Context,attrs:AttributeSet):
 
         GlobalScope.launch(Dispatchers.IO) {
             val userDao= AppDataBase.getDatabase(YAApplication.context).imageDataBaseDao();//如何使用ROOM
-            val imageList:List<ImageDataBase> =userDao.loadImageDabaBaseImageNumber("image${id}.png");
+            val imageList:List<ImageDataBase> =userDao.loadImageDataBaseImageNumber("image${id}.png");
 
             for(data in imageList){
                 canvas?.apply {

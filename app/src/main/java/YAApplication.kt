@@ -16,8 +16,7 @@ class YAApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-        fDir = context.filesDir.toString() + "/image";
-        latitude = DoubleArray(2)
+        fDir = context.filesDir.toString() ;
     }
 
 

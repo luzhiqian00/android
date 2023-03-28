@@ -5,11 +5,12 @@ public class ItemProperty {
     //private String time2;
     private boolean isSelect; //是否选中
     private String imagePath;   // 图片本地地址
-    private int imageId;   //图片的id，也是存储的数据库中的id
+    private long imageId;   //图片的id，也是存储的数据库中的id
+    private int finishState;
 
-    public  int getImageId() {return imageId;}
+    public  long getImageId() {return imageId;}
 
-    public void setImageId(int imageId) {this.imageId = imageId;}
+    public void setImageId(long imageId) {this.imageId = imageId;}
 
     public String getTime1() {
         return time1;
@@ -41,6 +42,9 @@ public class ItemProperty {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+
+    public void setFinishState(int finishState){this.finishState=finishState;}
+    public int getFinishState(){return finishState;}
 
 
 }
