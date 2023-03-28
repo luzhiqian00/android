@@ -1,18 +1,12 @@
 package com.example.yolov5tfliteandroid.ui.history;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
+
+import androidx.lifecycle.MutableLiveData;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -20,48 +14,28 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 
-import java.io.File;
-import com.example.yolov5tfliteandroid.MainActivity;
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.YAApplication;
-import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.repository.YARepository;
+import com.example.yolov5tfliteandroid.analysis.AppDataBase;
+import com.example.yolov5tfliteandroid.analysis.ImageDataBase;
+import com.example.yolov5tfliteandroid.analysis.ImageDataBaseDao;
 //import com.example.yolov5tfliteandroid.databinding.FragmentHistoryBinding;
 import com.example.yolov5tfliteandroid.repository.FileIO;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.Inflater;
+import kotlinx.coroutines.Dispatchers;
+import kotlinx.coroutines.GlobalScope;
 
 public class HistoryActivity extends AppCompatActivity implements View.OnClickListener, RecyclerBuilder.OnRecyclerViewItemClick{
     private TextView editor_et; //右上角编辑按钮
@@ -73,6 +47,8 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     private TabLayout tabLayout; //切换栏
 
     private final List<ItemProperty> itemProperties = new ArrayList<>(); //item属性集合
+    private final List<ItemProperty> finishedItemProperties = new ArrayList<>(); //item属性集合
+    private final List<ItemProperty> unfinishedItemProperties = new ArrayList<>(); //item属性集合
 
     private RecyclerBuilder recyclerBuilder; //列表适配器
 
@@ -81,6 +57,8 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 
     private int selectedSum; //已经选中的item的数量
     private int tabstate = 0;
+    private Integer count = 0;
+    private boolean initStatus=false;
 
     //    private FragmentHistoryBinding binding;
     @Override
@@ -88,7 +66,13 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_history);
         InitView();
-        initData(); //初始化数据
+        try {
+            initData(); //初始化数据
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         initEvent();
     }
 
@@ -105,46 +89,42 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     /**
      * 初始化数据，加载列表
      */
-    private void initData() {
-        Integer count = 0;
-        recyclerBuilder = new RecyclerBuilder(this);
+    private void initData() throws ExecutionException, InterruptedException {
 
+        recyclerBuilder = new RecyclerBuilder(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(recyclerBuilder); //设置适配器
         recyclerView.setLayoutManager(linearLayoutManager); //设置布局
-//        添加数据
-        //ItemProperty itemPropertyt = new ItemProperty();
-        //itemPropertyt.setTime1("2022/10/26");
-        //itemPropertyt.setTime2("16:59:59");
-        //itemProperties.add(itemPropertyt);
-        SharedPreferences spre = getSharedPreferences("Date",MODE_PRIVATE);
+        //        添加数据
         String date;
-
-        for (int i = 0; i < 100; i++) {
+        ExecutorService executor = Executors.newCachedThreadPool();
+        // FutureTask包装callbale任务，再交给线程池执行
+        FutureTask<List<ImageDataBase>> futureTask = new FutureTask<List<ImageDataBase>>(() -> {
+            ImageDataBaseDao userDao = AppDataBase.getDatabase(YAApplication.context).imageDataBaseDao();
+            return userDao.loadAllImageData();
+        });
+        // 线程池执行任务， 运行结果在 futureTask 对象里面
+        executor.submit(futureTask);
+        List<ImageDataBase> images=futureTask.get();
+        executor.shutdown();
+        for (ImageDataBase image : images) {
             ItemProperty itemProperty = new ItemProperty();
             //itemProperty.setTime2("16:59:59");
-            File file =null;
             ++count;
-            //itemProperty.setTitle("第" + (++count) + "项");
-            //TODO:接入数据库图片对应的存储时间
-            //itemProperty.setTime1("2022/10/26");
-            //itemProperty.setTime2("16:59:59");
-            String fileName = YAApplication.fDir+i+".png";
-            file = new File(fileName);
-            itemProperty.setImageId(i);
-
-            while(!file.exists() & i<100){
-                i++;
-                fileName = YAApplication.fDir+i+".png";
-                file = new File(fileName);
-                itemProperty.setImageId(i);
-            }
+            String fileName = YAApplication.fDir+"/"+image.getImageName();
+            File file = new File(fileName);
             if(file.exists()){
-                date = spre.getString("date"+i,"");
+                date = image.getCreatTime();
                 itemProperty.setTime1(date);
-                itemProperty.setImageId(i);
+                itemProperty.setImageId(image.getId());
                 itemProperty.setImagePath(fileName);
+                itemProperty.setFinishState(image.getFinish_status());
                 itemProperties.add(itemProperty);
+                if(image.getFinish_status()==1){
+                    finishedItemProperties.add(itemProperty);
+                }else{
+                    unfinishedItemProperties.add(itemProperty);
+                }
             }
             recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
         }
@@ -171,11 +151,13 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
                  */
                 if(tabstate == 1){
                     clearRecycleBuilder();//清空原有数据
-                    //查找未完成数据
+                    //找未完成数据 finish-1
+                    recyclerBuilder.notifyList(unfinishedItemProperties); //刷新数据
                     tabstate = 0;
                 }else{
                     clearRecycleBuilder();//清空原有数据
                     //查找已经完成数据
+                    recyclerBuilder.notifyList(finishedItemProperties); //刷新数据
                     tabstate = 1;
                 }
             }
@@ -347,6 +329,11 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             ItemProperty itemProperty = itemProperties.get(i);
             if (itemProperty.isSelect()){
                 itemProperties.remove(itemProperty);
+                if(itemProperty.getFinishState()==0){
+                    unfinishedItemProperties.remove(itemProperty);
+                }else{
+                    finishedItemProperties.remove(itemProperty);
+                }
 
                 File file = new File(itemProperty.getImagePath());//删除图片
                 deleteFile(file.getName());

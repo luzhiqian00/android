@@ -2,54 +2,30 @@ package com.example.yolov5tfliteandroid.analysis;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.os.Environment;
-import android.util.Base64;
-import android.util.FloatProperty;
-import android.util.Log;
-import android.util.Size;
-import android.util.Xml;
+import android.os.Build;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.view.PreviewView;
-
-import com.example.yolov5tfliteandroid.MainActivity;
 import com.example.yolov5tfliteandroid.detector.Yolov5TFLiteDetector;
 import com.example.yolov5tfliteandroid.repository.FileIO;
 import com.example.yolov5tfliteandroid.utils.ImageProcess;
 import com.example.yolov5tfliteandroid.utils.Recognition;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Random;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableEmitter;
-import io.reactivex.rxjava3.core.ObservableOnSubscribe;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import kotlinx.coroutines.GlobalScope;
 
 public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 
@@ -88,6 +64,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
         this.yolov5TFLiteDetector = yolov5TFLiteDetector;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void analyze(@NonNull ImageProxy image) {
         int previewHeight = previewView.getHeight();

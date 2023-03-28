@@ -13,6 +13,6 @@ class YAApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-        fDir = context.filesDir.toString() + "/image";
+        fDir = context.filesDir.toString() ;
     }
 }
