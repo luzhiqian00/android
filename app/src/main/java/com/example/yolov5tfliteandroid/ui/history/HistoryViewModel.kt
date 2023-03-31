@@ -23,7 +23,7 @@ class HistoryViewModel():ViewModel() {
     fun getImageDataBase(id:Integer){
         GlobalScope.launch(Dispatchers.IO) {
             val userDao= AppDataBase.getDatabase(YAApplication.context).imageDataBaseDao();//如何使用ROOM
-            val imageList:List<ImageDataBase> =userDao.loadImageDabaBaseImageNumber("image${id}.png");
+            val imageList:List<ImageDataBase> =userDao.loadImageDataBaseImageNumber("image${id}.png");
             mImageDataBase.postValue(imageList[0])
         }
     }

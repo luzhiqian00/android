@@ -1,14 +1,11 @@
 package com.example.yolov5tfliteandroid.repository
 
-import android.content.ContentValues.TAG
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Matrix
 import android.graphics.Paint
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.MutableLiveData
 import com.example.yolov5tfliteandroid.YAApplication
 import com.example.yolov5tfliteandroid.analysis.AppDataBase.Companion.getDatabase
 import com.example.yolov5tfliteandroid.analysis.ImageDataBase
@@ -16,7 +13,6 @@ import com.example.yolov5tfliteandroid.utils.Recognition
 import kotlinx.coroutines.*
 import java.io.File
 import java.io.FileOutputStream
-import java.lang.Thread.sleep
 import java.sql.Date
 import java.text.SimpleDateFormat
 object FileIO {
@@ -68,9 +64,10 @@ object FileIO {
                     res.location.bottom,
                     0,
                     dateStr,
-                    YAApplication.latitude[0],
-                    YAApplication.latitude[1]
+                    0.01,
+                    0.01
                 )//储存时是在W=640 和H=640的条件下的图像
+                //上面最下面两个0 应该是精度维度这里先用0替代，出了点问题
                 userDao.insertImageData(a)
             }
         }

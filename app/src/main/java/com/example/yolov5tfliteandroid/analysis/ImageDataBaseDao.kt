@@ -23,5 +23,4 @@ interface ImageDataBaseDao {
     fun deleteByName(imageName :String)
 
 
-
 }

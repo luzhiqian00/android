@@ -19,6 +19,19 @@ import androidx.camera.view.PreviewView;
 
 import com.example.yolov5tfliteandroid.MainActivity;
 import com.example.yolov5tfliteandroid.YAApplication;
+import com.example.yolov5tfliteandroid.detector.Yolov5TFLiteDetector;
+import com.example.yolov5tfliteandroid.repository.FileIO;
+import com.example.yolov5tfliteandroid.utils.ImageProcess;
+import com.example.yolov5tfliteandroid.utils.Recognition;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 
 public class FullImageAnalyse implements ImageAnalysis.Analyzer {
@@ -160,12 +173,12 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                         FileIO.saveImage(number, imageBitmap);
 
                         //获得当前时间
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
-                        Date date = new Date(System.currentTimeMillis());
-                        String dateStr=simpleDateFormat.format(date);
-
-                        dateEditor.putString("date"+number,dateStr);
-                        dateEditor.apply();
+//                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+//                        Date date = new Date(System.currentTimeMillis());
+//                        String dateStr=simpleDateFormat.format(date);
+//
+//                        dateEditor.putString("date"+number,dateStr);
+//                        dateEditor.apply();
 
 
 
@@ -188,8 +201,8 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 // 这里就是回到主线程处理子线程的回调数据.
                 .subscribe((Result result) -> {
                     boxLabelCanvas.setImageBitmap(result.bitmap);
-                    frameSizeTextView.setText("纬度："+ YAApplication.latitude[0]+"\n" +
-                            "经度："+YAApplication.latitude[1]);
+                    //frameSizeTextView.setText("纬度："+ YAApplication.latitude[0]+"\n" +
+                    //        "经度："+YAApplication.latitude[1]);
 //                    frameSizeTextView.setText(previewHeight + "x" + previewWidth);
                     inferenceTimeTextView.setText(Long.toString(result.costTime) + "ms");
                 });

@@ -18,7 +18,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -115,8 +117,8 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             String fileName = YAApplication.fDir+"/"+image.getImageName();
             File file = new File(fileName);
             if(file.exists()){
-                date = image.getCreatTime();
-                itemProperty.setTime1(date);
+                String dateStr = image.getCreateTime();
+                itemProperty.setTime1(dateStr);
                 itemProperty.setImageId(image.getId());
                 itemProperty.setImagePath(fileName);
                 itemProperty.setFinishState(image.getFinish_status());
