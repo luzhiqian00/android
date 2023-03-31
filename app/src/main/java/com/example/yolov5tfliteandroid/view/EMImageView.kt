@@ -40,10 +40,10 @@ class EMImageView (context:Context,attrs:AttributeSet):
             for(data in imageList){
                 canvas?.apply {
                     drawRect(
-                        (data.top).toFloat(), (480-data.right*0.75).toFloat(),
-                        (data.bottom).toFloat(), (480-data.left*0.75).toFloat(),paintRect)
+                        (data.top*0.1).toFloat(), (480-data.right*1.5).toFloat(),
+                        (data.bottom*2).toFloat(), (480-data.left*1.5).toFloat(),paintRect)
                     drawText(data.label+":"+String.format("%.2f",data.confidence),
-                        (data.top).toFloat(),(480-data.right*0.75).toFloat(),textPain)
+                        (data.top*2).toFloat(),(480-data.right*1.5).toFloat(),textPain)
                 }
             }
             array[0]=imageList[0].latitude

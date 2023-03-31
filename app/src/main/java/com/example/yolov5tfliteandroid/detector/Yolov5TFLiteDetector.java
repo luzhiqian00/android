@@ -54,6 +54,7 @@ public class Yolov5TFLiteDetector {
     //private final String MODEL_YOLOV5S = "bestn-fp16.tflite";
     private final String MODEL_YOLOV5S ="320best-fp16.tflite";
 //    private final String MODEL_YOLOV5S = "yolov5s-dynamic.tflite";
+
     private final String MODEL_YOLOV5N =  "yolov5n-fp16-320.tflite";
     private final String MODEL_YOLOV5M = "yolov5m-fp16-320.tflite";
     private final String MODEL_YOLOV5S_INT8 = "best-int8.tflite";
