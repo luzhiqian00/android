@@ -40,7 +40,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private EditText email;
     private EditText email2;
     private Button signUpButton;
-    private Button backLoginButton;
     private Button yangzhengButton;
     private int yanzhengma=0;
     boolean pendingCollapseKeywordInLogin = false;
@@ -117,13 +116,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         email = findViewById(R.id.EmailEdit);
         email2=findViewById(R.id.Email2Edit);
         signUpButton = findViewById(R.id.SignUpButton);
-        backLoginButton = findViewById(R.id.BackLoginButton);
+        //backLoginButton = findViewById(R.id.BackLoginButton);
         yangzhengButton=findViewById(R.id.yanzhengmaButton);
     }
 
     private void InitEvent(){
         signUpButton.setOnClickListener(this);
-        backLoginButton.setOnClickListener(this);
         yangzhengButton.setOnClickListener(this);
     }
     public void onClick(View view) {
@@ -201,10 +199,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 });
                 break;
-            case R.id.BackLoginButton:
-                // 跳转到登录界面
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
         }
     }
 }
