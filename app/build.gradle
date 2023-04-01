@@ -103,4 +103,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     implementation fileTree(dir: 'libs', includes: ['*.jar'] )
+    //输入输出框
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+
 }

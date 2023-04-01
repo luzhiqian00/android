@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,23 +11,14 @@
         android:orientation="vertical"
         android:gravity="center"
         android:background="@color/white">
+
+
         <ImageView
             android:id="@+id/LogoImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/logo"
-            />
-
-        <TextView
-            android:id="@+id/TitleText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="路探"
-            android:gravity="center"
-            android:textStyle="italic"
-            android:textColor="#808080"
-            android:textSize="30dp" />
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,21 +30,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-
-                <EditText
+                <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/UserNameEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/login_text"
-                    android:hint="输入用户名"
-                    android:textSize="24dp"
-                    android:singleLine="true" />
-
+                    android:layout_margin="10dp"
+                    android:hint="账号"
+                    android:textSize="16dp"
+                    app:met_primaryColor="#0056d3"
+                    app:met_floatingLabel="highlight"
+                    app:met_floatingLabelText="账号"
+                    app:met_iconLeft="@drawable/user"
+                    app:met_clearButton="true"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -61,22 +50,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <EditText
+                <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/PassWordEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/login_text"
-                    android:hint="输入密码"
-                    android:textSize="24dp"
+                    android:layout_margin="10dp"
+                    android:inputType="textPassword"
+                    android:textSize="16dp"
                     android:maxLength="16"
-                    android:singleLine="true"
-                    android:inputType="textPassword" />
+                    android:hint="密码"
+                    app:met_primaryColor="#0056d3"
+                    app:met_floatingLabel="normal"
+                    app:met_floatingLabelText="密码"
+                    app:met_iconLeft="@drawable/password"
+                    app:met_clearButton= "true"
+                    />
+
 
             </LinearLayout>
 
@@ -85,22 +74,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <EditText
+                <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/PassWordAgainEdit"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="15dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/login_text"
-                    android:hint="再次输入密码"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:inputType="textPassword"
+                    android:textSize="16dp"
                     android:maxLength="16"
-                    android:textSize="24dp"
-                    android:singleLine="true"
-                    android:inputType="textPassword" />
+                    android:hint="再次输入密码"
+                    app:met_primaryColor="#0056d3"
+                    app:met_floatingLabel="normal"
+                    app:met_floatingLabelText="再次输入密码"
+                    app:met_iconLeft="@drawable/password"
+                    app:met_clearButton= "true"
+                    />
 
             </LinearLayout>
 
@@ -109,20 +97,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <EditText
+                <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/EmailEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/login_text"
-                    android:hint="输入邮箱地址"
-                    android:textSize="24dp"
-                    android:singleLine="true" />
+                    android:layout_margin="10dp"
+                    android:hint="电子邮箱"
+                    android:textSize="16dp"
+                    app:met_primaryColor="#0056d3"
+                    app:met_floatingLabel="highlight"
+                    app:met_floatingLabelText="电子邮箱"
+                    app:met_iconLeft="@drawable/email"
+                    app:met_clearButton="true"
+                    />
 
             </LinearLayout>
             <LinearLayout
@@ -131,31 +118,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <EditText
+                <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/Email2Edit"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/login_text"
-                    android:hint="输入验证码"
-                    android:textSize="22dp"
+                    android:layout_margin="10dp"
+                    android:hint="验证码"
                     android:maxLength="4"
-                    android:singleLine="true" />
+                    android:textSize="16dp"
+                    app:met_clearButton="true"
+                    app:met_floatingLabel="highlight"
+                    app:met_floatingLabelText="验证码"
+                    app:met_iconLeft="@drawable/verifycode"
+                    app:met_primaryColor="#0056d3" />
+
                 <Button
                     android:id="@+id/yanzhengmaButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:layout_margin="15dp"
                     android:layout_weight="1"
+                    android:layout_margin="10dp"
                     android:background="@drawable/yanzheng_selector"
                     android:text="发送验证码"
                     android:textColor="@color/white"
-                    android:textSize="22dp" />
+                    android:textSize="16dp" />
 
             </LinearLayout>
             <!--嵌套线性布局-->
@@ -171,25 +157,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:layout_margin="15dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/login_button"
                     android:text="立即注册"
                     android:textColor="@color/white"
-                    android:textSize="24dp" />
+                    android:textSize="16dp" />
 
-                <!--返回登录按钮-->
-                <Button
-                    android:id="@+id/BackLoginButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:layout_margin="15dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/white"
-                    android:background="@drawable/login_button"
-                    android:text="返回登录"
-                    android:textSize="24dp" />
+
 
             </LinearLayout>
 

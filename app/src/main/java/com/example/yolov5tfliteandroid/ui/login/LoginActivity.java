@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yolov5tfliteandroid.Bottom;
@@ -47,12 +48,12 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText userName;
     private EditText passWord;
-    private EditText VerifyEdit;
+    //private EditText VerifyEdit;
     private Button loginButton;
-    private Button signUpButton;
-    private ImageView yanzheng;
-    private CheckBox RememberPwd;
-    private String realCode;
+    private TextView signUpButton;
+    //private ImageView yanzheng;
+    //private CheckBox RememberPwd;
+    //private String realCode;
     boolean pendingCollapseKeywordInLogin = false;
     View focusedViewInLogin;
 
@@ -72,18 +73,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         spre = getPreferences(MODE_PRIVATE);
         editor = spre.edit();
 
-        if(spre.getBoolean("ISCHECK", false)){
-            Intent intent = new Intent(LoginActivity.this, Bottom.class);
-            intent.putExtra("name", "admin");
-            intent.putExtra("pwd", "123456");
-            startActivity(intent);
-            finish();
-        }
+//        if(spre.getBoolean("ISCHECK", false)){
+//            Intent intent = new Intent(LoginActivity.this, Bottom.class);
+//            intent.putExtra("name", "admin");
+//            intent.putExtra("pwd", "123456");
+//            startActivity(intent);
+//            finish();
+//        }
 
         InitView();
         InitEvent();
-        yanzheng.setImageBitmap(VerifyCode.getInstance().createBitmap());
-        realCode = VerifyCode.getInstance().getCode().toLowerCase();
+        //yanzheng.setImageBitmap(VerifyCode.getInstance().createBitmap());
+        //realCode = VerifyCode.getInstance().getCode().toLowerCase();
         //文件名默认为LoginActivity
 
 
@@ -131,17 +132,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void InitView() {
         userName = findViewById(R.id.UserNameEdit);
         passWord = findViewById(R.id.PassWordEdit);
-        VerifyEdit = findViewById(R.id.VerifyEdit);
+        //VerifyEdit = findViewById(R.id.VerifyEdit);
         loginButton = findViewById(R.id.LoginButton);
         signUpButton = findViewById(R.id.SignUpButton);
-        yanzheng = findViewById(R.id.VerifyImage);
-        RememberPwd=findViewById(R.id.RememberPwd);
+        //yanzheng = findViewById(R.id.VerifyImage);
+        //RememberPwd=findViewById(R.id.RememberPwd);
     }
 
     private void InitEvent() {
         loginButton.setOnClickListener(this);
         signUpButton.setOnClickListener(this);
-        yanzheng.setOnClickListener(this);
+        //yanzheng.setOnClickListener(this);
     }
 
     public void onClick(View view) {
@@ -149,10 +150,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.LoginButton:
                 String strUserName = userName.getText().toString();
                 String strPassWord = passWord.getText().toString();
-                String strVerifyCode = VerifyEdit.getText().toString();
-                strVerifyCode = strVerifyCode.toLowerCase(Locale.ROOT);
+                //String strVerifyCode = VerifyEdit.getText().toString();
+                //strVerifyCode = strVerifyCode.toLowerCase(Locale.ROOT);
                 //TODO 账号密码处理
-                if (strVerifyCode.equals(realCode)) {
+                if (true) {
 
 
                     // 登陆请求
@@ -165,12 +166,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (res.equals("1")) {//登录成功
                                 Toast.makeText(getApplicationContext(), "登录成功",
                                         Toast.LENGTH_LONG).show();
-                                if(RememberPwd.isChecked()){
-                                    editor.putBoolean("ISCHECK",true);
-                                    editor.putString("userName",strUserName);
-                                    editor.putString("passWord",strPassWord);
-                                    editor.apply();
-                                }
+//                                if(RememberPwd.isChecked()){
+//                                    editor.putBoolean("ISCHECK",true);
+//                                    editor.putString("userName",strUserName);
+//                                    editor.putString("passWord",strPassWord);
+//                                    editor.apply();
+//                                }
                                 Intent intent = new Intent(LoginActivity.this, Bottom.class);
                                 intent.putExtra("name", strUserName);
                                 intent.putExtra("pwd", strPassWord);
@@ -226,10 +227,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 break;
-            case R.id.VerifyImage:
-                yanzheng.setImageBitmap(VerifyCode.getInstance().createBitmap());
-                realCode = VerifyCode.getInstance().getCode().toLowerCase();
-                break;
+//            case R.id.VerifyImage:
+//                yanzheng.setImageBitmap(VerifyCode.getInstance().createBitmap());
+//                realCode = VerifyCode.getInstance().getCode().toLowerCase();
+//                break;
 
         }
     }
