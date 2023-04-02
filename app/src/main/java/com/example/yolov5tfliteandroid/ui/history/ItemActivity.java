@@ -42,7 +42,8 @@ import java.util.concurrent.TimeUnit;
 
 public class ItemActivity extends AppCompatActivity {
     private HistoryViewModel model;
-    private Integer id;
+    private long id;
+    private String filepath;
     private YAImageView imageView;
     private TextView textView;
     private TextView locationInfo;//百度测试
@@ -55,9 +56,9 @@ public class ItemActivity extends AppCompatActivity {
         model = new ViewModelProvider(this).get(HistoryViewModel.class);
 
         Intent intent = getIntent();
-        id=intent.getIntExtra("position", 0);
-
-        model.getImageDataBase(id);
+        id=intent.getLongExtra("position", 0);
+        filepath=intent.getStringExtra("filepath");
+        //model.getImageDataBase((int) id);
 
         imageView=findViewById(R.id.image_item);
         textView=findViewById(R.id.text_item);
@@ -66,7 +67,7 @@ public class ItemActivity extends AppCompatActivity {
         //百度测试
         locationInfo = findViewById(R.id.locationInfo);
 
-        File file=new File(YAApplication.context.getFilesDir().toString() + "/image"+id.toString()+".png");
+        File file=new File(filepath);
         Bitmap bitmap = BitmapFactory.decodeFile(file.getPath()).copy(Bitmap.Config.ARGB_8888, true);
 
         Canvas canvas =new Canvas(bitmap);
