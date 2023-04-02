@@ -208,9 +208,10 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 //        没有位于编辑状态
         else {
             ItemProperty itemProperty = itemProperties.get(position);
-            Toast.makeText(this, "点击了：" + position, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "点击了：" + position, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ItemActivity.class);
             intent.putExtra( "position", itemProperty.getImageId());
+            intent.putExtra("filepath",itemProperty.getImagePath());
             startActivity(intent );// 启动Intent
         }
     }
