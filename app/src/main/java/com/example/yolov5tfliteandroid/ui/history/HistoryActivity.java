@@ -27,6 +27,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.YAApplication;
 import com.example.yolov5tfliteandroid.analysis.AppDataBase;
@@ -48,7 +49,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     private RecyclerView recyclerView; //列表
     private ConstraintLayout footBar; //底部的操作栏
     private TabLayout tabLayout; //切换栏
-
+    PullRefreshLayout PullRefreshlayout;
     private final List<ItemProperty> itemProperties = new ArrayList<>(); //item属性集合
     private final List<ItemProperty> finishedItemProperties = new ArrayList<>(); //item属性集合
     private final List<ItemProperty> unfinishedItemProperties = new ArrayList<>(); //item属性集合
@@ -87,6 +88,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView = this.findViewById(R.id.recyclerView);
         footBar = this.findViewById(R.id.footBar);
         tabLayout = this.findViewById(R.id.tab_layout);
+        PullRefreshlayout = this.findViewById(R.id.swipeRefreshLayout);
     }
 
     /**
@@ -144,6 +146,25 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         editor_et.setOnClickListener(this); //编辑按钮
         selectAll_btn.setOnClickListener(this);
         deleteAll_btn.setOnClickListener(this);
+        PullRefreshlayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // start refresh
+                try {
+                    itemProperties.clear();
+                    finishedItemProperties.clear();
+                    unfinishedItemProperties.clear();
+                    initData();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                PullRefreshlayout.setRefreshing(false);
+            }
+        });
+// refresh complete
+        PullRefreshlayout.setRefreshing(false);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
             @Override
