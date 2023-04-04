@@ -10,13 +10,13 @@ class YAApplication: Application() {
         lateinit var fDir: String
         lateinit var latitude:DoubleArray //0位置是维度，1位置是经度
 
-
     }
 
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-        fDir = context.filesDir.toString() ;
+        fDir = context.filesDir.toString()
+        latitude = DoubleArray(2)
     }
 
 

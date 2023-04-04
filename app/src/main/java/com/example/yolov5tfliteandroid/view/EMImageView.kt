@@ -40,7 +40,7 @@ class EMImageView (context:Context,attrs:AttributeSet):
             for(data in imageList){
                 canvas?.apply {
                     drawRect(
-                        (data.top*0.1).toFloat(), (480-data.right*1.5).toFloat(),
+                        (data.top*2).toFloat(), (480-data.right*1.5).toFloat(),
                         (data.bottom*2).toFloat(), (480-data.left*1.5).toFloat(),paintRect)
                     drawText(data.label+":"+String.format("%.2f",data.confidence),
                         (data.top*2).toFloat(),(480-data.right*1.5).toFloat(),textPain)
