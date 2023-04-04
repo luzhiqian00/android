@@ -9,7 +9,6 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object ServiceCreator {
     private const val BASE_URL= "http://bjtu.qingyouchen.top:8080/"
-    //private const val BASE_URL= "http://192.168.31.114:8080/"
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
