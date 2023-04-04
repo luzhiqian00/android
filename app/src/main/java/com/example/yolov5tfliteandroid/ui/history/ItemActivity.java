@@ -44,6 +44,7 @@ public class ItemActivity extends AppCompatActivity {
     private HistoryViewModel model;
     private Integer id;
     private YAImageView imageView;
+    private String filepath;
     private TextView textView;
     private TextView locationInfo;//百度测试
 
@@ -56,8 +57,8 @@ public class ItemActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         id=intent.getIntExtra("position", 0);
-
-        model.getImageDataBase(id);
+        filepath=intent.getStringExtra("filepath");
+        //model.getImageDataBase(id);
 
         imageView=findViewById(R.id.image_item);
         textView=findViewById(R.id.text_item);
@@ -66,7 +67,7 @@ public class ItemActivity extends AppCompatActivity {
         //百度测试
         locationInfo = findViewById(R.id.locationInfo);
 
-        File file=new File(YAApplication.context.getFilesDir().toString() + "/image"+id.toString()+".png");
+        File file=new File(filepath);
         Bitmap bitmap = BitmapFactory.decodeFile(file.getPath()).copy(Bitmap.Config.ARGB_8888, true);
 
         Canvas canvas =new Canvas(bitmap);
