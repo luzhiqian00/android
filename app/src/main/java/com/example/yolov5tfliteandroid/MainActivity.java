@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     private  Double latitude;
     private  Double longitude;
-   // 百度的类
+    // 百度的类
     public LocationClient mLocationClient = null;
     //private MyLocationListener myListener = new MyLocationListener();
 
