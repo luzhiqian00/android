@@ -15,20 +15,21 @@ interface ApiNet {
      * 登陆相关
      */
     @FormUrlEncoded
-    @POST("php/connect.php")
+    @POST("api/user/login")
     fun postLogin(
-        @Field("name") user:String,
-        @Field("pwd") pswd:String
+        @Field("userAccount") user:String,
+        @Field("userPassword") pswd:String
     ):Call<LoginResponse>
 
     /**
      * 注册相关
      */
     @FormUrlEncoded
-    @POST("php/regist.php")
+    @POST("api/user/register")
     fun postRegister(
-        @Field("name") user:String,
-        @Field("pwd") pswd:String,
+        @Field("userAccount") user:String,
+        @Field("userPassword") pswd:String,
+        @Field("checkPassword") checkpswd:String,
         @Field("email") email:String
     ):Call<RegisterResponse>
 
@@ -36,9 +37,9 @@ interface ApiNet {
      * 发送邮件相关
      */
     @FormUrlEncoded
-    @POST("php/email.php")
+    @POST("api/user/email")
     fun postEmail(
-        @Field("email") email:String
+        @Field("to") email:String
     ):Call<EmailResponse>
 
 
@@ -46,9 +47,10 @@ interface ApiNet {
      * 修改密码相关
      */
     @FormUrlEncoded
-    @POST("php/changepwd.php")
+    @POST("api/user/changepwd")
     fun postChangepwd(
-        @Field("name") name:String,
-        @Field("pwd") pwd:String
+        @Field("userAccount") name:String,
+        @Field("userPassword") pwd:String,
+        @Field("newPassword") checkpwd:String,
     ):Call<ChangepwdResponse>
 }
