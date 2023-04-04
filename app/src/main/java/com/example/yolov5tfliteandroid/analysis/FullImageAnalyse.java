@@ -201,8 +201,8 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 // 这里就是回到主线程处理子线程的回调数据.
                 .subscribe((Result result) -> {
                     boxLabelCanvas.setImageBitmap(result.bitmap);
-                    //frameSizeTextView.setText("纬度："+ YAApplication.latitude[0]+"\n" +
-                    //        "经度："+YAApplication.latitude[1]);
+                    frameSizeTextView.setText("纬度："+ YAApplication.latitude[0]+"\n" +
+                            "经度："+YAApplication.latitude[1]);
 //                    frameSizeTextView.setText(previewHeight + "x" + previewWidth);
                     inferenceTimeTextView.setText(Long.toString(result.costTime) + "ms");
                 });

@@ -17,6 +17,7 @@ class YAApplication: Application() {
         super.onCreate()
         context = applicationContext
         fDir = context.filesDir.toString() ;
+        latitude = DoubleArray(2)
     }
 
 

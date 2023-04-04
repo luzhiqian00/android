@@ -230,8 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
         inferenceTimeTextView = findViewById(R.id.inference_time);
         frameSizeTextView = findViewById(R.id.frame_size);
-//        frameSizeTextView.setText("纬度："+YAApplication.latitude[0]);
-//        frameSizeTextView.setText("1440", TextView.BufferType.valueOf("1080"));
+
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
 
         // 申请摄像头权限
