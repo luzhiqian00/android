@@ -149,22 +149,20 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 } else if(yanzhengma!=Integer.parseInt(email2.getText().toString())){
                     Toast.makeText(SignUpActivity.this, "验证码不正确！", Toast.LENGTH_SHORT).show();
                 } else {
-                    YARepository.postRegister(strUserName,strPassWord,strPhoneNumber).enqueue(new Callback<RegisterResponse>() {
+                    YARepository.postRegister(strUserName,strPassWord,strPassWordAgain,strPhoneNumber).enqueue(new Callback<RegisterResponse>() {
                         @Override
                         public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                             // 响应成功
 
-                            String res = response.body().getData().getRes();
-                            if (res.equals("2")) {
+                            long res = response.body().getData().getRes();
+                            if (res==1) {
                                 Toast.makeText(getApplicationContext(), "注册成功！",
                                         Toast.LENGTH_LONG).show();
                                 Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
                                 startActivity(intent);
                                 finish();
-                            }else if(res.equals("1")) {
-                                Toast.makeText(getApplicationContext(), "邮箱已被注册！" , Toast.LENGTH_LONG).show();
                             }else {
-                                Toast.makeText(getApplicationContext(), "用户名已被注册！" , Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "邮箱或用户名已被注册！" , Toast.LENGTH_LONG).show();
                             }
 
                         }
@@ -183,8 +181,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 YARepository.postEmail(Email).enqueue(new Callback<EmailResponse>() {
                     @Override
                     public void onResponse(Call<EmailResponse> call, Response<EmailResponse> response) {
-                        String res=response.body().getData().getRes();
-                        yanzhengma=Integer.parseInt(res);
+                        long res=response.body().getData().getRes();
+                        yanzhengma=(int)res;
                         if(yanzhengma!=0){
                             Toast.makeText(getApplicationContext(), "邮件发送成功！",
                                         Toast.LENGTH_LONG).show();
