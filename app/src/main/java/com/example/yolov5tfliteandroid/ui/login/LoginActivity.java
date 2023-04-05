@@ -162,21 +162,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                             // 响应成功
-                            String res = response.body().getData().getRes();
-                            if (res.equals("1")) {//登录成功
-                                Toast.makeText(getApplicationContext(), "登录成功",
-                                        Toast.LENGTH_LONG).show();
+                            if(response.body().getData()!=null){
+                                String res = response.body().getData().getUserAccount();
+                                if (!res.equals("")) {//登录成功
+                                    Toast.makeText(getApplicationContext(), "登录成功",
+                                            Toast.LENGTH_LONG).show();
 //                                if(RememberPwd.isChecked()){
 //                                    editor.putBoolean("ISCHECK",true);
 //                                    editor.putString("userName",strUserName);
 //                                    editor.putString("passWord",strPassWord);
 //                                    editor.apply();
 //                                }
-                                Intent intent = new Intent(LoginActivity.this, Bottom.class);
-                                intent.putExtra("name", strUserName);
-                                intent.putExtra("pwd", strPassWord);
-                                startActivity(intent);
-                                finish();
+                                    Intent intent = new Intent(LoginActivity.this, Bottom.class);
+                                    intent.putExtra("name", strUserName);
+                                    intent.putExtra("pwd", strPassWord);
+                                    startActivity(intent);
+                                    finish();
+                                }
                             }else{
                                 Toast.makeText(getApplicationContext(), "登录失败：账号或密码错误 ", Toast.LENGTH_LONG).show();
                             }

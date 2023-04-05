@@ -77,12 +77,12 @@ public class ChangePwdActivity extends AppCompatActivity implements View.OnClick
             Toast.makeText(getApplicationContext(), "两次密码输入不一致",
                     Toast.LENGTH_LONG).show();
         }else if(oldp.equals(pwd)){
-            YARepository.postChangepwd(name,newp).enqueue(new Callback<ChangepwdResponse>() {
+            YARepository.postChangepwd(name,oldp,newp).enqueue(new Callback<ChangepwdResponse>() {
                 @Override
                 public void onResponse(Call<ChangepwdResponse> call, Response<ChangepwdResponse> response) {
                     // 响应失败
-                    String res = response.body().getData().getRes();
-                    if (res.equals("1")) {//
+                    long res = response.body().getData().getRes();
+                    if (res==1) {//
                         Toast.makeText(getApplicationContext(), "修改成功",
                                 Toast.LENGTH_LONG).show();
                         CacheActivity.finishActivity();

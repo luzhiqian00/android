@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.YAApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class RecyclerBuilder extends RecyclerView.Adapter<RecyclerBuilder.MyViewHolder> {
@@ -26,6 +27,7 @@ class RecyclerBuilder extends RecyclerView.Adapter<RecyclerBuilder.MyViewHolder>
 
     public RecyclerBuilder(Context context) {
         this.context = context;
+        this.itemProperties=new ArrayList<>();
     }
 
     @NonNull

@@ -27,6 +27,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.YAApplication;
 import com.example.yolov5tfliteandroid.analysis.AppDataBase;
@@ -42,13 +43,9 @@ import kotlinx.coroutines.GlobalScope;
 
 public class HistoryActivity extends AppCompatActivity implements View.OnClickListener, RecyclerBuilder.OnRecyclerViewItemClick{
     private TextView editor_et; //右上角编辑按钮
-    private TextView selectSum_tv; //显示当前选中的数量
-    private Button deleteAll_btn; //删除按钮
-    private Button selectAll_btn; //全部选中按钮
     private RecyclerView recyclerView; //列表
-    private ConstraintLayout footBar; //底部的操作栏
     private TabLayout tabLayout; //切换栏
-
+    PullRefreshLayout PullRefreshlayout;
     private final List<ItemProperty> itemProperties = new ArrayList<>(); //item属性集合
     private final List<ItemProperty> finishedItemProperties = new ArrayList<>(); //item属性集合
     private final List<ItemProperty> unfinishedItemProperties = new ArrayList<>(); //item属性集合
@@ -81,12 +78,9 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 
     private void InitView(){
         editor_et = this.findViewById(R.id.editor);
-        selectSum_tv = this.findViewById(R.id.selectSum);
-        deleteAll_btn = this.findViewById(R.id.deleteAll);
-        selectAll_btn = this.findViewById(R.id.selectAll);
         recyclerView = this.findViewById(R.id.recyclerView);
-        footBar = this.findViewById(R.id.footBar);
         tabLayout = this.findViewById(R.id.tab_layout);
+        PullRefreshlayout = this.findViewById(R.id.swipeRefreshLayout);
     }
 
     /**
@@ -142,8 +136,25 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     private void initEvent() {
         recyclerBuilder.setOnRecyclerViewItemClick(this); //item的click
         editor_et.setOnClickListener(this); //编辑按钮
-        selectAll_btn.setOnClickListener(this);
-        deleteAll_btn.setOnClickListener(this);
+        PullRefreshlayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // start refresh
+                try {
+                    itemProperties.clear();
+                    finishedItemProperties.clear();
+                    unfinishedItemProperties.clear();
+                    initData();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                PullRefreshlayout.setRefreshing(false);
+            }
+        });
+// refresh complete
+        PullRefreshlayout.setRefreshing(false);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
             @Override
@@ -191,26 +202,15 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
                 selectedSum++;
                 itemProperty.setSelect(true);
             }
-
-//            判断所有item是否都已经被选中
-            if (selectedSum == itemProperties.size()){
-                selectAll_btn.setText("取消全选");
-                isSelectAll = true;
-            }
-            else {
-                selectAll_btn.setText("全选");
-                isSelectAll = false;
-            }
-//            设置选中个数显示，刷新列表
-            selectSum_tv.setText("当前共选中: " + selectedSum + "个");
             recyclerBuilder.notifyDataSetChanged();
         }
 //        没有位于编辑状态
         else {
             ItemProperty itemProperty = itemProperties.get(position);
-            Toast.makeText(this, "点击了：" + position, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "点击了：" + position, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ItemActivity.class);
             intent.putExtra( "position", itemProperty.getImageId());
+            intent.putExtra("filepath",itemProperty.getImagePath());
             startActivity(intent );// 启动Intent
         }
     }
@@ -222,11 +222,6 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.editor:
                 editorClick();
                 break;
-            case R.id.selectAll:
-                selectAllClick();
-                break;
-            case R.id.deleteAll:
-                deleteAllClick();
         }
     }
 
@@ -236,12 +231,11 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     private void editorClick() {
         if (isEditStatus){
             editor_et.setText("编辑");
-            footBar.setVisibility(View.GONE); //隐藏底部操作栏
             isEditStatus = false;
+            deleteAllClick();
         }
         else {
-            editor_et.setText("取消");
-            footBar.setVisibility(View.VISIBLE); //显示底部操作栏
+            editor_et.setText("删除");
             isEditStatus = true;
             clearAllSelected(); //设置所有item为未选中
         }
@@ -273,9 +267,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 //        从适配器中获取item属性的集合
         List<ItemProperty> itemProperties = recyclerBuilder.getItemProperties();
         selectedSum = itemProperties.size(); //选中个数
-        selectSum_tv.setText("当前选中了: " + selectedSum + "个"); //设置选中个数显示
         isSelectAll = true; //进入全选状态
-        selectAll_btn.setText("取消全选"); //设置按钮显示
 //        遍历设置所有item为未选中状态
         for (int i = 0; i < itemProperties.size(); i++) {
             itemProperties.get(i).setSelect(true);
@@ -290,9 +282,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 //        从适配器中获取item属性的集合
         List<ItemProperty> itemProperties = recyclerBuilder.getItemProperties();
         selectedSum = 0; //选中个数
-        selectSum_tv.setText("当前选中了: " + selectedSum + "个"); //设置选中个数显示
         isSelectAll = false; //退出全选状态
-        selectAll_btn.setText("全选"); //设置按钮显示
         for (int i = 0; i < itemProperties.size(); i++) {
             itemProperties.get(i).setSelect(false);
         }
@@ -301,7 +291,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     /**
      * 删除按钮
      */
-    @SuppressLint({"SetTextI18n", "NotifyDataSetChanged"})
+    //@SuppressLint({"SetTextI18n", "NotifyDataSetChanged"})
     private void deleteAllClick() {
         if (selectedSum == 0){
             Toast.makeText(this, "没有选中", Toast.LENGTH_SHORT).show();
@@ -345,7 +335,6 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
                 selectedSum--;
             }
         }
-        selectSum_tv.setText("当前选中了: " + selectedSum + "个"); //设置选中个数显示
         recyclerBuilder.notifyList(itemProperties); //刷新数据
 
     }
