@@ -81,20 +81,4 @@ object FileIO {
         }
     }
 
-//    @JvmStatic
-//    fun selectImageAll(): Any? {
-//        var res = MutableLiveData<List<ImageDataBase>>();
-//        GlobalScope.launch(Dispatchers.IO) {
-//            val userDao = getDatabase(YAApplication.context).imageDataBaseDao()
-//            val qwq = userDao.loadAllImageData();
-//            res.postValue(qwq);
-//            System.out.println(res.value);
-//        }
-//        sleep(2000)
-//        var ans = res.value;
-//        System.out.println(res.value);
-//        return ans;
-//    }
-
-
 }

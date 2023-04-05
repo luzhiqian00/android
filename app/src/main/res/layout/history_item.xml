@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/item_setting"
+
         android:gravity="center_vertical"
         tools:ignore="UseCompoundDrawables">
     <!--    是否选中-->
@@ -38,7 +38,7 @@
 
                 <ImageView
                     android:id="@+id/iv_history_item"
-                    android:layout_width="98dp"
+                    android:layout_width="120dp"
                     android:layout_height="100dp"
                     android:padding="8dp"
                     android:scaleType="fitXY"
@@ -48,6 +48,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_marginLeft="30dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <LinearLayout
@@ -70,7 +71,7 @@
                         android:text="北京市海淀区"
 
                         android:textColor="@color/black"
-                        android:textSize="8sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
                 </LinearLayout>
                 <LinearLayout
@@ -88,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:text="2022-01-05"
                         android:textColor="@color/black"
-                        android:textSize="8sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 

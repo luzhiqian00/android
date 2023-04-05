@@ -172,16 +172,6 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 
                         FileIO.saveImage(number, imageBitmap);
 
-                        //获得当前时间
-//                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
-//                        Date date = new Date(System.currentTimeMillis());
-//                        String dateStr=simpleDateFormat.format(date);
-//
-//                        dateEditor.putString("date"+number,dateStr);
-//                        dateEditor.apply();
-
-
-
                         FileIO.saveRes(number, recognitions, modelToPreviewTransform, boxPaint, cropCanvas, textPain);
                         number++;
                         edit.putInt("number", number);

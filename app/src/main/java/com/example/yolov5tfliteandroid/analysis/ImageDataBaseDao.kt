@@ -22,5 +22,4 @@ interface ImageDataBaseDao {
     @Query("delete from ImageDataBase where imageName=:imageName")
     fun deleteByName(imageName :String)
 
-
 }
