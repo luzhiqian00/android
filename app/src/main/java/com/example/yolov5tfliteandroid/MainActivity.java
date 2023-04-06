@@ -60,34 +60,41 @@ public class MainActivity extends AppCompatActivity {
 
     private CameraProcess cameraProcess = new CameraProcess();
 
-    private  Double latitude;
-    private  Double longitude;
-    // 百度的类
-    public LocationClient mLocationClient = null;
+    LocationClient mLocationClient;
     private MyLocationListener myListener = new MyLocationListener();
 
-    public class MyLocationListener extends BDAbstractLocationListener{
-        @Override
-        public void onReceiveLocation(BDLocation location){
-            //此处的BDLocation为定位结果信息类，通过它的各种get方法可获取定位相关的全部结果
-            //以下只列举部分获取经纬度相关（常用）的结果信息
-            //更多结果信息获取说明，请参照类参考中BDLocation类中的说明
-
-             YAApplication.latitude[0] = location.getLatitude();    //获取纬度信息
-             YAApplication.latitude[1] = location.getLongitude();    //获取经度信息
-            float radius = location.getRadius();    //获取定位精度，默认值为0.0f
-
-            String coorType = location.getCoorType();
-            //获取经纬度坐标类型，以LocationClientOption中设置过的坐标类型为准
-
-            int errorCode = location.getLocType();
-            //获取定位类型、定位错误返回码，具体信息可参照类参考中BDLocation类中的说明
+    protected int getScreenOrientation() {
+        switch (getWindowManager().getDefaultDisplay().getRotation()) {
+            case Surface.ROTATION_270:
+                return 270;
+            case Surface.ROTATION_180:
+                return 180;
+            case Surface.ROTATION_90:
+                return 90;
+            default:
+                return 0;
         }
     }
 
+    /*
+     * 百度的Listener
+     * */
+    private class MyLocationListener extends BDAbstractLocationListener {
 
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            YAApplication.latitude[0]=location.getLatitude();
+            YAApplication.latitude[1]=location.getLongitude();
 
-
+            if(location.getLocType() == BDLocation.TypeGpsLocation){
+                System.out.println("GPS");
+                mLocationClient.stop();
+            }else if(location.getLocType() == BDLocation.TypeNetWorkLocation){
+                System.out.println("网络");
+                mLocationClient.stop();
+            }
+        }
+    }
 
     private void requestLocation(){
         initLocation();
@@ -95,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        mLocationClient.stop();
     }
+
 
     private void initLocation(){
         LocationClientOption option = new LocationClientOption();
@@ -113,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         //BD09：百度墨卡托坐标；
         //海外地区定位，无需设置坐标类型，统一返回WGS84类型坐标
 
-        option.setScanSpan(1200);
+        option.setScanSpan(1000);
 
         option.setOpenGps(true);
 
@@ -132,21 +140,9 @@ public class MainActivity extends AppCompatActivity {
         mLocationClient.setLocOption(option);
     }
 
-    /**
-     * 获取屏幕旋转角度,0表示拍照出来的图片是横屏
-     */
-    protected int getScreenOrientation() {
-        switch (getWindowManager().getDefaultDisplay().getRotation()) {
-            case Surface.ROTATION_270:
-                return 270;
-            case Surface.ROTATION_180:
-                return 180;
-            case Surface.ROTATION_90:
-                return 90;
-            default:
-                return 0;
-        }
-    }
+
+
+
 
     /**
      * 加载模型
@@ -173,16 +169,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
         LocationClient.setAgreePrivacy(true);//获得百度权限许可
-
         try {
             mLocationClient = new LocationClient(getApplicationContext());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //mLocationClient.registerLocationListener(myListener );
 
         List<String> permissionList = new ArrayList<String>();
 
@@ -286,37 +278,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        // 监听视图变化按钮
-//        immersive.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                IS_FULL_SCREEN = b;
-//                if (b) {
-//                    // 进入全屏模式
-//                    cameraPreviewWrap.removeAllViews();
-//                    FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(MainActivity.this,
-//                            cameraPreviewMatch,
-//                            boxLabelCanvas,
-//                            rotation,
-//                            inferenceTimeTextView,
-//                            frameSizeTextView,
-//                            yolov5TFLiteDetector);
-//                    cameraProcess.startCamera(MainActivity.this, fullScreenAnalyse, cameraPreviewMatch);
-//
-//                } else {
-//                    // 进入全图模式
-//                    cameraPreviewMatch.removeAllViews();
-//                    FullImageAnalyse fullImageAnalyse = new FullImageAnalyse(
-//                            MainActivity.this,
-//                            cameraPreviewWrap,
-//                            boxLabelCanvas,
-//                            rotation,
-//                            inferenceTimeTextView,
-//                            frameSizeTextView,
-//                            yolov5TFLiteDetector);
-//                    cameraProcess.startCamera(MainActivity.this, fullImageAnalyse, cameraPreviewWrap);
-//                }
-//            }
-//        });
     }
 }
