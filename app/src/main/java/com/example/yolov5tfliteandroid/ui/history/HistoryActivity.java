@@ -112,7 +112,9 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             File file = new File(fileName);
             if(file.exists()){
                 String dateStr = image.getCreateTime();
+                String location = image.getLocation();
                 itemProperty.setTime1(dateStr);
+                itemProperty.setLocation(location);
                 itemProperty.setImageId(image.getId());
                 itemProperty.setImagePath(fileName);
                 itemProperty.setFinishState(image.getFinish_status());
@@ -211,6 +213,8 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             Intent intent = new Intent(this, ItemActivity.class);
             intent.putExtra( "position", itemProperty.getImageId());
             intent.putExtra("filepath",itemProperty.getImagePath());
+            intent.putExtra("time",itemProperty.getTime1());
+            intent.putExtra("location",itemProperty.getLocation());
             startActivity(intent );// 启动Intent
         }
     }

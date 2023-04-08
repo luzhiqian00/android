@@ -45,6 +45,8 @@ public class ItemActivity extends AppCompatActivity {
     private Integer id;
     private YAImageView imageView;
     private String filepath;
+    private String time;
+    private String location;
     private TextView textView;
     private TextView locationInfo;//百度测试
 
@@ -58,17 +60,20 @@ public class ItemActivity extends AppCompatActivity {
         Intent intent = getIntent();
         id=intent.getIntExtra("position", 0);
         filepath=intent.getStringExtra("filepath");
+        time = intent.getStringExtra("time");
+        location = intent.getStringExtra("location");
         String q1[]=filepath.split("image");
         String q2[]=q1[1].split("\\.");
         int iid=Integer.parseInt(q2[0]);
         model.getImageDataBase(iid);
 
         imageView=findViewById(R.id.image_item);
-        textView=findViewById(R.id.text_item);
-        textView.setText("Item:"+id);
+        textView=findViewById(R.id.time);
+        textView.setText(time);
 
         //百度测试
-        locationInfo = findViewById(R.id.locationInfo);
+        locationInfo = findViewById(R.id.location);
+        locationInfo.setText(location);
 
         File file=new File(filepath);
         Bitmap bitmap = BitmapFactory.decodeFile(file.getPath()).copy(Bitmap.Config.ARGB_8888, true);
@@ -83,7 +88,7 @@ public class ItemActivity extends AppCompatActivity {
                     StringBuilder currentPosition = new StringBuilder();
                     currentPosition.append("纬度：").append(imageDataBase.getLatitude()).append("\n");
                     currentPosition.append("经度：").append(imageDataBase.getLongitude()).append("\n");
-                    locationInfo.setText(currentPosition);
+                    //locationInfo.setText(currentPosition);
                     locationInfo.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v){

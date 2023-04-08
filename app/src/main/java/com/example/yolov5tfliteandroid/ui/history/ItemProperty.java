@@ -2,6 +2,7 @@ package com.example.yolov5tfliteandroid.ui.history;
 
 public class ItemProperty {
     private String time1; //item标题
+    private String location;
     //private String time2;
     private boolean isSelect; //是否选中
     private String imagePath;   // 图片本地地址
@@ -16,6 +17,7 @@ public class ItemProperty {
         return time1;
     }
 
+    public String getLocation(){return location;}
     public boolean isSelect() {
         return isSelect;
     }
@@ -24,6 +26,9 @@ public class ItemProperty {
         this.time1 = time;
     }
 
+    public void setLocation(String location) {
+        this.location = location;
+    }
     //public void setTime2(String time){this.time2=time;}
 
     public void setSelect(boolean select) {
