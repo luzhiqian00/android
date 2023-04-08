@@ -9,7 +9,7 @@ class YAApplication: Application() {
         lateinit var context: Context
         lateinit var fDir: String
         lateinit var latitude:DoubleArray //0位置是维度，1位置是经度
-
+        lateinit var location:String
 
     }
 
@@ -18,6 +18,7 @@ class YAApplication: Application() {
         context = applicationContext
         fDir = context.filesDir.toString() ;
         latitude = DoubleArray(2)
+        location = ""
     }
 
 
