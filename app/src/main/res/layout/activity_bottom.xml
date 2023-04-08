@@ -30,7 +30,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="Detect"
+            android:text="检测"
             tools:text="检测" />
 
 
@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="Setting"
+            android:text="设置"
             tools:text="设置" />
     </RadioGroup>
 

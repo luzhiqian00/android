@@ -187,6 +187,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onFailure(Call<LoginResponse> call, Throwable t) {
                             // 响应失败
+                            Toast.makeText(getApplicationContext(), "登录失败：账号或密码错误 ", Toast.LENGTH_LONG).show();
                             t.printStackTrace();
                         }
                     });

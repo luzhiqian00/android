@@ -69,6 +69,7 @@ object FileIO {
                     YAApplication.location
                 )//储存时是在W=640 和H=640的条件下的图像
                 //上面最下面两个0 应该是精度维度这里先用0替代，出了点问题
+                //println("####1"+YAApplication.location)
                 userDao.insertImageData(a)
             }
         }

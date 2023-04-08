@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-    <LinearLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -10,32 +8,51 @@
         android:padding="20dp"
         >
 
-        <com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.YAImageView
-            android:id='@+id/image_item'
-            android:layout_width="match_parent"
-            android:layout_height="360dp"
-            android:src="@drawable/photo"/>
+    <com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.YAImageView
+        android:id='@+id/image_item'
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/photo" />
 
-<LinearLayout
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="300dp"
     android:orientation="vertical"
-    android:background="@drawable/item_setting">
+    >
     <TextView
-        android:id='@+id/text_item'
+        android:id='@+id/time'
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="content"
+        android:text="时间"
         android:textSize="20sp"
         android:color="@color/black"
         />
 
     <TextView
-        android:id="@+id/locationInfo"
+        android:id="@+id/location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:textSize="20sp"
+        android:text="地点"
+        android:layout_marginBottom="20dp"
         />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:textSize="18dp"
+            android:text="跳转地图导航">
+        </Button>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"
+            android:text="标记完成">
+        </Button>
 </LinearLayout>
 
     </LinearLayout>
