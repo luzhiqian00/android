@@ -58,7 +58,10 @@ public class ItemActivity extends AppCompatActivity {
         Intent intent = getIntent();
         id=intent.getIntExtra("position", 0);
         filepath=intent.getStringExtra("filepath");
-        model.getImageDataBase(id);
+        String q1[]=filepath.split("image");
+        String q2[]=q1[1].split("\\.");
+        int iid=Integer.parseInt(q2[0]);
+        model.getImageDataBase(iid);
 
         imageView=findViewById(R.id.image_item);
         textView=findViewById(R.id.text_item);
