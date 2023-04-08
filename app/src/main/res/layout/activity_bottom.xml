@@ -31,7 +31,7 @@
             android:button="@null"
             android:gravity="center"
             android:text="Detect"
-            tools:text="Detect" />
+            tools:text="检测" />
 
 
         <RadioButton
@@ -42,7 +42,7 @@
             android:button="@null"
             android:gravity="center"
             android:text="Setting"
-            tools:text="Setting" />
+            tools:text="设置" />
     </RadioGroup>
 
 </LinearLayout>

@@ -65,7 +65,8 @@ object FileIO {
                     0,
                     dateStr,
                     YAApplication.latitude[0],
-                    YAApplication.latitude[1]
+                    YAApplication.latitude[1],
+                    YAApplication.location
                 )//储存时是在W=640 和H=640的条件下的图像
                 //上面最下面两个0 应该是精度维度这里先用0替代，出了点问题
                 userDao.insertImageData(a)

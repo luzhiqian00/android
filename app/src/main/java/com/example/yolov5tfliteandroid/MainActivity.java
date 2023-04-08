@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         public void onReceiveLocation(BDLocation location) {
             YAApplication.latitude[0]=location.getLatitude();
             YAApplication.latitude[1]=location.getLongitude();
-
+            YAApplication.location = location.getStreet();
             if(location.getLocType() == BDLocation.TypeGpsLocation){
                 System.out.println("GPS");
                 mLocationClient.stop();
@@ -108,18 +108,8 @@ public class MainActivity extends AppCompatActivity {
         LocationClientOption option = new LocationClientOption();
 
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
-        //可选，设置定位模式，默认高精度
-        //LocationMode.Hight_Accuracy：高精度；
-        //LocationMode. Battery_Saving：低功耗；
-        //LocationMode. Device_Sensors：仅使用设备；
-        //LocationMode.Fuzzy_Locating, 模糊定位模式；v9.2.8版本开始支持，可以降低API的调用频率，但同时也会降低定位精度；
 
         option.setCoorType("bd09ll");
-        //可选，设置返回经纬度坐标类型，默认GCJ02
-        //GCJ02：国测局坐标；
-        //BD09ll：百度经纬度坐标；
-        //BD09：百度墨卡托坐标；
-        //海外地区定位，无需设置坐标类型，统一返回WGS84类型坐标
 
         option.setScanSpan(1000);
 
@@ -267,8 +257,6 @@ public class MainActivity extends AppCompatActivity {
                             yolov5TFLiteDetector);
                     cameraProcess.startCamera(MainActivity.this, fullImageAnalyse, cameraPreviewWrap);
                 }
-
-
             }
 
             @Override

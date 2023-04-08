@@ -192,7 +192,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 .subscribe((Result result) -> {
                     boxLabelCanvas.setImageBitmap(result.bitmap);
                     frameSizeTextView.setText("纬度："+ YAApplication.latitude[0]+"\n" +
-                            "经度："+YAApplication.latitude[1]);
+                            "经度："+YAApplication.latitude[1]+"\n"+YAApplication.location);
 //                    frameSizeTextView.setText(previewHeight + "x" + previewWidth);
                     inferenceTimeTextView.setText(Long.toString(result.costTime) + "ms");
                 });

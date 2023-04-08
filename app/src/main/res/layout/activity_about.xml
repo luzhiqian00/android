@@ -25,11 +25,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
-            android:text="路探APP"
             android:gravity="center"
-            android:textStyle="italic"
+            android:text="路探APP"
             android:textColor="@color/black"
-            android:textSize="50dp" />
+            android:textSize="50dp"
+            android:textStyle="italic" />
+
         <TextView
             android:id="@+id/TitleText1"
             android:layout_width="match_parent"
