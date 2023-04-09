@@ -83,4 +83,11 @@ object FileIO {
         }
     }
 
+    @JvmStatic
+    fun updateImage(imageDataBase: ImageDataBase){
+        GlobalScope.launch(Dispatchers.IO) {
+            val userDao = getDatabase(YAApplication.context).imageDataBaseDao()
+            userDao.updateImageData(imageDataBase)
+        }
+    }
 }

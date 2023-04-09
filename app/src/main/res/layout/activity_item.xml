@@ -5,21 +5,40 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/white"
-        android:padding="20dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/blue"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记录"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.YAImageView
         android:id='@+id/image_item'
         android:layout_width="match_parent"
         android:layout_height="360dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="20dp"
+        android:layout_margin="20dp"
         android:src="@drawable/photo" />
 
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="300dp"
     android:orientation="vertical"
+        android:padding="20dp"
     >
     <TextView
         android:id='@+id/time'
@@ -39,17 +58,21 @@
         android:layout_marginBottom="20dp"
         />
         <Button
+            android:id="@+id/navigate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue"
             android:textSize="18dp"
+            android:textColor="@color/white"
             android:text="跳转地图导航">
         </Button>
         <Button
+            android:id="@+id/label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue"
             android:layout_marginTop="10dp"
+            android:textColor="@color/white"
             android:textSize="18dp"
             android:text="标记完成">
         </Button>

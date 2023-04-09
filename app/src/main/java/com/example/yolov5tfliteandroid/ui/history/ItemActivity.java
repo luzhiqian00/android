@@ -6,11 +6,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,10 +28,13 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.example.yolov5tfliteandroid.R;
 import com.example.yolov5tfliteandroid.YAApplication;
+import com.example.yolov5tfliteandroid.analysis.AppDataBase;
 import com.example.yolov5tfliteandroid.analysis.ImageDataBase;
+import com.example.yolov5tfliteandroid.analysis.ImageDataBaseDao;
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.ui.history.HistoryViewModel;
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.EMImageView;
 import com.example.yolov5tfliteandroid.com.example.yolov5tfliteandroid.view.YAImageView;
+import com.example.yolov5tfliteandroid.repository.FileIO;
 
 import org.w3c.dom.Text;
 
@@ -38,17 +43,23 @@ import java.nio.DoubleBuffer;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 public class ItemActivity extends AppCompatActivity {
     private HistoryViewModel model;
-    private Integer id;
     private YAImageView imageView;
     private String filepath;
     private String time;
+    private Long id;
     private String location;
+    private ImageDataBase item;
     private TextView textView;
     private TextView locationInfo;//百度测试
+    private Button navigate;
+    private Button label;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,19 +69,30 @@ public class ItemActivity extends AppCompatActivity {
         model = new ViewModelProvider(this).get(HistoryViewModel.class);
 
         Intent intent = getIntent();
-        id=intent.getIntExtra("position", 0);
+        id = intent.getLongExtra("id",0);
         filepath=intent.getStringExtra("filepath");
         time = intent.getStringExtra("time");
         location = intent.getStringExtra("location");
+        item = (ImageDataBase) intent.getParcelableExtra("item");
+
+
+
         String q1[]=filepath.split("image");
         String q2[]=q1[1].split("\\.");
         int iid=Integer.parseInt(q2[0]);
         model.getImageDataBase(iid);
 
+        navigate = findViewById(R.id.navigate);
+        label = findViewById(R.id.label);
         imageView=findViewById(R.id.image_item);
         textView=findViewById(R.id.time);
         textView.setText(time);
 
+        if(item.getFinish_status()=='1'){
+            label.setText("已完成");
+            label.setBackgroundColor(Color.RED);
+        }
+        item.setId(id);
         //百度测试
         locationInfo = findViewById(R.id.location);
         locationInfo.setText(location);
@@ -89,7 +111,7 @@ public class ItemActivity extends AppCompatActivity {
                     currentPosition.append("纬度：").append(imageDataBase.getLatitude()).append("\n");
                     currentPosition.append("经度：").append(imageDataBase.getLongitude()).append("\n");
                     //locationInfo.setText(currentPosition);
-                    locationInfo.setOnClickListener(new View.OnClickListener(){
+                    navigate.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v){
                             Intent i1 = new Intent();
@@ -103,7 +125,23 @@ public class ItemActivity extends AppCompatActivity {
                     });
                 }
         );
-
+        label.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                ImageDataBase newItem = new ImageDataBase(item.getImageName(), item.getLabel(),item.getConfidence(),
+//                        item.getLeft(),item.getTop(),item.getRight(),item.getBottom(),1,item.getCreateTime(),
+//                        item.getLatitude(),item.getLongitude(),item.getLocation());
+                if(item.getFinish_status()==0){
+                    item.setFinish_status(1);
+                    FileIO.updateImage(item);
+                    Toast.makeText(getApplicationContext(), "标记成功！ ", Toast.LENGTH_LONG).show();
+                    label.setText("已完成");
+                    label.setBackgroundColor(Color.RED);
+                }else{
+                    Toast.makeText(getApplicationContext(), "已完成！ ", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 

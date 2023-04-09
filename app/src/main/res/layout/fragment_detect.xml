@@ -35,6 +35,43 @@
     android:layout_marginRight="40dp"
     android:layout_marginBottom="50dp"
     android:background="@drawable/photo" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="实时检测"
+            android:textSize="18dp"
+            android:layout_marginRight="10dp"
+            ></TextView>
+        <com.kyleduo.switchbutton.SwitchButton
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:checked="true">
+        </com.kyleduo.switchbutton.SwitchButton>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="离线识别"
+            android:textSize="18dp"
+            android:layout_marginRight="10dp"
+            ></TextView>
+        <com.kyleduo.switchbutton.SwitchButton
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:checked="true">
+        </com.kyleduo.switchbutton.SwitchButton>
+    </LinearLayout>
 
 
 
