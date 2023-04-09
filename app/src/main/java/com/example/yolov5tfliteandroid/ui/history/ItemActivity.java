@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +50,7 @@ public class ItemActivity extends AppCompatActivity {
     private String location;
     private TextView textView;
     private TextView locationInfo;//百度测试
-
+    private Button jumpToMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +71,7 @@ public class ItemActivity extends AppCompatActivity {
         imageView=findViewById(R.id.image_item);
         textView=findViewById(R.id.time);
         textView.setText(time);
-
+        jumpToMap = findViewById(R.id.jumpToMap);
         //百度测试
         locationInfo = findViewById(R.id.location);
         locationInfo.setText(location);
@@ -89,7 +90,7 @@ public class ItemActivity extends AppCompatActivity {
                     currentPosition.append("纬度：").append(imageDataBase.getLatitude()).append("\n");
                     currentPosition.append("经度：").append(imageDataBase.getLongitude()).append("\n");
                     //locationInfo.setText(currentPosition);
-                    locationInfo.setOnClickListener(new View.OnClickListener(){
+                    jumpToMap.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v){
                             Intent i1 = new Intent();
