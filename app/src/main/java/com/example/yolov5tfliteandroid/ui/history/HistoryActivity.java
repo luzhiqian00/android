@@ -3,6 +3,7 @@ package com.example.yolov5tfliteandroid.ui.history;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -106,7 +108,6 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         executor.shutdown();
         for (ImageDataBase image : images) {
             ItemProperty itemProperty = new ItemProperty();
-            //itemProperty.setTime2("16:59:59");
             ++count;
             String fileName = YAApplication.fDir+"/"+image.getImageName();
             File file = new File(fileName);
@@ -118,6 +119,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
                 itemProperty.setImageId(image.getId());
                 itemProperty.setImagePath(fileName);
                 itemProperty.setFinishState(image.getFinish_status());
+                itemProperty.setImageDataBase(image);
                 itemProperties.add(itemProperty);
                 if(image.getFinish_status()==1){
                     finishedItemProperties.add(itemProperty);
@@ -125,7 +127,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
                     unfinishedItemProperties.add(itemProperty);
                 }
             }
-            recyclerBuilder.notifyList(itemProperties); //逐次刷新列表数据
+            recyclerBuilder.notifyList(unfinishedItemProperties); //逐次刷新列表数据
         }
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
@@ -162,9 +164,6 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 //Toast.makeText(HistoryActivity.this, tab.getText(), Toast.LENGTH_SHORT).show();
-                /*
-                TODO 这里数据库再加一列判断完成状态然后查数据放进去
-                 */
                 if(tabstate == 1){
                     clearRecycleBuilder();//清空原有数据
                     //找未完成数据 finish-1
@@ -215,6 +214,8 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             intent.putExtra("filepath",itemProperty.getImagePath());
             intent.putExtra("time",itemProperty.getTime1());
             intent.putExtra("location",itemProperty.getLocation());
+            intent.putExtra("id",itemProperty.getImageDataBase().getId());
+            intent.putExtra("item", (Parcelable) itemProperty.getImageDataBase());
             startActivity(intent );// 启动Intent
         }
     }

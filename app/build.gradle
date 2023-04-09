@@ -107,4 +107,6 @@ dependencies {
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
 
+    //选择框
+    implementation 'com.kyleduo.switchbutton:library:2.1.0'
 }
