@@ -60,7 +60,6 @@ public class ItemActivity extends AppCompatActivity {
     private TextView locationInfo;//百度测试
     private Button navigate;
     private Button label;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +86,6 @@ public class ItemActivity extends AppCompatActivity {
         imageView=findViewById(R.id.image_item);
         textView=findViewById(R.id.time);
         textView.setText(time);
-
         if(item.getFinish_status()=='1'){
             label.setText("已完成");
             label.setBackgroundColor(Color.RED);
