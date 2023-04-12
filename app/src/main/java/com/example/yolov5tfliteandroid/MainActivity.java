@@ -46,7 +46,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean IS_FULL_SCREEN = true;   //是否是全屏
+    private boolean IS_FULL_SCREEN = false;   //是否是全屏
 
     private PreviewView cameraPreviewMatch;
     private PreviewView cameraPreviewWrap;
@@ -237,7 +237,8 @@ public class MainActivity extends AppCompatActivity {
                 initModel(model);
                 if (IS_FULL_SCREEN) {
                     cameraPreviewWrap.removeAllViews();
-                    FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(MainActivity.this,
+                    FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(
+                            MainActivity.this,
                             cameraPreviewMatch,
                             boxLabelCanvas,
                             rotation,

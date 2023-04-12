@@ -1,23 +1,28 @@
 package com.example.yolov5tfliteandroid.analysis;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.view.PreviewView;
 
+import com.example.yolov5tfliteandroid.YAApplication;
 import com.example.yolov5tfliteandroid.detector.Yolov5TFLiteDetector;
+import com.example.yolov5tfliteandroid.repository.FileIO;
 import com.example.yolov5tfliteandroid.utils.ImageProcess;
 import com.example.yolov5tfliteandroid.utils.Recognition;
 
@@ -44,6 +49,7 @@ public class FullScreenAnalyse implements ImageAnalysis.Analyzer {
         Bitmap bitmap;
     }
 
+    Context context;
     ImageView boxLabelCanvas;
     PreviewView previewView;
     int rotation;
@@ -51,6 +57,7 @@ public class FullScreenAnalyse implements ImageAnalysis.Analyzer {
     private TextView frameSizeTextView;
     ImageProcess imageProcess;
     private Yolov5TFLiteDetector yolov5TFLiteDetector;
+    Integer number;//一个记录图片的序号的Int类型数值
 
     public FullScreenAnalyse(Context context,
                              PreviewView previewView,
@@ -59,6 +66,7 @@ public class FullScreenAnalyse implements ImageAnalysis.Analyzer {
                              TextView inferenceTimeTextView,
                              TextView frameSizeTextView,
                              Yolov5TFLiteDetector yolov5TFLiteDetector) {
+        this.context =context;
         this.previewView = previewView;
         this.boxLabelCanvas = boxLabelCanvas;
         this.rotation = rotation;
@@ -68,6 +76,7 @@ public class FullScreenAnalyse implements ImageAnalysis.Analyzer {
         this.yolov5TFLiteDetector = yolov5TFLiteDetector;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void analyze(@NonNull ImageProxy image) {
         int previewHeight = previewView.getHeight();
@@ -152,14 +161,24 @@ public class FullScreenAnalyse implements ImageAnalysis.Analyzer {
             textPain.setColor(Color.RED);
             textPain.setStyle(Paint.Style.FILL);
 
-            for (Recognition res : recognitions) {
-                RectF location = res.getLocation();
-                String label = res.getLabelName();
-                float confidence = res.getConfidence();
-                modelToPreviewTransform.mapRect(location);
-                cropCanvas.drawRect(location, boxPaint);
-                cropCanvas.drawText(label + ":" + String.format("%.2f", confidence), location.left, location.top, textPain);
+            SharedPreferences sharedPreferences = context.getSharedPreferences("Number", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+
+                    //保存日期的spre
+            SharedPreferences spreDate = context.getSharedPreferences("Date",Context.MODE_PRIVATE);
+            SharedPreferences.Editor dateEditor = spreDate.edit();
+
+            if (!recognitions.isEmpty()) {
+
+                number = sharedPreferences.getInt("number", 0);//0代表着没有，从1开始输入
+
+                FileIO.saveImage(number, imageBitmap);
+                FileIO.saveRes(number, recognitions, modelToPreviewTransform, boxPaint, cropCanvas, textPain);
+                number++;
+                edit.putInt("number", number);
+                edit.apply();
             }
+
             long end = System.currentTimeMillis();
             long costTime = (end - start);
             image.close();
@@ -170,7 +189,8 @@ public class FullScreenAnalyse implements ImageAnalysis.Analyzer {
                 // 这里就是回到主线程处理子线程的回调数据.
                 .subscribe((Result result) -> {
                     boxLabelCanvas.setImageBitmap(result.bitmap);
-                    frameSizeTextView.setText(previewHeight + "x" + previewWidth);
+                    frameSizeTextView.setText("纬度："+ YAApplication.latitude[0]+"\n" +
+                            "经度："+ YAApplication.latitude[1]);
                     inferenceTimeTextView.setText(Long.toString(result.costTime) + "ms");
                 });
 
