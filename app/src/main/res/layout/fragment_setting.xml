@@ -7,7 +7,7 @@
     >
     <!--    顶部框-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/blue"
+        android:background="@color/button_blue"
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <TextView
@@ -116,20 +116,19 @@
         android:layout_width="match_parent"
 
         android:layout_height="fill_parent">
+
         <Button
             android:id="@+id/exitlogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="189dp"
+            android:layout_height="85dp"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/login_button"
+            android:layout_marginLeft="115dp"
+            android:layout_marginTop="220dp"
+            android:background="@drawable/button_blue"
             android:text="退出登录"
-            android:textStyle="bold|italic"
             android:textColor="@color/white"
             android:textSize="24dp"
-            />
+            android:textStyle="bold|italic" />
     </LinearLayout>
 
 </LinearLayout>

@@ -134,11 +134,11 @@
 
                 <Button
                     android:id="@+id/yanzhengmaButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/yanzheng_selector"
+                    android:layout_width="137dp"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="50dp"
+
+                    android:background="@drawable/button_blue"
                     android:text="发送验证码"
                     android:textColor="@color/white"
                     android:textSize="16dp" />
@@ -148,22 +148,22 @@
             <LinearLayout
                 android:id="@+id/ButtonLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="150dp"
+                >
 
                 <!--立即注册按钮-->
                 <Button
                     android:id="@+id/SignUpButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="146dp"
+                    android:layout_height="70dp"
+
+                    android:layout_marginLeft="125dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/button_blue"
                     android:padding="15dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/login_button"
                     android:text="立即注册"
                     android:textColor="@color/white"
                     android:textSize="16dp" />
-
 
 
             </LinearLayout>

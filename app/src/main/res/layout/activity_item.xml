@@ -8,7 +8,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         >
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/blue"
+        android:background="@color/button_blue"
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <TextView
@@ -62,7 +62,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/blue"
+            android:background="@color/button_blue"
             android:textSize="18dp"
             android:textColor="@color/white"
             android:text="跳转地图导航">
@@ -71,7 +71,7 @@
             android:id="@+id/label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/blue"
+            android:background="@color/button_blue"
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
             android:textSize="18dp"

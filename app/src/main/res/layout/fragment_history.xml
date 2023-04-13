@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
     <!--    顶部框-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/blue"
+        android:background="@color/button_blue"
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <TextView
