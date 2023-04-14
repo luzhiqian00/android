@@ -114,7 +114,9 @@ public class ItemActivity extends AppCompatActivity {
                         public void onClick(View v){
                             Intent i1 = new Intent();
 // 展示地图
-                            i1.setData(Uri.parse("baidumap://map/marker?location="+imageDataBase.getLatitude()+","+imageDataBase.getLongitude()+"&title=Marker&content=makeamarker&traffic=on&src=andr.baidu.openAPIdemo"));
+                            i1.setData(Uri.parse("baidumap://map/marker?location="+imageDataBase.getLatitude()+","+
+                                    imageDataBase.getLongitude()+
+                                    "&title=Marker&content=makeamarker&traffic=on&src=andr.baidu.openAPIdemo"));
 
                             startActivity(i1);
 
