@@ -108,16 +108,16 @@
 
                 <Button
                     android:id="@+id/ChangePwdButton"
-                    android:layout_width="166dp"
-                    android:layout_height="78dp"
-                    android:layout_marginLeft="125dp"
-                    android:background="@drawable/button_blue"
-
+                    android:layout_width="145dp"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="100dp"
                     android:layout_marginTop="10dp"
+
+                    android:background="@drawable/button_blue"
                     android:padding="15dp"
                     android:text="修   改"
                     android:textColor="@color/white"
-                    android:textSize="24dp" />
+                    android:textSize="20dp" />
 
 
             </LinearLayout>

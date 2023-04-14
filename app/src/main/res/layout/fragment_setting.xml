@@ -119,11 +119,11 @@
 
         <Button
             android:id="@+id/exitlogin"
-            android:layout_width="189dp"
-            android:layout_height="85dp"
+            android:layout_width="168dp"
+            android:layout_height="80dp"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="115dp"
-            android:layout_marginTop="220dp"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="200dp"
             android:background="@drawable/button_blue"
             android:text="退出登录"
             android:textColor="@color/white"

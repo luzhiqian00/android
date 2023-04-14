@@ -59,19 +59,20 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="35dp"
+                        android:layout_width="36dp"
 
-                        android:layout_height="match_parent"
-                        android:src="@drawable/icon_position">
-                    </ImageView>
+                        android:layout_height="23dp"
+                        android:src="@drawable/icon_position"></ImageView>
+
                     <TextView
                         android:id="@+id/itemTitle1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="24dp"
                         android:text="北京市海淀区"
+                        android:gravity="center|left"
 
                         android:textColor="@color/black"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
                 <LinearLayout
@@ -80,16 +81,18 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="39dp"
+                        android:layout_height="23dp"
                         android:src="@drawable/icon_time"></ImageView>
+
                     <TextView
                         android:id="@+id/itemTitle2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2022-01-05"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="2022-01-05-10:00:00"
                         android:textColor="@color/black"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
